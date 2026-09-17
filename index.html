@@ -1,0 +1,3266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cuaderno IB · Matemáticas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B2A4A;
+    --ink-soft:#4A5772;
+    --paper:#EEF2F7;
+    --paper-line:#D9E1EC;
+    --card:#FFFFFF;
+    --aa:#2F7A5C;
+    --aa-soft:#E4F1EB;
+    --ai:#C77D3F;
+    --ai-soft:#F7E9DA;
+    --m-none:#C9CFD9;
+    --m-low:#CC5B4E;
+    --m-mid:#DFA23A;
+    --m-high:#2F7A5C;
+    --radius:10px;
+    --shadow: 0 1px 2px rgba(27,42,74,0.06), 0 4px 14px rgba(27,42,74,0.06);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    background:
+      linear-gradient(var(--paper-line) 1px, transparent 1px) 0 0/100% 28px,
+      linear-gradient(90deg, var(--paper-line) 1px, transparent 1px) 0 0/28px 100%,
+      var(--paper);
+    background-attachment:local;
+    min-height:100vh;
+    font-size:15px;
+  }
+  .wrap{max-width:980px;margin:0 auto;padding:28px 20px 60px;}
+  h1,h2,h3{font-family:'Fraunces',serif;font-weight:600;margin:0;color:var(--ink);}
+  .brand{display:flex;align-items:center;justify-content:space-between;margin-bottom:26px;}
+  .brand-title{display:flex;align-items:baseline;gap:10px;}
+  .brand-title h1{font-size:26px;letter-spacing:-0.01em;}
+  .brand-title .stamp{
+    font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;
+    background:var(--ink);color:#fff;padding:2px 7px;border-radius:4px;
+  }
+  .user-chip{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink-soft);}
+  .user-chip b{color:var(--ink);}
+  .btn{
+    font-family:'Inter',sans-serif;font-weight:600;font-size:13.5px;
+    border:1.5px solid var(--ink);background:#fff;color:var(--ink);
+    padding:9px 16px;border-radius:7px;cursor:pointer;transition:transform .08s ease, background .15s ease;
+  }
+  .btn:hover{background:var(--ink);color:#fff;}
+  .btn:active{transform:scale(0.97);}
+  .btn.ghost{border-color:transparent;background:transparent;color:var(--ink-soft);padding:6px 8px;}
+  .btn.ghost:hover{background:var(--paper-line);color:var(--ink);}
+  .btn.primary{background:var(--ink);color:#fff;}
+  .btn.primary:hover{background:#0f1b33;}
+  .btn.small{padding:6px 11px;font-size:12.5px;border-radius:6px;}
+  .btn:disabled{opacity:.45;cursor:default;}
+  .btn:disabled:hover{background:#fff;color:var(--ink);}
+
+  /* Login */
+  .login-card{
+    max-width:460px;margin:60px auto;background:var(--card);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:32px 30px;border-top:4px solid var(--ink);
+  }
+  .login-card h2{font-size:22px;margin-bottom:4px;}
+  .login-card p.sub{color:var(--ink-soft);font-size:13.5px;margin:0 0 22px;}
+  label{display:block;font-size:12.5px;font-weight:600;color:var(--ink-soft);margin:16px 0 6px;text-transform:uppercase;letter-spacing:.04em;}
+  input[type=text]{
+    width:100%;padding:10px 12px;border:1.5px solid var(--paper-line);border-radius:7px;
+    font-family:'Inter',sans-serif;font-size:15px;background:#fdfdfd;
+  }
+  input[type=text]:focus{outline:none;border-color:var(--ink);}
+  .seg{display:flex;gap:8px;}
+  .seg button{
+    flex:1;padding:10px;border-radius:7px;border:1.5px solid var(--paper-line);background:#fff;
+    font-family:'Inter',sans-serif;font-weight:600;font-size:13.5px;cursor:pointer;color:var(--ink-soft);
+  }
+  .seg button.on{border-color:var(--ink);color:var(--ink);background:var(--paper);}
+  .login-actions{margin-top:24px;display:flex;gap:10px;align-items:center;}
+  .teacher-link{margin-top:18px;text-align:center;}
+  .teacher-link a{color:var(--ink-soft);font-size:12.5px;cursor:pointer;text-decoration:underline;}
+  .note{font-size:11.5px;color:var(--ink-soft);margin-top:20px;line-height:1.5;border-top:1px dashed var(--paper-line);padding-top:14px;}
+
+  /* Course header on map */
+  .course-banner{
+    display:flex;align-items:center;justify-content:space-between;background:var(--card);
+    border-radius:var(--radius);padding:18px 22px;box-shadow:var(--shadow);margin-bottom:22px;
+  }
+  .course-banner .tag{
+    display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;
+    padding:3px 9px;border-radius:5px;letter-spacing:.03em;
+  }
+  .tag.AA{background:var(--aa-soft);color:var(--aa);}
+  .tag.AI{background:var(--ai-soft);color:var(--ai);}
+  .overall-ring{display:flex;align-items:center;gap:12px;}
+  .ring{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-family:'JetBrains Mono',monospace;font-weight:700;font-size:13px;color:#fff;}
+
+  /* Topic cards (index-card signature) */
+  .tema{
+    background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:16px;
+    overflow:hidden;position:relative;
+  }
+  .tema::before{
+    content:'';position:absolute;top:14px;left:14px;width:8px;height:8px;border-radius:50%;
+    background:var(--paper);box-shadow:inset 0 1px 2px rgba(0,0,0,.15);
+  }
+  .tema-head{display:flex;align-items:center;justify-content:space-between;padding:16px 20px 16px 34px;cursor:pointer;}
+  .tema-head .left{display:flex;align-items:center;gap:12px;}
+  .tema-head h3{font-size:17px;}
+  .tema-head .count{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-soft);}
+  .tema-bar{width:120px;height:7px;background:var(--paper);border-radius:4px;overflow:hidden;}
+  .tema-bar>div{height:100%;background:var(--m-high);}
+  .chevron{transition:transform .2s ease;color:var(--ink-soft);}
+  .tema.open .chevron{transform:rotate(90deg);}
+  .sub-list{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+  .tema.open .sub-list{max-height:2000px;}
+  .sub-item{
+    display:flex;align-items:center;justify-content:space-between;padding:11px 20px 11px 34px;
+    border-top:1px solid var(--paper-line);cursor:pointer;
+  }
+  .sub-item:hover{background:var(--paper);}
+  .sub-item .info{display:flex;align-items:center;gap:10px;}
+  .code{font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--ink-soft);
+    background:var(--paper);padding:2px 6px;border-radius:4px;min-width:58px;text-align:center;}
+  .code.ns{background:#EDE3F5;color:#6B4A94;}
+  .dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+  .cells{display:flex;gap:2px;}
+  .cell{width:7px;height:7px;border-radius:1.5px;background:var(--m-none);}
+
+  /* Practice */
+  .practice-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px;}
+  .practice-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;}
+  .practice-top .meta{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-soft);}
+  .diff-dots{display:flex;gap:4px;margin-top:6px;}
+  .diff-dots span{width:8px;height:8px;border-radius:50%;background:var(--paper-line);}
+  .diff-dots span.on{background:var(--ink);}
+  .statement{font-size:17px;line-height:1.65;margin:6px 0 22px;white-space:pre-wrap;}
+  .options{display:flex;flex-direction:column;gap:8px;margin-bottom:18px;}
+  .option{
+    padding:11px 14px;border:1.5px solid var(--paper-line);border-radius:8px;cursor:pointer;font-size:14.5px;
+  }
+  .option:hover{border-color:var(--ink);}
+  .option.picked{border-color:var(--ink);background:var(--paper);font-weight:600;}
+  textarea{
+    width:100%;min-height:70px;padding:12px;border:1.5px solid var(--paper-line);border-radius:8px;
+    font-family:'Inter',sans-serif;font-size:14.5px;resize:vertical;
+  }
+  textarea:focus{outline:none;border-color:var(--ink);}
+  .feedback{margin-top:18px;padding:16px 18px;border-radius:8px;font-size:14px;line-height:1.55;}
+  .feedback.ok{background:var(--aa-soft);border-left:4px solid var(--aa);}
+  .feedback.bad{background:#FBEAE7;border-left:4px solid var(--m-low);}
+  .practice-actions{margin-top:20px;display:flex;gap:10px;justify-content:space-between;align-items:center;}
+  .loading{display:flex;align-items:center;gap:10px;color:var(--ink-soft);font-size:14px;padding:20px 0;}
+  .spinner{width:16px;height:16px;border:2.5px solid var(--paper-line);border-top-color:var(--ink);border-radius:50%;animation:spin .7s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  /* Teacher */
+  table{width:100%;border-collapse:collapse;background:var(--card);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);}
+  th,td{padding:11px 14px;text-align:left;font-size:13px;border-bottom:1px solid var(--paper-line);}
+  th{font-family:'JetBrains Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-soft);background:var(--paper);}
+  td.name{font-weight:600;}
+  .mini-bar{width:70px;height:6px;background:var(--paper);border-radius:3px;overflow:hidden;display:inline-block;vertical-align:middle;margin-right:6px;}
+  .mini-bar>div{height:100%;}
+  .empty{text-align:center;padding:50px 20px;color:var(--ink-soft);}
+  footer.hint{margin-top:26px;text-align:center;font-size:11.5px;color:var(--ink-soft);}
+
+  /* Teacher tabs & bank */
+  .tabs{display:flex;gap:6px;margin-bottom:20px;}
+  .tabs button{
+    padding:8px 16px;border-radius:7px;border:1.5px solid transparent;background:transparent;
+    font-family:'Inter',sans-serif;font-weight:600;font-size:13.5px;color:var(--ink-soft);cursor:pointer;
+  }
+  .tabs button.on{background:var(--card);border-color:var(--paper-line);color:var(--ink);box-shadow:var(--shadow);}
+  .bank-layout{display:grid;grid-template-columns:260px 1fr;gap:18px;align-items:start;}
+  .bank-nav{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:8px;}
+  .bank-nav .tema-name{font-weight:600;font-size:13px;padding:10px 10px 4px;color:var(--ink-soft);}
+  .bank-nav .sub-btn{
+    width:100%;text-align:left;padding:8px 10px;border:none;background:transparent;border-radius:6px;
+    font-family:'Inter',sans-serif;font-size:12.5px;cursor:pointer;color:var(--ink);display:flex;justify-content:space-between;align-items:center;
+  }
+  .bank-nav .sub-btn:hover{background:var(--paper);}
+  .bank-nav .sub-btn.on{background:var(--paper);font-weight:600;}
+  .bank-nav .sub-btn .n{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-soft);background:var(--paper-line);padding:1px 5px;border-radius:8px;}
+  .bank-panel{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px 22px;}
+  .ex-item{border:1.5px solid var(--paper-line);border-radius:8px;padding:14px 16px;margin-bottom:10px;}
+  .ex-item .ex-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:6px;}
+  .badge{font-family:'JetBrains Mono',monospace;font-size:10px;padding:2px 7px;border-radius:5px;font-weight:700;}
+  .badge.ia{background:#E4EAF5;color:#3A5089;}
+  .badge.prof{background:var(--aa-soft);color:var(--aa);}
+  .ex-text{font-size:13.5px;line-height:1.5;white-space:pre-wrap;}
+  .ex-meta{font-size:11px;color:var(--ink-soft);margin-top:6px;}
+  .ex-actions{display:flex;gap:8px;margin-top:8px;}
+  .ex-actions button{background:none;border:none;font-size:11.5px;color:var(--ink-soft);cursor:pointer;text-decoration:underline;padding:0;}
+  .ex-actions button:hover{color:var(--ink);}
+  select, .field textarea, .field input{
+    width:100%;padding:9px 11px;border:1.5px solid var(--paper-line);border-radius:7px;
+    font-family:'Inter',sans-serif;font-size:14px;background:#fdfdfd;
+  }
+  select:focus,.field textarea:focus,.field input:focus{outline:none;border-color:var(--ink);}
+  .field{margin-bottom:14px;}
+  .field label{margin:0 0 6px;}
+  .form-row{display:flex;gap:12px;}
+  .form-row .field{flex:1;}
+  .marks-pill{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-soft);background:var(--paper);padding:3px 8px;border-radius:10px;}
+  .ex-image{max-width:100%;max-height:320px;display:block;margin:14px 0;border-radius:8px;border:1px solid var(--paper-line);}
+  .ex-image-thumb{max-width:180px;max-height:140px;display:block;margin:8px 0;border-radius:6px;border:1px solid var(--paper-line);}
+  .img-upload-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+  .img-remove-btn{font-size:11.5px;color:var(--m-low);background:none;border:none;cursor:pointer;text-decoration:underline;padding:0;}
+  .ms-toggle{margin-top:14px;background:none;border:1.5px dashed var(--paper-line);border-radius:8px;padding:9px 14px;font-size:13px;color:var(--ink-soft);cursor:pointer;width:100%;text-align:left;font-family:'Inter',sans-serif;font-weight:600;}
+  .ms-toggle:hover{border-color:var(--ink);color:var(--ink);}
+  .mark-scheme{margin-top:10px;background:var(--paper);border-radius:8px;padding:14px 16px;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.7;white-space:pre-wrap;color:var(--ink);}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+
+<script>
+/* ============== ESTRUCTURA: Prueba > Sección > Año ============== */
+const PRUEBAS = [ {id:'P1', nombre:'Prueba 1'}, {id:'P2', nombre:'Prueba 2'} ];
+const SECCIONES = [ {id:'A', nombre:'Sección A'}, {id:'B', nombre:'Sección B'} ];
+const ANIOS = [2020,2021,2022,2023,2024,2025];
+const ANIO_LABELS = { 2020: 'Noviembre', 2021: 'Noviembre', 2022: 'Noviembre', 2023: 'Noviembre', 2024: 'Noviembre', 2025: 'Noviembre' }; // sesión del examen para ese año, cuando se conoce
+function anioConSesion(anio){ return ANIO_LABELS[anio] ? `${anio} (${ANIO_LABELS[anio]})` : `${anio}`; }
+const CURSO_NOMBRE = 'Análisis y Enfoques';
+
+function examId(prueba,seccion,anio){ return `${prueba}-${seccion}-${anio}`; }
+function slugify(s){
+  return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+}
+function masteryColor(m){
+  if(m<=0) return 'var(--m-none)';
+  if(m<40) return 'var(--m-low)';
+  if(m<75) return 'var(--m-mid)';
+  return 'var(--m-high)';
+}
+function masteryLabel(m){
+  if(m<=0) return 'Sin empezar';
+  if(m<40) return 'Iniciado';
+  if(m<75) return 'En progreso';
+  return 'Dominado';
+}
+function renderMath(container){
+  try{
+    if(window.renderMathInElement){
+      window.renderMathInElement(container, {
+        delimiters: [
+          {left:'$$', right:'$$', display:true},
+          {left:'$', right:'$', display:false}
+        ],
+        throwOnError:false
+      });
+    }
+  }catch(e){ /* si KaTeX no cargó (sin internet), se muestra el texto tal cual */ }
+}
+function escapeHtml(str){
+  if(str===null || str===undefined) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+/* ============== ESTADO ============== */
+let STATE = { user:null, view:'login', teacher:false, openPrueba:null, openSeccion:null, session:null, teacherTab:'alumnos', bankPrueba:null, bankSeccion:null, bankAnio:null };
+
+/* ============== ALMACENAMIENTO ============== */
+async function getProgress(slug){
+  try{ const r = await window.storage.get(`progress:${slug}`, true); return r ? JSON.parse(r.value) : { buckets:{} }; }
+  catch(e){ return { buckets:{} }; }
+}
+async function saveProgress(slug, data){
+  try{ await window.storage.set(`progress:${slug}`, JSON.stringify(data), true); }catch(e){ console.error(e); }
+}
+async function getRoster(){
+  try{ const r = await window.storage.get('roster', true); return r ? JSON.parse(r.value) : []; }catch(e){ return []; }
+}
+async function upsertRoster(entry){
+  const roster = await getRoster();
+  const i = roster.findIndex(x=>x.slug===entry.slug);
+  if(i>=0) roster[i] = entry; else roster.push(entry);
+  try{ await window.storage.set('roster', JSON.stringify(roster), true); }catch(e){ console.error(e); }
+}
+async function getBank(bucketId){
+  try{ const r = await window.storage.get(`bank:${bucketId}`, true); return r ? JSON.parse(r.value) : []; }catch(e){ return []; }
+}
+async function saveBank(bucketId, arr){
+  try{ await window.storage.set(`bank:${bucketId}`, JSON.stringify(arr), true); }catch(e){ console.error(e); }
+}
+function newExerciseId(){ return 'ex-'+Date.now()+'-'+Math.random().toString(36).slice(2,7); }
+async function addExerciseToBank(bucketId, exercise){
+  const bank = await getBank(bucketId); bank.push(exercise); await saveBank(bucketId, bank); return exercise;
+}
+async function updateExerciseInBank(bucketId, exId, patch){
+  const bank = await getBank(bucketId);
+  const i = bank.findIndex(e=>e.id===exId);
+  if(i>=0){ bank[i] = { ...bank[i], ...patch }; await saveBank(bucketId, bank); }
+}
+async function deleteExerciseFromBank(bucketId, exId){
+  const bank = await getBank(bucketId);
+  await saveBank(bucketId, bank.filter(e=>e.id!==exId));
+}
+
+/* ============== LLAMADAS A LA API DE CLAUDE ============== */
+async function askClaude(system, user){
+  const res = await fetch('https://api.anthropic.com/v1/messages', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({ model:'claude-sonnet-4-6', max_tokens:1200, system, messages:[{role:'user', content:user}] })
+  });
+  const data = await res.json();
+  const text = (data.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('\n');
+  return text.replace(/```json|```/g,'').trim();
+}
+
+async function generarEjercicio(ctx){
+  const sys = `Eres un generador de ejercicios de práctica para el Programa del Diploma del IB, curso de Matemáticas: ${CURSO_NOMBRE} (NM), con el estilo exacto de las pruebas oficiales del IB. Responde SIEMPRE en español y SOLO con un objeto JSON válido, sin texto adicional ni backticks.`;
+  const estiloSeccion = ctx.seccionId === 'A'
+    ? 'Sección A: un ejercicio corto y autocontenido de un solo tema, entre 4 y 8 marks en total.'
+    : 'Sección B: un ejercicio largo de varios apartados encadenados (a, b, c...), entre 12 y 17 marks en total, que puede combinar más de un tema del programa.';
+  const user = `Genera un ejercicio de práctica al estilo de examen del IB, ${ctx.pruebaNombre}, ${ctx.seccionNombre} (estilo año ${ctx.anio}). ${estiloSeccion} Nivel de dificultad: ${ctx.dificultad} de 5. El ejercicio debe ceñirse al alcance del programa de NM de ${CURSO_NOMBRE}.
+
+Formato IB obligatorio:
+- Si el ejercicio tiene varios apartados, numéralos (a), (b), etc., y añade al final de cada apartado la marca entre corchetes, ej. "[2 marks]".
+- El solucionario debe ser un mark scheme real: pasos numerados con la notación oficial del IB (M1 = punto de método, A1 = punto de exactitud/respuesta, R1 = punto de razonamiento, AG = respuesta dada), mostrando qué marca se otorga en cada paso.
+
+Formato de respuesta EXACTO (JSON):
+{"enunciado":"texto del ejercicio con apartados y marcas [X marks]; escribe cada expresión o ecuación matemática en notación LaTeX entre símbolos de dólar, ej. $x^2$, $\\sqrt{x}$, $\\int_0^1 f(x)\\,dx$ (esto se renderiza igual que una ecuación de Word)","tipo":"corta" o "opcion_multiple","opciones":["..."] (array de 4 opciones si tipo es opcion_multiple, si no array vacío),"respuesta_correcta":"la(s) respuesta(s) final(es), breve, también en LaTeX entre $ si aplica","solucionario":"mark scheme completo paso a paso con notación M1/A1/R1 y las expresiones matemáticas en LaTeX entre $ , líneas separadas por \\n","marcas":número total de marks del ejercicio}`;
+  const raw = await askClaude(sys, user);
+  return JSON.parse(raw);
+}
+
+async function corregirRespuesta(ctx, ejercicio, respuestaAlumno){
+  const sys = `Eres un profesor de Matemáticas del IB, cercano y preciso, corrigiendo la respuesta de un alumno de ${CURSO_NOMBRE} (NM). Responde SIEMPRE en español y SOLO con un objeto JSON válido, sin backticks.`;
+  const user = `Ejercicio: ${ejercicio.enunciado}
+Respuesta correcta esperada: ${ejercicio.respuesta_correcta}
+Respuesta del alumno: ${respuestaAlumno}
+
+Evalúa si la respuesta del alumno es correcta (acepta formas equivalentes, no solo coincidencia literal). Da una retroalimentación breve (2-3 frases), constructiva y específica sobre el error si lo hay.
+Formato EXACTO:
+{"correcto":true o false,"feedback":"retroalimentación breve"}`;
+  const raw = await askClaude(sys, user);
+  return JSON.parse(raw);
+}
+
+async function pickOrGenerateEjercicio(ctx, bucketId, vistos){
+  let bank = await getBank(bucketId);
+  const vistosEfectivos = vistos.length >= bank.length ? [] : vistos;
+  let candidatos = bank.filter(e => !vistosEfectivos.includes(e.id) && Math.abs((e.dificultad||3) - ctx.dificultad) <= 1);
+  if(candidatos.length === 0) candidatos = bank.filter(e => !vistosEfectivos.includes(e.id));
+  if(candidatos.length > 0) return candidatos[Math.floor(Math.random()*candidatos.length)];
+  const generado = await generarEjercicio(ctx);
+  const exercise = {
+    id: newExerciseId(), enunciado: generado.enunciado, tipo: generado.tipo,
+    opciones: generado.opciones || [], respuesta_correcta: generado.respuesta_correcta,
+    solucionario: generado.solucionario || '', marcas: generado.marcas || null,
+    dificultad: ctx.dificultad, origen: 'ia', creado: new Date().toISOString()
+  };
+  await addExerciseToBank(bucketId, exercise);
+  return exercise;
+}
+
+/* ============== EJERCICIOS SEMILLA (originales, inspirados en Prueba 1 y 2 · Nov 2025) ============== */
+const SEED_EXERCISES = [
+  { id:'seed-P1-A-2025-q1', prueba:'P1', seccion:'A', anio:2025, marcas:6, dificultad:3, fuente:'Inspirado en la pregunta 1 · ejercicio original, no reproduce el examen',
+    enunciado:`La variable aleatoria discreta Y tiene la siguiente distribución de probabilidad:
+
+y          2      4      6      8
+P(Y=y)   0.15   0.25    m     0.2
+
+(a) Halla el valor de m. [2 marks]
+(b) Halla P(Y > 5). [2 marks]
+(c) Halla E(Y). [2 marks]`,
+    respuesta_correcta: '(a) m=0.4  (b) 0.6  (c) 5.3',
+    solucionario:`(a) por darse cuenta de que la suma de las probabilidades = 1  (M1)
+0.15 + 0.25 + m + 0.2 = 1
+m = 0.4  A1  [2 marks]
+
+(b) por darse cuenta de que P(Y>5) = P(Y=6) + P(Y=8)  (M1)
+= 0.4 + 0.2 = 0.6  A1  [2 marks]
+
+(c) por sustituir valores en la fórmula de E(Y)  (M1)
+E(Y) = 2(0.15) + 4(0.25) + 6(0.4) + 8(0.2)
+E(Y) = 5.3  A1  [2 marks]` },
+
+  { id:'seed-P1-A-2025-q2', prueba:'P1', seccion:'A', anio:2025, marcas:5, dificultad:3, fuente:'Inspirado en la pregunta 2 · ejercicio original, no reproduce el examen',
+    enunciado:`La pendiente de una curva viene dada por dy/dx = 6x^2 - 4. La curva pasa por el punto (1, 5).
+
+Halla la ecuación de la curva.`,
+    respuesta_correcta: 'y = 2x^3 - 4x + 7',
+    solucionario:`por darse cuenta de que hay que integrar 6x^2 - 4  (M1)
+∫(6x^2 - 4) dx = 2x^3 - 4x + c  (A1)(A1)
+
+por sustituir x=1, y=5 en su expresión integrada  (M1)
+5 = 2 - 4 + c
+c = 7  A1
+y = 2x^3 - 4x + 7  [5 marks]` },
+
+  { id:'seed-P1-A-2025-q3', prueba:'P1', seccion:'A', anio:2025, marcas:6, dificultad:3, fuente:'Inspirado en la pregunta 3 · ejercicio original, no reproduce el examen',
+    enunciado:`El sexto término de una progresión aritmética es 10.
+La suma del quinto término y el décimo término es igual a 38.
+
+Halla el primer término y la diferencia común.`,
+    respuesta_correcta: 'u1 = -20, d = 6',
+    solucionario:`por tratar de expresar u6 en función de u1 y d  (M1)
+u1 + 5d = 10  (A1)
+
+por tratar de expresar u5 y u10 en función de u1 y d, y sumarlos  (M1)
+2u1 + 13d = 38  (A1)
+
+por tratar de resolver el sistema de ecuaciones  (M1)
+d = 6, u1 = -20  (A1)  [6 marks]` },
+
+  { id:'seed-P1-A-2025-q4', prueba:'P1', seccion:'A', anio:2025, marcas:7, dificultad:3, fuente:'Inspirado en la pregunta 4 · ejercicio original, no reproduce el examen',
+    enunciado:`Sean A y B dos sucesos tales que P(A) = 2/5, P(B) = 1/4 y P(A|B) = 1/2.
+
+(a) Halla la probabilidad de que ocurran ambos sucesos, A y B. [2 marks]
+(b) Halla P(A|B'). [5 marks]`,
+    respuesta_correcta: '(a) 1/8  (b) 11/30',
+    solucionario:`(a) por tratar de utilizar P(A∩B) = P(A|B) × P(B)  (M1)
+P(A∩B) = 1/8  A1  [2 marks]
+
+(b) P(B') = 3/4  (A1)
+por tratar de utilizar P(A∩B') = P(A) - P(A∩B)  (M1)
+P(A∩B') = 2/5 - 1/8 = 11/40  (A1)
+por tratar de utilizar P(A|B') = P(A∩B')/P(B')  (M1)
+P(A|B') = (11/40) ÷ (3/4) = 11/30  A1  [5 marks]` },
+
+  { id:'seed-P1-A-2025-q5', prueba:'P1', seccion:'A', anio:2025, marcas:8, dificultad:4, fuente:'Inspirado en la pregunta 5 · ejercicio original, no reproduce el examen',
+    enunciado:`Se tiene el gráfico de y = (Ax + B)/(x - 3), donde x ∈ R, x ≠ 3 y A, B ∈ Z.
+El gráfico pasa por los puntos P(-7, 2) y Q(1, -6).
+
+(a) Determina el valor de A y el valor de B. [3 marks]
+(b) Describe una secuencia de transformaciones con las que el gráfico de y = 1/x coincidiría exactamente con el gráfico de y = (Ax + B)/(x - 3). [5 marks]`,
+    respuesta_correcta: '(a) A = 4, B = 8  (b) traslación 3 a la derecha, estiramiento vertical de razón 20, traslación 4 hacia arriba',
+    solucionario:`(a) por sustituir P(-7, 2) en la ecuación  (M1)
+-7A + B = -20  (A1)
+por sustituir Q(1, -6)  (M1)
+A + B = 12  (A1)
+por resolver el sistema  (M1)
+A = 4, B = 8  (A1)  [3 marks]
+
+(b) por tratar de expresar y en la forma Q/(x-3) + k  (M1)
+y = 20/(x-3) + 4  (A1)
+reconocer la asíntota vertical en x = 3 / traslación horizontal 3 unidades a la derecha  A1
+reconocer la asíntota horizontal en y = 4 / traslación vertical 4 unidades hacia arriba  A1
+estiramiento vertical de razón 20  A1  [5 marks]` },
+
+  { id:'seed-P1-A-2025-q6', prueba:'P1', seccion:'A', anio:2025, marcas:5, dificultad:4, fuente:'Inspirado en la pregunta 6 · ejercicio original, no reproduce el examen',
+    enunciado:`Resuelve la ecuación log8(4x) - 2log4(x) = -1, para x > 0.`,
+    respuesta_correcta:'x = 2^(5/2) = 4√2',
+    solucionario:`por tratar de aplicar la regla de cambio de base (se puede ver en cualquier lugar)  (M1)
+ecuación correcta con la misma base en todos los logaritmos  A1
+(2 + log2(x))/3 - log2(x) = -1
+
+por tratar de resolver la ecuación resultante  (M1)
+log2(x) = 5/2  A1
+x = 2^(5/2)  (= 4√2)  A1  [5 marks]` },
+
+  { id:'seed-P1-B-2025-q7', prueba:'P1', seccion:'B', anio:2025, marcas:5, dificultad:3, fuente:'Inspirado en la pregunta 7 · ejercicio original, no reproduce el examen',
+    enunciado:`En el triángulo DEF, DE = 9 cm, EF = 6 cm, y el ángulo DEF = 110°.
+
+(a) Halla DF. [3 marks]
+(b) Halla el área del triángulo DEF. [2 marks]`,
+    respuesta_correcta: '(a) 12.4 cm  (b) 25.4 cm^2',
+    solucionario:`(a) por tratar de utilizar el teorema del coseno  (M1)
+DF^2 = 9^2 + 6^2 - 2(9)(6)cos(110°)  (A1)
+DF^2 = 81 + 36 + 36.9... = 153.9...
+DF = 12.4 (cm)  (A1)  [3 marks]
+
+(b) Área = (1/2)(9)(6) sen(110°)  (M1)
+Área = 27 × 0.9397 = 25.4 cm^2  (A1)  [2 marks]` },
+
+  { id:'seed-P1-B-2025-q8', prueba:'P1', seccion:'B', anio:2025, marcas:15, dificultad:5, fuente:'Inspirado en la pregunta 8 · ejercicio original, no reproduce el examen',
+    enunciado:`Considera la función g(x) = (1/2)x^2 + mx + 8, donde x ∈ R y m ∈ Z+.
+
+(a) Sabiendo que la ecuación g(x) = 0 no tiene raíces reales, muestra que el mayor valor posible de m es 3. [2 marks]
+
+Para el resto de la pregunta, considera el caso m = 3.
+
+(b) (i) Escribe la ecuación del eje de simetría de la gráfica de g.
+    (ii) Determina las coordenadas del mínimo de la gráfica de g. [3 marks]
+
+La recta L es normal a la curva de g en x = 1.
+
+(c) Muestra que la ecuación de L es y = -x/4 + 11.75. [5 marks]
+
+La región sombreada está delimitada por la curva de g, la recta L y el eje y.
+
+(d) Halla el área de la región sombreada. [5 marks]`,
+    respuesta_correcta: '(a) m=3  (b) x=-3, (-3, 3.5)  (c) y=-x/4+11.75  (d) 1.96',
+    solucionario:`(a) discriminante = m^2 - 4(1/2)(8) = m^2 - 16  (A1)
+por darse cuenta de que el discriminante < 0  (M1)
+m^2 < 16 → m < 4 (dado que m ∈ Z+) → m = 3  AG  [2 marks]
+
+(b)(i) x = -3  A1
+(ii) por sustituir x=-3 en g(x)  (M1)
+g(-3) = 0.5(9) - 9 + 8 = 3.5
+Mínimo = (-3, 3.5)  A1  [3 marks]
+
+(c) g'(x) = x + 3  A1
+g'(1) = 4 (pendiente de la tangente en x=1)  A1
+pendiente de la normal = -1/4  (M1)
+g(1) = 11.5  (A1)
+y - 11.5 = -1/4 (x - 1)
+y = -x/4 + 11.75  A1  [5 marks]
+
+(d) por plantear el área como la integral de (L - g) entre x=0 y x=1  (M1)
+∫[0,1] (-0.5x^2 - 3.25x + 3.75) dx  (A1)
+integración correcta: [-x^3/6 - 1.625x^2 + 3.75x] entre 0 y 1  (A2)
+= 1.96 (3 s.f.)  A1  [5 marks]` },
+
+  { id:'seed-P1-B-2025-q9', prueba:'P1', seccion:'B', anio:2025, marcas:15, dificultad:5, fuente:'Inspirado en la pregunta 9 · ejercicio original, no reproduce el examen',
+    enunciado:`La función f se define así: $f(x)=\\dfrac{7e^x-e^{2x}}{e^x+2}$. La figura muestra parte del gráfico de f. El gráfico corta al eje y en el punto P, y al eje x en el origen y en el punto R.
+
+(a)(i) Halla las coordenadas de P.
+(ii) Halla la coordenada x del punto R. [4 marks]
+
+(b) Muestra que $f'(x)=\\dfrac{-e^{3x}-4e^{2x}+14e^x}{(e^x+2)^2}$. [5 marks]
+
+El punto Q es un máximo local del gráfico de f.
+
+(c) Muestra que la coordenada x de Q es $\\ln(3\\sqrt2-2)$. [6 marks]`,
+    respuesta_correcta: '(a) P=(0,2), R en x=ln7  (c) x=ln(3√2-2), y=11-6√2',
+    solucionario:`(a)(i) $f(0)=\\dfrac{7-1}{1+2}=2$; $P=(0,2)$  A1  [2 marks]
+(ii) $7e^x-e^{2x}=0 \\Rightarrow e^x(7-e^x)=0 \\Rightarrow e^x=7$
+$x=\\ln7$  A1  [2 marks]
+
+(b) por tratar de utilizar la regla del cociente con $u=7e^x-e^{2x}$ y $v=e^x+2$  (M1)
+$u'=7e^x-2e^{2x}$, $v'=e^x$  (A1)
+$f'(x)=\\dfrac{(7e^x-2e^{2x})(e^x+2)-(7e^x-e^{2x})(e^x)}{(e^x+2)^2}$  (A1)
+$=\\dfrac{-e^{3x}-4e^{2x}+14e^x}{(e^x+2)^2}$  A1A1  [5 marks]
+
+(c) por plantear $f'(x)=0$ (dado que Q es un máximo)  (M1)
+$-e^{3x}-4e^{2x}+14e^x=0$
+por dividir entre $-e^x$  (M1)
+$e^{2x}+4e^x-14=0$  A1
+por tratar de resolver la ecuación de segundo grado en $e^x$  (M1)
+$e^x=-2+\\sqrt{18}=3\\sqrt2-2$  A1
+(se rechaza la raíz negativa dado que $e^x>0$)
+$x=\\ln(3\\sqrt2-2)$  AG  [6 marks]` },
+
+  { id:'seed-P2-A-2025-q1', prueba:'P2', seccion:'A', anio:2025, marcas:7, dificultad:3, fuente:'Inspirado en la pregunta 1 · ejercicio original, no reproduce el examen',
+    enunciado:`Se recogen los siguientes datos:
+
+x:  1, 2, 3, 4, 5
+y:  3, 5, 4, 6, 7
+
+(a) Halla la media de x y la media de y. [2 marks]
+(b) Halla la ecuación de la recta de regresión de y sobre x, en la forma y = ax + b. [3 marks]
+(c) Utiliza tu ecuación para estimar el valor de y cuando x = 6. [2 marks]`,
+    respuesta_correcta: '(a) x̄=3, ȳ=5  (b) y=0.9x+2.3  (c) 7.7',
+    solucionario:`(a) x̄ = 3, ȳ = 5  A1A1  [2 marks]
+
+(b) por tratar de utilizar la calculadora de pantalla gráfica para hallar la recta de regresión  (M1)
+a = 0.9, b = 2.3  (A1)(A1)
+y = 0.9x + 2.3  [3 marks]
+
+(c) por sustituir x = 6 en la ecuación  (M1)
+y = 7.7  A1  [2 marks]` },
+
+  { id:'seed-P2-A-2025-q2', prueba:'P2', seccion:'A', anio:2025, marcas:5, dificultad:3, fuente:'Inspirado en la pregunta 2 · ejercicio original, no reproduce el examen',
+    enunciado:`Un barco sale del puerto A y navega con un rumbo de 070° hasta que llega al punto B.
+Un faro F está situado a 8 km de A con un rumbo de 040°.
+La demora del faro desde B es 300°.
+
+(a) Halla el ángulo FAB. [1 mark]
+(b) Halla FB (la distancia entre F y B). [4 marks]`,
+    respuesta_correcta: '(a) 30°  (b) 5.22 km',
+    solucionario:`(a) FÂB = 070° - 040° = 30°  A1  [1 mark]
+
+(b) ABˆF = 300° - 250° = 50°  (A1)
+por tratar de utilizar el teorema del seno  (M1)
+FB/sen(30°) = 8/sen(50°)  (A1)
+FB = 8 × sen(30°)/sen(50°)
+FB = 5.22 (km)  A1  [4 marks]` },
+
+  { id:'seed-P2-A-2025-q3', prueba:'P2', seccion:'A', anio:2025, marcas:7, dificultad:4, fuente:'Inspirado en la pregunta 3 · ejercicio original, no reproduce el examen',
+    enunciado:`(a) Muestra que 2cos2x + 7senx = 2 + 7senx - 4sen^2 x. [2 marks]
+
+(b) A partir de lo anterior, resuelve la ecuación 2cos2x + 7senx - 3 = 0 para 0° ≤ x ≤ 180°. [5 marks]`,
+    respuesta_correcta: '(b) x = 9.03°, 171°',
+    solucionario:`(a) por tratar de utilizar la fórmula del ángulo doble para cos2x  (M1)
+2(1 - 2sen^2 x) + 7senx = 2 + 7senx - 4sen^2 x  AG  [2 marks]
+
+(b) por plantear 2 + 7senx - 4sen^2 x - 3 = 0  (M1)
+4sen^2 x - 7senx + 1 = 0
+por tratar de resolver la ecuación de segundo grado en senx  (M1)
+senx = (7 ± √33)/8
+senx = 0.1569... (se rechaza la raíz mayor que 1)  (A1)
+x = 9.03°, 171°  A1A1  [5 marks]` },
+
+  { id:'seed-P2-A-2025-q4', prueba:'P2', seccion:'A', anio:2025, marcas:6, dificultad:3, fuente:'Inspirado en la pregunta 4 · ejercicio original, no reproduce el examen',
+    enunciado:`En una clase de 25 alumnos, la media de las calificaciones de un examen es 70.
+
+Dos alumnos, Marco y Sofía, que habían faltado el día del examen, lo presentan después. Al incluir sus dos calificaciones, la media de los 27 alumnos pasa a ser 71.
+
+Sabiendo que Sofía obtuvo 11 puntos más que Marco, determina la calificación de cada uno.`,
+    respuesta_correcta: 'Marco = 78, Sofía = 89',
+    solucionario:`por tratar de utilizar que la suma de las puntuaciones es n×media  (M1)
+suma de los 25 = 25×70 = 1750  (A1)
+suma de los 27 = 27×71 = 1917  (A1)
+Marco + Sofía = 1917 - 1750 = 167  (A1)
+por tratar de resolver el sistema Marco+Sofía=167, Sofía=Marco+11  (M1)
+Marco = 78, Sofía = 89  A1  [6 marks]` },
+
+  { id:'seed-P2-A-2025-q5', prueba:'P2', seccion:'A', anio:2025, marcas:6, dificultad:4, fuente:'Inspirado en la pregunta 5 · ejercicio original, no reproduce el examen',
+    enunciado:`Considera un círculo de radio 10 mm y un sector circular de radio r mm que forma en su centro un ángulo agudo de θ radianes.
+
+El perímetro del sector circular es igual a 2 veces la circunferencia del círculo.
+
+(a) Muestra que r = 40π/(2+θ). [3 marks]
+
+Se sabe que el área del sector circular es igual a la mitad del área del círculo.
+
+(b) Determina el valor de θ. [3 marks]`,
+    respuesta_correcta: 'θ = 0.0866',
+    solucionario:`(a) perímetro del sector = 2 × circunferencia del círculo (incluido aquí o en algún otro lugar)  A1
+2r + rθ = 2(2π(10)) = 40π  (M1)
+r(2+θ) = 40π
+r = 40π/(2+θ)  AG  [3 marks]
+
+(b) por sustituir r=40π/(2+θ) en (1/2)r^2θ = mitad del área del círculo  (A1)
+área del círculo = 100π, entonces r^2θ = 100π
+(1600π^2 θ)/(2+θ)^2 = 100π  (M1)
+por tratar de resolver su ecuación (debe ser cuadrática en θ)
+θ^2 + (4-16π)θ + 4 = 0
+θ = 0.0866  A1  [3 marks]` },
+
+  { id:'seed-P2-A-2025-q6', prueba:'P2', seccion:'A', anio:2025, marcas:7, dificultad:4, fuente:'Inspirado en la pregunta 6 · ejercicio original, no reproduce el examen',
+    enunciado:`Los pesos de los conejos de raza A siguen una distribución normal de media μ y desviación típica σ.
+Se sabe que el 30% de los conejos de raza A pesan más de 2.5 kg.
+
+(a) Sabiendo que μ + Bσ = 2.5, donde B ∈ R, halla el valor de B. [3 marks]
+
+Los pesos de los conejos de raza B también siguen una distribución normal. Para la raza B, la media de sus pesos es 0.8 kg mayor que la de la raza A, y la desviación típica es 1.5 veces la de la raza A.
+Se sabe que el 95% de los conejos de raza B pesan más de 2.5 kg.
+
+(b) Determina μ y σ. [4 marks]`,
+    respuesta_correcta: '(a) B=0.524  (b) μ=2.36, σ=0.267',
+    solucionario:`(a) por darse cuenta de que P(peso raza A > 2.5) = 0.30  (M1)
+(2.5-μ)/σ = 0.524  (A1)
+B = 0.524  A1  [3 marks]
+
+(b) parámetros correctos para la raza B  (A1)
+μ+0.8 y 1.5σ
+(2.5-(μ+0.8))/(1.5σ) = -1.645  (A1)
+por tratar de resolver el sistema con dos incógnitas μ y σ  (M1)
+σ = 0.267, μ = 2.36  A1  [4 marks]` },
+
+  { id:'seed-P2-B-2025-q7', prueba:'P2', seccion:'B', anio:2025, marcas:10, dificultad:4, fuente:'Inspirado en la pregunta 7 · ejercicio original, no reproduce el examen',
+    enunciado:`Diego y Elena tienen cada uno USD 4000.
+
+Diego invierte su dinero en un plan que paga una cantidad fija de intereses cada mes, igual al 0.25% de la inversión inicial.
+
+(a) Determina los intereses que recibirá Diego cada mes, y escribe una expresión en la forma 4000 + pn, donde p ∈ Z+, que represente el total de Diego al cabo de n años completos. [3 marks]
+
+Elena invierte sus USD 4000 en una cuenta que paga 2.5% de interés compuesto anualmente.
+
+(b) Escribe una expresión en la forma 4000 × q^n que represente el total de Elena al cabo de n años completos. [2 marks]
+
+(c) Determina el menor número de años completos que deben transcurrir para que Elena tenga más dinero que Diego. [5 marks]`,
+    respuesta_correcta: '(a) 4000+120n  (b) 4000×1.025^n  (c) n=16',
+    solucionario:`(a) 0.25% × 4000 = 10 (USD) por mes  (A1)
+intereses anuales = 10×12 = 120  (A1)
+4000 + 120n  A1  [3 marks]
+
+(b) 4000×1.025^n  A1A1  [2 marks]
+
+(c) por plantear 4000(1.025)^n > 4000 + 120n  (M1)
+por tratar de resolver mediante tabla o gráfica  (M1)
+n=15: Elena=5793.6 < Diego=5800
+n=16: Elena=5938.0 > Diego=5920  (A1)
+n = 16 (años)  A1  [5 marks]` },
+
+  { id:'seed-P2-B-2025-q8', prueba:'P2', seccion:'B', anio:2025, marcas:11, dificultad:4, fuente:'Inspirado en la pregunta 8 · ejercicio original, no reproduce el examen',
+    enunciado:`Un recipiente para helado consta de un cilindro de radio r cm y altura h cm, rematado por una semiesfera del mismo radio r cm.
+
+(a) Considera el caso r = 4 y h = 9.
+(i) Muestra que el volumen total V del recipiente es 586 cm^3, redondeando a 3 cifras significativas. [4 marks]
+(ii) Determina el área de la superficie curva del recipiente (la superficie lateral del cilindro más la superficie curva de la semiesfera, sin incluir ninguna base). [4 marks]
+
+El fabricante cambia las dimensiones para que el volumen total sea igual a 300 cm^3.
+
+(b) Muestra que h = (300 - (2/3)πr^3) / (πr^2). [3 marks]`,
+    respuesta_correcta: '(a) V=586 cm^3, S=327 cm^2',
+    solucionario:`(a)(i) Volumen del cilindro = πr^2h = π(4^2)(9) = 144π  (A1)
+Volumen de la semiesfera = (2/3)πr^3 = (2/3)π(4^3) = 42.7π  (A1)
+por sumar ambos volúmenes  (M1)
+V = 144π + 42.667π = 586.43...
+V = 586 (cm^3)  A1  [4 marks]
+
+(ii) Área lateral del cilindro = 2πrh = 2π(4)(9) = 72π  (A1)
+Área curva de la semiesfera = 2πr^2 = 2π(4^2) = 32π  (A1)
+por sumar ambas áreas  (M1)
+S = 72π + 32π = 326.73...
+S = 327 (cm^2)  A1  [4 marks]
+
+(b) por reconocer que V = πr^2h + (2/3)πr^3 = 300  (M1)
+πr^2h = 300 - (2/3)πr^3  (A1)
+h = [300 - (2/3)πr^3] / (πr^2)  AG  [3 marks]` },
+
+  // ===== Sesión de noviembre de 2024 =====
+  { id:'seed-P1-A-2024-q1', prueba:'P1', seccion:'A', anio:2024, marcas:6, dificultad:2, fuente:'Inspirado en la pregunta 1 · ejercicio original, no reproduce el examen',
+    enunciado:`Considera el siguiente conjunto de datos ordenados:
+15, 15, 19, 21, 24, 27, 30, 33, 35, 40
+
+(a) Escribe (i) la moda; (ii) el rango; (iii) la mediana. [3 marks]
+(b) Halla el rango intercuartil. [3 marks]`,
+    respuesta_correcta: '(a) moda=15, rango=25, mediana=25.5  (b) RIC=14',
+    solucionario:`(a)(i) moda = 15  A1
+(ii) rango = 40 - 15 = 25  A1
+(iii) mediana = (24+27)/2 = 25.5  A1  [3 marks]
+
+(b) $Q_1 = 19$ y $Q_3 = 33$  (A1)
+por tratar de restar $Q_3 - Q_1$  (M1)
+RIC = 33 - 19 = 14  A1  [3 marks]` },
+
+  { id:'seed-P1-A-2024-q2', prueba:'P1', seccion:'A', anio:2024, marcas:5, dificultad:2, fuente:'Inspirado en la pregunta 2 · ejercicio original, no reproduce el examen',
+    enunciado:`Los puntos A y B pertenecen a una circunferencia con centro en O y radio r cm, donde $A\\hat{O}B = 2$ radianes.
+El área del sector circular OAB es 64 cm².
+
+(a) Halla el valor de r. [3 marks]
+(b) A partir de lo anterior, halla el perímetro del sector circular OAB. [2 marks]`,
+    respuesta_correcta: '(a) r=8 cm  (b) 32 cm',
+    solucionario:`(a) $\\frac{1}{2}r^2(2) = 64$  (A1)
+por tratar de resolver para r  (M1)
+$r^2 = 64$
+r = 8 (cm)  A1  [3 marks]
+
+(b) si hay evidencia de sumar $2r + r\\theta$  (M1)
+Perímetro = 2(8) + 8(2) = 32 (cm)  A1  [2 marks]` },
+
+  { id:'seed-P1-A-2024-q3', prueba:'P1', seccion:'A', anio:2024, marcas:6, dificultad:3, fuente:'Inspirado en la pregunta 3 · ejercicio original, no reproduce el examen',
+    enunciado:`Dos sucesos A y B son tales que P(A) = 0.55, P(B) = 0.6 y $P(A \\cup B) = 0.85$.
+
+(a) Halla $P(A \\cap B)$. [3 marks]
+(b) Halla $P(A' | B')$. [3 marks]`,
+    respuesta_correcta: '(a) 0.3  (b) 3/8',
+    solucionario:`(a) por usar $P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$  (M1)
+$P(A \\cap B) = 0.55 + 0.6 - 0.85$  (A1)
+= 0.3  A1  [3 marks]
+
+(b) $P(A' \\cap B') = 1 - P(A \\cup B) = 0.15$  (A1)
+por tratar de sustituir en $P(A'|B') = \\dfrac{P(A' \\cap B')}{P(B')}$  (M1)
+$= \\dfrac{0.15}{0.4} = \\dfrac{3}{8}$  A1  [3 marks]` },
+
+  { id:'seed-P1-A-2024-q4', prueba:'P1', seccion:'A', anio:2024, marcas:4, dificultad:3, fuente:'Inspirado en la pregunta 4 · ejercicio original, no reproduce el examen',
+    enunciado:`Prueba que $(4n+3)^2 - (4n-3)^2$ es múltiplo de 24 para todo $n \\in \\mathbb{Z}^+$.`,
+    respuesta_correcta: 'Se demuestra que la expresión es igual a 24(2n)',
+    solucionario:`por tratar de desarrollar $(4n+3)^2 - (4n-3)^2$  M1
+$= 16n^2 + 24n + 9 - (16n^2 - 24n + 9)$  A1
+$= 48n$  A1
+$= 24(2n)$ (o equivalente)  R1
+Así pues, es múltiplo de 24  AG  [4 marks]` },
+
+  { id:'seed-P1-A-2024-q5', prueba:'P1', seccion:'A', anio:2024, marcas:6, dificultad:4, fuente:'Inspirado en la pregunta 5 · ejercicio original, no reproduce el examen',
+    enunciado:`La siguiente figura muestra el triángulo ABC, donde AB = 3 cm, BC = 5 cm, AC = 4 cm y $A\\hat{B}C = 2\\theta$.
+
+Halla el valor exacto de $\\cos\\theta$; da la respuesta en la forma $\\dfrac{p\\sqrt{5}}{q}$, donde $p, q \\in \\mathbb{Z}^+$.`,
+    respuesta_correcta: '$\\cos\\theta = \\dfrac{2\\sqrt{5}}{5}$',
+    solucionario:`por tratar de sustituir en el teorema del coseno  (M1)
+$\\cos 2\\theta = \\dfrac{3^2+5^2-4^2}{2 \\times 3 \\times 5} = \\dfrac{18}{30} = \\dfrac{3}{5}$  (A1)
+por tratar de utilizar $\\cos 2\\theta = 2\\cos^2\\theta - 1$  (M1)
+$\\cos^2\\theta = \\dfrac{1+3/5}{2} = \\dfrac{4}{5}$  A1
+$\\cos\\theta = (\\pm)\\dfrac{2}{\\sqrt5} = \\dfrac{2\\sqrt5}{5}$  (A1)
+$p=2$, $q=5$  A1
+Nota: la respuesta final ha de ser positiva.  [6 marks]` },
+
+  { id:'seed-P1-A-2024-q6', prueba:'P1', seccion:'A', anio:2024, marcas:6, dificultad:3, fuente:'Inspirado en la pregunta 6 · ejercicio original, no reproduce el examen',
+    enunciado:`Sea una progresión aritmética donde $u_8 = 16$ y $S_{20} = 120$.
+
+Halla el valor de k para el cual $u_k = 0$.`,
+    respuesta_correcta: 'k = 12',
+    solucionario:`por tratar de utilizar $u_n = u_1+(n-1)d$ o $S_n=\\frac{n}{2}[2u_1+(n-1)d]$ para plantear ecuaciones  (M1)
+$16 = u_1+7d$ y $120 = 10[2u_1+19d]$  (A1)
+por tratar de resolver el sistema de dos ecuaciones lineales  (M1)
+$d=-4$ ($\\Rightarrow u_1=44$)  A1
+por tratar de resolver $u_k=0$ con su d  (M1)
+k = 12  A1  [6 marks]` },
+
+  { id:'seed-P1-B-2024-q7', prueba:'P1', seccion:'B', anio:2024, marcas:16, dificultad:4, fuente:'Inspirado en la pregunta 7 · ejercicio original, no reproduce el examen',
+    enunciado:`La siguiente figura muestra parte de los gráficos de dos funciones f y g.
+El gráfico de f es lineal, con intersección con el eje x en (5, 0) y con el eje y en (0, 10).
+El gráfico de g está dado por $g(x) = -x^2+bx+10$, con intersecciones con el eje x en (-2, 0) y (5, 0).
+
+(a) Escribe la ecuación de f en la forma $f(x)=mx+c$. [2 marks]
+(b) Halla el valor de b. [3 marks]
+(c) Muestra que el área de la región delimitada por f y g se puede representar mediante $\\int_0^5 (-x^2+5x)\\,dx$. [2 marks]
+(d) A partir de lo anterior, halla el área de la región delimitada por f y g. [4 marks]
+
+El punto P pertenece al gráfico de g. La tangente al gráfico de g en P es paralela al gráfico de f.
+
+(e) Halla las coordenadas de P. [5 marks]`,
+    respuesta_correcta: '(a) f(x)=-2x+10  (b) b=3  (d) 125/6  (e) P(2.5, 11.25)',
+    solucionario:`(a) $f(x)=-2x+10$ (acepta $y=-2x+10$, $m=-2$, $c=10$)  A1A1  [2 marks]
+
+(b) raíces -2 y 5 → $g(x)=-(x+2)(x-5)$  (M1)
+$=-x^2+3x+10$  (A1)
+b=3  A1  [3 marks]
+
+(c) reconocer para restar g - f  (M1)
+$\\int_0^5[(-x^2+3x+10)-(-2x+10)]dx$  A1
+$\\int_0^5(-x^2+5x)dx$  AG  [2 marks]
+
+(d) por tratar de integrar  (M1)
+$-\\frac{x^3}{3}+\\frac{5x^2}{2}(+C)$  A1
+por sustituir límites y hallar la diferencia  (M1)
+$\\left[-\\frac{125}{3}+\\frac{125}{2}\\right]-[0] = \\frac{125}{6}$  A1  [4 marks]
+
+(e) $g'(x)=-2x+3$  A1
+por igualar $g'(x)$ a la pendiente de f  (M1)
+$-2x+3=-2$  A1
+x=2.5  A1
+y=11.25  A1  [5 marks]` },
+
+  { id:'seed-P1-B-2024-q8', prueba:'P1', seccion:'B', anio:2024, marcas:14, dificultad:4, fuente:'Inspirado en la pregunta 8 · ejercicio original, no reproduce el examen',
+    enunciado:`La función f se define así: $f(x) = \\log_3(9x)$, donde x > 0.
+
+(a) Halla el valor de (i) f(3); (ii) $f(1/9)$. [3 marks]
+(b) Halla una expresión para $f^{-1}(x)$. [4 marks]
+(c) A partir de lo anterior, halla $f^{-1}(0)$. [1 mark]
+
+El gráfico de $y=f(81x^2)$ se puede obtener mediante una traslación y un estiramiento del gráfico de $y=\\log_3 x$.
+
+(d) Describe estas dos transformaciones, especificando el orden en el que hay que realizarlas. [6 marks]`,
+    respuesta_correcta: '(a) f(3)=3, f(1/9)=0  (b) $f^{-1}(x)=3^{x-2}$  (c) 1/9  (d) estiramiento vertical ×2 y luego traslación vertical +6',
+    solucionario:`(a) por sustituir en f  (M1)
+f(3) = $\\log_3(27)$ = 3  A1
+$f(1/9) = \\log_3(1) = 0$  A1  [3 marks]
+
+(b) por intercambiar x e y  (M1)
+$x=\\log_3(9y)$
+por tratar de escribir como exponencial  (M1)
+$3^x = 9y$  (A1)
+$f^{-1}(x) = 3^{x-2}$  A1  [4 marks]
+
+(c) 1/9  A1  [1 mark]
+
+(d) $f(81x^2) = \\log_3(9 \\times 81x^2)$
+por tratar de utilizar la propiedad de la suma de logaritmos  (M1)
+$\\log_3 9 + \\log_3 81 + \\log_3 x^2$  (A1)
+por tratar de utilizar la propiedad de las potencias de los logaritmos  (M1)
+$f(81x^2) = 6+2\\log_3 x$ (o equivalente)  A1
+El gráfico de $y=\\log_3 x$ se ha de someter a un estiramiento vertical de razón 2 y luego a una traslación vertical hacia arriba de 6 unidades.  A2  [6 marks]` },
+
+  { id:'seed-P2-A-2024-q1', prueba:'P2', seccion:'A', anio:2024, marcas:7, dificultad:3, fuente:'Inspirado en la pregunta 1 · ejercicio original, no reproduce el examen',
+    enunciado:`Considera la función $f(x) = 8\\sqrt{x} - x - 7$, donde $0 \\le x \\le 64$.
+
+(a) Halla el valor de f(0) y f(64). [2 marks]
+(b) Halla las dos raíces de f(x) = 0. [2 marks]
+(c) Describe la forma general del gráfico de $y=f(x)$ e indica sus puntos de corte con los ejes. [3 marks]`,
+    respuesta_correcta: '(a) f(0)=-7, f(64)=-7  (b) x=1, x=49  (c) sube desde (0,-7), cruza en x=1, alcanza un máximo, baja y cruza en x=49, termina en (64,-7)',
+    solucionario:`(a) f(0) = -7  A1
+f(64) = 8(8)-64-7 = -7  A1  [2 marks]
+
+(b) sea $u=\\sqrt{x}$: $8u-u^2-7=0 \\Rightarrow u^2-8u+7=0$  (M1)
+$(u-1)(u-7)=0 \\Rightarrow u=1, 7$
+x = 1, x = 49  A1  [2 marks]
+
+(c) el gráfico corta el eje y en (0,-7)  A1
+corta el eje x en x=1 y x=49  A1
+tiene forma de "joroba": crece, alcanza un máximo entre las dos raíces, y luego decrece  A1  [3 marks]` },
+
+  { id:'seed-P2-A-2024-q2', prueba:'P2', seccion:'A', anio:2024, marcas:4, dificultad:3, fuente:'Inspirado en la pregunta 2 · ejercicio original, no reproduce el examen',
+    enunciado:`Halla el coeficiente del término en $x^5$ del desarrollo de $(3x-2)^8$.`,
+    respuesta_correcta: '-108 864',
+    solucionario:`por tratar de utilizar el término general $\\binom{8}{k}(3x)^{8-k}(-2)^k$  (M1)
+$8-k=5 \\Rightarrow k=3$  (A1)
+coeficiente $= \\binom{8}{3}(3)^5(-2)^3$  (A1)
+$= 56 \\times 243 \\times (-8)$
+$= -108\\,864$  A1  [4 marks]` },
+
+  { id:'seed-P2-A-2024-q3', prueba:'P2', seccion:'A', anio:2024, marcas:6, dificultad:3, fuente:'Inspirado en la pregunta 3 · ejercicio original, no reproduce el examen',
+    enunciado:`(a) Halla $\\int (e^{2x}+8)\\,dx$. [3 marks]
+
+Se sabe que $h'(x)=e^{2x}+8$ y que $h(0)=105$.
+
+(b) Halla h(x). [3 marks]`,
+    respuesta_correcta: '(a) $\\frac{1}{2}e^{2x}+8x+C$  (b) $h(x)=\\frac{1}{2}e^{2x}+8x+104.5$',
+    solucionario:`(a) por tratar de integrar  (M1)
+$\\frac12 e^{2x}$  A1
+$8x (+C)$  A1  [3 marks]
+
+(b) por sustituir x=0, h=105 en su expresión integrada  (M1)
+$105 = \\frac12(1)+0+C$
+C = 104.5  A1
+$h(x)=\\frac12 e^{2x}+8x+104.5$  A1  [3 marks]` },
+
+  { id:'seed-P2-A-2024-q4', prueba:'P2', seccion:'A', anio:2024, marcas:5, dificultad:3, fuente:'Inspirado en la pregunta 4 · ejercicio original, no reproduce el examen',
+    enunciado:`Una variable aleatoria discreta X tiene la siguiente distribución de probabilidad:
+$$P(X=x) = \\dfrac{kx}{15} \\text{ para } x \\in \\{2,4,5,9\\}.$$
+
+(a) Halla el valor de k. [2 marks]
+(b) Halla E(X). [3 marks]`,
+    respuesta_correcta: '(a) k=3/4  (b) E(X)=6.3',
+    solucionario:`(a) por plantear que la suma de probabilidades = 1  (M1)
+$\\dfrac{k(2+4+5+9)}{15}=1 \\Rightarrow \\dfrac{20k}{15}=1$
+k = 3/4  A1  [2 marks]
+
+(b) por tratar de sustituir en $E(X)=\\sum x \\cdot P(X=x)$  (M1)
+$E(X)=\\dfrac{k}{15}(2^2+4^2+5^2+9^2) = \\dfrac{k}{15}(126)$  (A1)
+E(X) = 6.3  A1  [3 marks]` },
+
+  { id:'seed-P2-A-2024-q5', prueba:'P2', seccion:'A', anio:2024, marcas:8, dificultad:4, fuente:'Inspirado en la pregunta 5 · ejercicio original, no reproduce el examen',
+    enunciado:`Una rampa simétrica tiene la forma de un triángulo isósceles ABC, donde AB = AC y BC es la base horizontal.
+La pendiente de [AB] es 3/8.
+
+(a) Halla el tamaño del ángulo ABC; expresa la respuesta en grados. [3 marks]
+
+Se sabe que BC = 20 m y que la altura vertical desde A hasta BC es h metros.
+
+(b) Halla (i) el valor de h; (ii) la longitud de AB. [5 marks]`,
+    respuesta_correcta: '(a) 20.6°  (b)(i) h=3.75 m (ii) AB=10.7 m',
+    solucionario:`(a) por tratar de utilizar $\\tan\\theta = 3/8$  (M1)
+$\\theta = \\arctan(3/8)$  (A1)
+$\\theta = 20.6°$  A1  [3 marks]
+
+(b)(i) por reconocer que $h = (BC/2)\\times\\tan\\theta$  (M1)
+$h = 10 \\times (3/8) = 3.75$ (m)  A1  [2 marks]
+(ii) por tratar de utilizar Pitágoras con BC/2 y h  (M1)
+$AB=\\sqrt{10^2+3.75^2}$  A1
+AB = 10.7 (m)  A1  [3 marks]` },
+
+  { id:'seed-P2-A-2024-q6', prueba:'P2', seccion:'A', anio:2024, marcas:5, dificultad:4, fuente:'Inspirado en la pregunta 6 · ejercicio original, no reproduce el examen',
+    enunciado:`Considera la función $h(x) = \\log_5(3x^2-sx+s-2)$, donde $x \\in \\mathbb{R}$.
+
+Halla los posibles valores de s.`,
+    respuesta_correcta: '$6-2\\sqrt3 < s < 6+2\\sqrt3$',
+    solucionario:`por darse cuenta de que el argumento del logaritmo debe ser positivo para todo x  (M1)
+$3x^2-sx+(s-2)>0$ para todo x
+por reconocer que el discriminante debe ser negativo  (M1)
+$s^2-4(3)(s-2)<0 \\Rightarrow s^2-12s+24<0$  (A1)
+por resolver la ecuación cuadrática asociada  (M1)
+$s=6\\pm2\\sqrt3$  A1
+$6-2\\sqrt3 < s < 6+2\\sqrt3$  A1  [5 marks]` },
+
+  { id:'seed-P2-B-2024-q7', prueba:'P2', seccion:'B', anio:2024, marcas:13, dificultad:4, fuente:'Inspirado en la pregunta 7 · ejercicio original, no reproduce el examen',
+    enunciado:`BrightApp es una aplicación de mensajería que tiene 60 millones de usuarios, todos de 12 años o mayores. La siguiente tabla de frecuencias muestra el número de usuarios en cada grupo de edad.
+
+Edad (años) | Millones de usuarios
+12≤a<16 | 4.2
+16≤a<22 | 15.8
+22≤a<35 | 24.0
+35≤a<55 | 12.5
+55≤a<80 | 3.5
+
+(a) Halla el porcentaje de usuarios de BrightApp que tienen 35 años o más. [1 mark]
+(b) Se elige al azar una muestra de 500 usuarios. Halla la probabilidad de que en esa muestra haya menos de 120 usuarios que tengan 35 años o más. [3 marks]
+(c) Sabiendo que un usuario tiene 35 años o más, halla la probabilidad de que tenga 55 años o más. [3 marks]
+(d) Enumera, para cada intervalo, el valor central. [1 mark]
+(e) A partir de lo anterior, estima (i) la media de las edades; (ii) la varianza de las edades. [3 marks]
+(f) Otra red social, QuickChat, tiene usuarios con media de edad 24.5 años y varianza 95 años². Compara, en contexto, las distribuciones de edades de BrightApp y QuickChat. [2 marks]`,
+    respuesta_correcta: '(a) 26.7%  (b) 0.0809  (c) 7/32  (e) media=30.7, varianza=179',
+    solucionario:`(a) $(12.5+3.5)/60$
+= 26.7%  A1  [1 mark]
+
+(b) reconocer $X\\sim B(500, 16/60)$  (M1)
+por usar la calculadora para hallar $P(X<120)$  (M1)
+= 0.0809  A1  [3 marks]
+
+(c) $P(55+|35+)=\\dfrac{P(55\\le a<80)}{P(35+)}$  (M1)
+$=3.5/16$  (A1)
+$=7/32$ (=0.219)  A1  [3 marks]
+
+(d) valores centrales: 14, 19, 28.5, 45, 67.5  A1  [1 mark]
+
+(e) por usar la calculadora con los valores centrales y las frecuencias  (M1)
+media = 30.7  A1
+varianza = 179  A1  [3 marks]
+
+(f) BrightApp tiene una media mayor que QuickChat (30.7 frente a 24.5)  R1
+BrightApp también tiene mayor dispersión de edades (varianza 179 frente a 95)  R1  [2 marks]` },
+
+  { id:'seed-P2-B-2024-q8', prueba:'P2', seccion:'B', anio:2024, marcas:15, dificultad:5, fuente:'Inspirado en la pregunta 8 · ejercicio original, no reproduce el examen',
+    enunciado:`La siguiente tabla muestra la población de Nordonia (país ficticio) t años después de 2010.
+
+t (años después de 2010) | 0 | 4 | 8 | 12 | 16
+p (millones) | 22.1 | 23.4 | 24.9 | 26.1 | 27.6
+
+Una estudiante usa regresión lineal para modelizar la población: $p=at+b$.
+
+(a)(i) Escribe el valor de a y de b. (ii) Interpreta, en contexto, el valor de a. [3 marks]
+(b) La estudiante predice la población en 2100 (t=90). Comenta la fiabilidad de esta predicción. [1 mark]
+
+Un científico usa el modelo exponencial $E(t)=22.1(1.014)^t$ millones, $20\\le t\\le120$.
+
+(c)(i) Predice la población en 2130 (t=120). (ii) Interpreta el valor 1.014. [3 marks]
+
+Otro modelo, logístico, es $L(t)=\\dfrac{140}{1+e^{-0.03t}}$ millones, $20\\le t\\le120$.
+
+(d) Usa L(t) para predecir la población en 2130. [1 mark]
+(e) Determina el año en que la diferencia entre las predicciones de E y L es máxima. [3 marks]
+(f) Halla (i) $E'(90)$; (ii) $L'(90)$. [2 marks]
+(g) Compara e interpreta, en contexto, los valores de $E'(90)$ y $L'(90)$. [2 marks]`,
+    respuesta_correcta: '(a) a≈0.343,b≈22.1  (c) E(120)≈117 millones  (d) L(120)≈136 millones  (e) t≈50 (año 2060)  (f) E\'(90)≈1.07, L\'(90)≈0.248',
+    solucionario:`(a)(i) a = 0.343, b = 22.1 (por calculadora)  A1A1
+(ii) la población aumenta aproximadamente 0.343 millones al año según este modelo  A1  [3 marks]
+
+(b) sería poco fiable: es una extrapolación muy alejada de los datos usados y el crecimiento real rara vez es lineal a largo plazo  R1  [1 mark]
+
+(c)(i) $E(120)=22.1(1.014)^{120}$
+= 117 (millones)  A1
+(ii) la población crece un 1.4% cada año según este modelo  A1
+(M1 por sustituir correctamente)  [3 marks]
+
+(d) $L(120)=\\dfrac{140}{1+e^{-3.6}}$ = 136 (millones)  A1  [1 mark]
+
+(e) por plantear $D(t)=E(t)-L(t)$  (M1)
+por usar la calculadora gráfica para hallar el extremo en $20\\le t\\le120$  (M1)
+t ≈ 50 (año 2060)  A1  [3 marks]
+
+(f)(i) $E'(90)$ ≈ 1.07 (millones/año)  A1
+(ii) $L'(90)$ ≈ 0.248 (millones/año)  A1  [2 marks]
+
+(g) el modelo exponencial predice un crecimiento mucho más rápido en 2100  R1
+el modelo logístico predice que el crecimiento se desacelera al acercarse a la asíntota de 140 millones  R1  [2 marks]` },
+
+  { id:'seed-P1-B-2024-q9', prueba:'P1', seccion:'B', anio:2024, marcas:17, dificultad:5, fuente:'Inspirado en la pregunta 9 · ejercicio original, no reproduce el examen',
+    enunciado:`Considera un cilindro de radio $3r$ y altura $h$. Se extrae del centro un cilindro más pequeño de radio r, para formar así un cilindro hueco. Todas las longitudes están en centímetros.
+
+El área total de la superficie del cilindro hueco, en cm², viene dada por S.
+El volumen del cilindro hueco, en cm³, viene dado por V.
+
+(a) Muestra que $S=16\\pi r^2+8\\pi rh$. [3 marks]
+
+(b) El área total de la superficie del cilindro hueco es igual a $288\\pi\\text{ cm}^2$.
+Muestra que $V=288\\pi r-16\\pi r^3$. [6 marks]
+
+(c) Halla una expresión para $\\dfrac{dV}{dr}$. [2 marks]
+
+El cilindro hueco alcanza un volumen máximo cuando $r=p\\sqrt{\\dfrac{2}{3}}$, donde $p \\in \\mathbb{Z}^+$.
+
+(d) Halla el valor de p. [3 marks]
+
+(e) A partir de lo anterior, halla este volumen máximo. Da tu respuesta en la forma $q\\pi\\sqrt{\\dfrac{2}{3}}$, donde $q \\in \\mathbb{Z}^+$. [3 marks]`,
+    respuesta_correcta: '(c) 288π-48πr²  (d) p=3  (e) q=576',
+    solucionario:`(a) el área de la superficie curva exterior es $2\\pi(3r)h$ y la de la superficie curva interior es $2\\pi rh$  (A1)
+el área de cada base es $\\pi(3r)^2-\\pi r^2$  (A1)
+$S=2[\\pi(3r)^2-\\pi r^2]+2\\pi(3r)h+2\\pi rh$  A1
+$=16\\pi r^2+8\\pi rh$  AG  [3 marks]
+
+(b) $16\\pi r^2+8\\pi rh=288\\pi$
+por tratar de resolver su ecuación para h o rh en función de r  (M1)
+$rh=36-2r^2$ (o equivalente)  A1
+por usar volumen = cilindro grande − cilindro pequeño  (M1)
+$V=\\pi(3r)^2h-\\pi r^2h=8\\pi r^2h$  A1
+por tratar de sustituir la expresión de rh  (M1)
+$V=8\\pi r(36-2r^2)$
+$=288\\pi r-16\\pi r^3$  AG  [6 marks]
+
+(c) $\\dfrac{dV}{dr}=288\\pi-48\\pi r^2$  A1A1  [2 marks]
+
+(d) por darse cuenta de que (para que sea máximo) $\\dfrac{dV}{dr}=0$  M1
+$288-48r^2=0 \\Rightarrow r^2=6$
+$r=\\sqrt6=3\\sqrt{2/3}$  A1
+$p=3$  A1  [3 marks]
+
+(e) por sustituir su valor de r en $V=288\\pi r-16\\pi r^3$  M1
+$V=288\\pi\\sqrt6-16\\pi(\\sqrt6)^3=192\\sqrt6\\,\\pi$  A1
+$=576\\pi\\sqrt{2/3}$
+$q=576$  A1  [3 marks]` },
+
+  { id:'seed-P2-B-2024-q9', prueba:'P2', seccion:'B', anio:2024, marcas:16, dificultad:5, fuente:'Inspirado en la pregunta 9 · ejercicio original, no reproduce el examen',
+    enunciado:`En esta pregunta, todos los valores de x y de t están en radianes.
+
+Considera la función $f(x)=5\\cos(px)$.
+
+(a)(i) Escribe la amplitud del gráfico de f. (ii) Halla el período de f. [2 marks]
+
+Considera una segunda función $g(x)=-12\\sin(px)$.
+La suma de estas funciones se puede expresar en la forma $f(x)+g(x)=a\\cos(b(x-c))$, donde $a,b,c>0$.
+
+(b) Determina (i) el valor de a; (ii) el valor de b; (iii) el valor más pequeño posible de c. [5 marks]
+
+Un ciclista circula por un camino recto con reductores de velocidad colocados a intervalos regulares. Su velocidad (en m/s) se modela mediante
+$$v(t) = -3.5\\cos\\left(\\dfrac{\\pi}{15}t\\right) + 7.5,$$
+donde t se mide en segundos.
+
+(c) Halla la velocidad mínima y la velocidad máxima del ciclista. [3 marks]
+(d) Halla el primer valor de $t>0$ para el cual el ciclista alcanza la velocidad mínima. [3 marks]
+(e) Halla la distancia total que recorre el ciclista en los primeros 30 segundos. [3 marks]`,
+    respuesta_correcta: '(a) amplitud=5, periodo=2π/p  (b) a=13, b=p  (c) mín=4, máx=11 m/s  (d) t=30s  (e) 225 m',
+    solucionario:`(a)(i) amplitud = 5  A1
+(ii) periodo = $\\dfrac{2\\pi}{p}$  A1  [2 marks]
+
+(b) $R=\\sqrt{5^2+12^2}=13$  (A1)
+a = 13  A1
+b = p  A1
+por tratar de hallar el ángulo de fase $\\varphi=\\arctan(12/5)$  (M1)
+$c=\\dfrac{2\\pi-\\varphi}{p}$ (el valor más pequeño positivo)  A1  [5 marks]
+
+(c) $v_{min}=-3.5+7.5=4$ (m/s)  A1
+$v_{max}=3.5+7.5=11$ (m/s)  A1
+(M1 por reconocer el rango de $\\cos$)  [3 marks]
+
+(d) por reconocer que v es mínima cuando $\\cos(\\pi t/15)=1$  (M1)
+siguiente solución positiva: $\\pi t/15=2\\pi$  (M1)
+t = 30 (s)  A1  [3 marks]
+
+(e) por reconocer que $v(t)\\ge0$ siempre, así que la distancia = $\\int_0^{30}v(t)\\,dt$  (M1)
+por integrar (el término del coseno se anula en un período completo)  (M1)
+distancia = 225 (m)  A1  [3 marks]` },
+
+  // ===== Sesión de noviembre de 2023 =====
+  { id:'seed-P1-A-2023-q1', prueba:'P1', seccion:'A', anio:2023, marcas:6, dificultad:3, fuente:'Inspirado en la pregunta 1 · ejercicio original, no reproduce el examen',
+    enunciado:`Considera la función $f(x)=a\\cos(bx)$, donde $a,b \\in \\mathbb{Z}^+$. Se sabe que el valor máximo de f es 6, y que f tiene un período de $\\pi/2$.
+
+(a) Escribe el valor de a. [1 mark]
+(b) Halla el valor de b. [2 marks]
+(c) Halla el valor de $f(\\pi/3)$. [3 marks]`,
+    respuesta_correcta: '(a) a=6  (b) b=4  (c) -3',
+    solucionario:`(a) a = 6  A1  [1 mark]
+
+(b) período $=\\dfrac{2\\pi}{b}$  (M1)
+$\\dfrac{2\\pi}{b}=\\dfrac{\\pi}{2} \\Rightarrow b=4$  A1  [2 marks]
+
+(c) $f(\\pi/3)=6\\cos(4\\pi/3)$  (M1)
+$\\cos(4\\pi/3)=-1/2$  (A1)
+$f(\\pi/3)=-3$  A1  [3 marks]` },
+
+  { id:'seed-P1-A-2023-q2', prueba:'P1', seccion:'A', anio:2023, marcas:5, dificultad:2, fuente:'Inspirado en la pregunta 2 · ejercicio original, no reproduce el examen',
+    enunciado:`Considera las funciones $f(x)=x-3$ y $g(x)=x^2+k^2$, donde k es una constante real.
+
+(a) Escribe una expresión para $(g \\circ f)(x)$. [2 marks]
+(b) Sabiendo que $(g \\circ f)(2)=10$, halla los posibles valores de k. [3 marks]`,
+    respuesta_correcta: '(a) $(x-3)^2+k^2$  (b) k=±3',
+    solucionario:`(a) $(g \\circ f)(x)=(x-3)^2+k^2$  A1A1  [2 marks]
+
+(b) $(g\\circ f)(2)=(2-3)^2+k^2=10$  (M1)
+$1+k^2=10 \\Rightarrow k^2=9$  (A1)
+$k=\\pm3$  A1  [3 marks]` },
+
+  { id:'seed-P1-A-2023-q3', prueba:'P1', seccion:'A', anio:2023, marcas:4, dificultad:2, fuente:'Inspirado en la pregunta 3 · ejercicio original, no reproduce el examen',
+    enunciado:`Para los sucesos A y B se cumple que P(A) = 0.6, P(B) = 0.7 y $P(A \\cap B) = 0.55$.
+
+(a) Halla $P(A \\cup B)$. [2 marks]
+(b) A partir de lo anterior, halla $P(A' \\cap B')$. [2 marks]`,
+    respuesta_correcta: '(a) 0.75  (b) 0.25',
+    solucionario:`(a) $P(A\\cup B)=P(A)+P(B)-P(A\\cap B)$  (M1)
+$=0.6+0.7-0.55=0.75$  A1  [2 marks]
+
+(b) $P(A'\\cap B')=1-P(A\\cup B)$  (M1)
+$=1-0.75=0.25$  A1  [2 marks]` },
+
+  { id:'seed-P1-A-2023-q4', prueba:'P1', seccion:'A', anio:2023, marcas:7, dificultad:3, fuente:'Inspirado en la pregunta 4 · ejercicio original, no reproduce el examen',
+    enunciado:`La suma de los n primeros términos de una progresión aritmética viene dada por $S_n=pn^2-qn$, donde p y q son constantes positivas.
+
+Se sabe que $S_4=52$ y $S_5=85$.
+
+(a) Halla el valor de p y el valor de q. [5 marks]
+(b) Halla el valor de $u_5$. [2 marks]`,
+    respuesta_correcta: '(a) p=4, q=3  (b) $u_5=33$',
+    solucionario:`(a) $16p-4q=52$ y $25p-5q=85$  (A1)
+por tratar de resolver el sistema  (M1)
+p = 4  A1
+q = 3  A1  [5 marks]
+
+(b) $u_5=S_5-S_4$  (M1)
+$=85-52=33$  A1  [2 marks]` },
+
+  { id:'seed-P1-A-2023-q5', prueba:'P1', seccion:'A', anio:2023, marcas:6, dificultad:3, fuente:'Inspirado en la pregunta 5 · ejercicio original, no reproduce el examen',
+    enunciado:`En el triángulo ABC, AB = 8 cm, AC = 9 cm y $\\cos(B\\hat{A}C)=\\dfrac{1}{6}$.
+
+Halla el área del triángulo ABC.`,
+    respuesta_correcta: '$6\\sqrt{35} \\approx 35.5\\text{ cm}^2$',
+    solucionario:`por tratar de utilizar $\\sin^2A+\\cos^2A=1$  (M1)
+$\\sin A=\\sqrt{1-1/36}=\\dfrac{\\sqrt{35}}{6}$ (positivo, dado que A es un ángulo interior de un triángulo)  (A1)
+por sustituir en Área$=\\frac12(AB)(AC)\\sin A$  (M1)
+Área$=\\frac12(8)(9)\\cdot\\dfrac{\\sqrt{35}}{6}$  A1
+$=6\\sqrt{35}$  A1
+$=35.5$ (cm²) (3 s.f.)  A1  [6 marks]` },
+
+  { id:'seed-P1-A-2023-q6', prueba:'P1', seccion:'A', anio:2023, marcas:6, dificultad:4, fuente:'Inspirado en la pregunta 6 · ejercicio original, no reproduce el examen',
+    enunciado:`El desarrollo de la potencia de un binomio para $(1+kx)^n$ viene dado por $1+15x+45k^2x^2+\\ldots+k^nx^n$, donde $n \\in \\mathbb{Z}^+$ y $k \\in \\mathbb{R}$.
+
+Halla el valor de n y el valor de k.`,
+    respuesta_correcta: 'n=10, k=1.5',
+    solucionario:`por reconocer que el coeficiente de $x^2$ es $\\binom{n}{2}k^2$  (M1)
+$\\binom{n}{2}=45 \\Rightarrow n^2-n-90=0$  (A1)
+por tratar de resolver la ecuación cuadrática  (M1)
+n = 10  A1
+por reconocer que el coeficiente de x es nk  (M1)
+$10k=15 \\Rightarrow k=1.5$  A1  [6 marks]` },
+
+  { id:'seed-P1-B-2023-q7', prueba:'P1', seccion:'B', anio:2023, marcas:17, dificultad:4, fuente:'Inspirado en la pregunta 7 · ejercicio original, no reproduce el examen',
+    enunciado:`Una compañía de teatro hace 50 funciones al año, en una sala con capacidad máxima de 600. La siguiente tabla de frecuencias muestra el número de entradas vendidas (n) en cada función.
+
+Entradas vendidas (n) | Número de funciones
+$0<n\\le150$ | 4
+$150<n\\le300$ | p
+$300<n\\le450$ | 20
+$450<n\\le600$ | 21
+
+(a)(i) Halla el valor de p. (ii) Escribe la clase modal. [2 marks]
+
+Las frecuencias acumuladas son: $\\le150$: 4; $\\le300$: 9; $\\le450$: 29; $\\le600$: 50.
+
+(b)(i) Estima la mediana del número de entradas vendidas, usando interpolación lineal. (ii) Estima el número de funciones en las que se vendió al menos el 80% de las entradas (es decir, al menos 480). [4 marks]
+
+(c)(i) Indica una desventaja de encuestar solo al primer 5% del público que sale de la sala. (ii) Describe brevemente cómo la compañía podría recoger la opinión del 5% del público usando muestreo sistemático. (iii) Indica qué método de muestreo se debería usar para que la encuesta sea representativa del número de niños y adultos en el público. [4 marks]
+
+El año pasado se vendieron 40 000 entradas en total. El dinero gastado por el público en la tienda de recuerdos sigue esta distribución: mínimo=USD 0, $Q_1$=USD 4, mediana=USD 9, $Q_3$=USD 17, máximo=USD 27.
+
+(d)(i) Estima el número de personas que gastaron entre USD 4 y USD 17. (ii) La mitad del público gastó menos de $a$ dólares. Estima el valor de a. [3 marks]
+
+(e) Este año la compañía espera vender 12 entradas adicionales en cada función. (i) Calcula la media esperada de entradas vendidas por función este año. (ii) Indica qué efecto tendría este aumento sobre la varianza del número de entradas vendidas por función. [4 marks]`,
+    respuesta_correcta: '(a) p=5, clase modal 450<n≤600  (b) mediana=420, ≈17 funciones  (d) 20 000 personas, a=9  (e) media=411, la varianza no cambia',
+    solucionario:`(a)(i) $p=50-4-20-21=5$  A1
+(ii) clase modal = $450<n\\le600$ (la de mayor frecuencia)  A1  [2 marks]
+
+(b)(i) por interpolar en la clase 300–450 (M1)
+mediana $=300+\\dfrac{25-9}{20}\\times150=420$  A1
+(ii) por interpolar para hallar la frecuencia acumulada en 480 (M1)
+frecuencia acumulada en 480 $\\approx 29+0.2(21)=33.2$
+número de funciones $\\approx 50-33.2=16.8 \\approx 17$  A1  [4 marks]
+
+(c)(i) no sería representativo: esas personas pueden haberse ido antes de que terminara la función y sesgar la opinión  R1
+(ii) numerar a los espectadores según van saliendo y elegir uno de cada 20 (ya que $1/0.05=20$)  R1
+(iii) muestreo estratificado (para representar proporcionalmente a niños y adultos)  A1A1  [4 marks]
+
+(d)(i) el 50% del público gastó entre $Q_1$ y $Q_3$ (M1)
+$0.5\\times40\\,000=20\\,000$ (personas)  A1
+(ii) $a$ = la mediana = 9 (dólares)  A1  [3 marks]
+
+(e)(i) media anterior (con puntos medios 75,225,375,525) $=399$ (por calculadora)  (M1)
+nueva media $=399+12=411$  A1
+(ii) la varianza no cambia (sumar una constante a cada valor no afecta la varianza)  R1  [4 marks]` },
+
+  { id:'seed-P1-B-2023-q8', prueba:'P1', seccion:'B', anio:2023, marcas:15, dificultad:5, fuente:'Inspirado en la pregunta 8 · ejercicio original, no reproduce el examen',
+    enunciado:`Las funciones f y g vienen dadas por
+$$f(x)=\\ln(4x-9), \\text{ donde } x>\\dfrac{9}{4}$$
+$$g(x)=2\\ln x - \\ln m, \\text{ donde } x>0,\\ m \\in \\mathbb{Z}^+.$$
+
+(a) Indica la ecuación de la asíntota vertical del gráfico de $y=g(x)$. [1 mark]
+
+Los gráficos de $y=f(x)$ e $y=g(x)$ se cortan en dos puntos distintos.
+
+(b)(i) Muestra que, en esos puntos de intersección, $x^2-4mx+9m=0$.
+(ii) A partir de lo anterior, muestra que $4m^2-9m>0$.
+(iii) Halla el intervalo de posibles valores de m (dado que $m\\in\\mathbb{Z}^+$). [9 marks]
+
+Los gráficos se cortan en $x=p$ y $x=q$, donde $p<q$.
+
+(c) Para el caso en el que $m=10$, halla el valor de $q-p$. Expresa la respuesta en la forma $a\\sqrt{b}$, donde $a,b\\in\\mathbb{Z}^+$. [5 marks]`,
+    respuesta_correcta: '(a) x=0  (b) m≥3  (c) $q-p=2\\sqrt{310}$',
+    solucionario:`(a) x = 0  A1  [1 mark]
+
+(b)(i) por igualar f(x) y g(x)  (M1)
+$\\ln(4x-9)=2\\ln x - \\ln m = \\ln(x^2/m)$
+$4x-9=x^2/m$  (A1)
+$x^2-4mx+9m=0$  A1  [3 marks]
+
+(ii) discriminante $=(4m)^2-4(9m)=16m^2-36m$  (M1)
+$>0 \\Rightarrow 4m^2-9m>0$ (dividiendo entre 4)  A1  [2 marks]
+
+(iii) $m(4m-9)>0$  (M1)
+raíces: $m=0$, $m=9/4$  (A1)
+$m<0$ o $m>9/4$  A1
+dado que $m\\in\\mathbb{Z}^+$, $m\\ge3$  A1  [4 marks]
+
+(c) con $m=10$: $x^2-40x+90=0$  (A1)
+por tratar de utilizar la fórmula cuadrática  (M1)
+$x=20\\pm\\sqrt{310}$  A1
+$p=20-\\sqrt{310}$, $q=20+\\sqrt{310}$  (M1)
+$q-p=2\\sqrt{310}$  A1  [5 marks]` },
+
+  { id:'seed-P1-B-2023-q9', prueba:'P1', seccion:'B', anio:2023, marcas:13, dificultad:5, fuente:'Inspirado en la pregunta 9 · ejercicio original, no reproduce el examen',
+    enunciado:`Considera la función f definida así: $f(x)=\\dfrac{12x}{(x^2+4)^{3/2}}$, donde $x \\in \\mathbb{R}$.
+
+(a) Halla f(0). [1 mark]
+(b) Muestra que f es una función impar. [3 marks]
+(c) Halla las coordenadas del punto máximo de f, para x > 0. [9 marks]`,
+    respuesta_correcta: '(a) 0  (c) $(\\sqrt2,\\ \\frac{2\\sqrt3}{3})$',
+    solucionario:`(a) f(0) = 0  A1  [1 mark]
+
+(b) $f(-x)=\\dfrac{12(-x)}{((-x)^2+4)^{3/2}}$  (M1)
+$=\\dfrac{-12x}{(x^2+4)^{3/2}}=-f(x)$  A1
+por lo tanto f es impar  A1  [3 marks]
+
+(c) por tratar de utilizar la regla del cociente  (M1)
+$v'=3x(x^2+4)^{1/2}$  (A1)
+numerador de $f'(x)$: $12(x^2+4)^{3/2}-12x\\cdot3x(x^2+4)^{1/2}$  (A1)
+por factorizar $(x^2+4)^{1/2}$  (M1)
+$=12(x^2+4)^{1/2}[(x^2+4)-3x^2]=12(x^2+4)^{1/2}(4-2x^2)$  A1
+$f'(x)=\\dfrac{12(4-2x^2)}{(x^2+4)^{5/2}}$  A1
+por igualar $f'(x)=0$  (M1)
+$x=\\sqrt2$  A1
+$f(\\sqrt2)=\\dfrac{2\\sqrt3}{3}$  A1  [9 marks]` },
+
+  { id:'seed-P2-A-2023-q1', prueba:'P2', seccion:'A', anio:2023, marcas:7, dificultad:3, fuente:'Inspirado en la pregunta 1 · ejercicio original, no reproduce el examen',
+    enunciado:`Considera la siguiente función: $f(x)=x^2-6x$. El gráfico de f pasa por el punto $A(4,-8)$.
+
+(a)(i) Halla la pendiente de la tangente al gráfico de f en el punto A. (ii) A partir de lo anterior, escribe la pendiente de la normal al gráfico de f en A. [3 marks]
+(b) Escribe la ecuación de la normal al gráfico de f en A. [1 mark]
+
+La normal al gráfico de f en A corta nuevamente al gráfico de f en un segundo punto B.
+
+(c) Halla las coordenadas de B. [3 marks]`,
+    respuesta_correcta: '(a) pendiente tangente=2, normal=-1/2  (b) y=-x/2-6  (c) B(1.5, -6.75)',
+    solucionario:`(a)(i) $f'(x)=2x-6$  (M1)
+$f'(4)=2$  A1
+(ii) pendiente de la normal $=-\\dfrac12$  A1  [3 marks]
+
+(b) $y+8=-\\dfrac12(x-4) \\Rightarrow y=-\\dfrac{x}{2}-6$  A1  [1 mark]
+
+(c) por igualar f(x) a la ecuación de la normal  (M1)
+$x^2-6x=-\\dfrac{x}{2}-6 \\Rightarrow 2x^2-11x+12=0$  (A1)
+$x=1.5$ (el otro valor, $x=4$, corresponde a A)
+B = (1.5, -6.75)  A1  [3 marks]` },
+
+  { id:'seed-P2-A-2023-q2', prueba:'P2', seccion:'A', anio:2023, marcas:7, dificultad:3, fuente:'Inspirado en la pregunta 2 · ejercicio original, no reproduce el examen',
+    enunciado:`La siguiente figura muestra una pirámide de vértice V y base rectangular OABC. El punto B tiene coordenadas $(8,6,0)$, el punto C tiene coordenadas $(8,0,0)$ y el punto V tiene coordenadas $(4,3,10)$.
+
+(a) Halla BV. [2 marks]
+(b) Halla el tamaño de $B\\hat{V}C$. [5 marks]`,
+    respuesta_correcta: '(a) BV=(-4,-3,10), |BV|=5√5≈11.2  (b) 31.1°',
+    solucionario:`(a) $\\vec{BV}=(-4,-3,10)$  (M1)
+$|\\vec{BV}|=\\sqrt{125}=5\\sqrt5\\ (=11.2)$  A1  [2 marks]
+
+(b) $\\vec{VB}=(4,3,-10)$, $\\vec{VC}=(4,-3,-10)$  (A1)
+por tratar de utilizar $\\vec{VB}\\cdot\\vec{VC}=|\\vec{VB}||\\vec{VC}|\\cos\\theta$  (M1)
+$\\vec{VB}\\cdot\\vec{VC}=107$  (A1)
+$|\\vec{VB}|=|\\vec{VC}|=\\sqrt{125}$  (A1)
+$\\cos\\theta=\\dfrac{107}{125}$  (M1)
+$\\theta=31.1°$  A1  [5 marks]` },
+
+  { id:'seed-P2-A-2023-q3', prueba:'P2', seccion:'A', anio:2023, marcas:5, dificultad:4, fuente:'Inspirado en la pregunta 3 · ejercicio original, no reproduce el examen',
+    enunciado:`Considera la función $f(x)=e^x-2x-3$.
+
+(a) Halla el valor mínimo exacto de f. [3 marks]
+
+La función g viene dada por $g(x)=e^{2x}-4x-5$. El gráfico de g se obtiene a partir del gráfico de f mediante un estiramiento horizontal de razón k seguido de una traslación vertical de c unidades.
+
+(b) Halla el valor de k y el valor de c. [2 marks]`,
+    respuesta_correcta: '(a) $-1-2\\ln2$  (b) k=1/2, c=-2',
+    solucionario:`(a) $f'(x)=e^x-2$  (M1)
+$e^x-2=0 \\Rightarrow x=\\ln2$  (A1)
+$f(\\ln2)=2-2\\ln2-3=-1-2\\ln2$  A1  [3 marks]
+
+(b) $g(x)=f(x/k)+c$; con $k=1/2$: $f(2x)=e^{2x}-4x-3$  (M1)
+$k=1/2$  A1
+$c=-2$ (dado que $g(x)=f(2x)-2$)  A1  [2 marks]` },
+
+  { id:'seed-P2-A-2023-q4', prueba:'P2', seccion:'A', anio:2023, marcas:7, dificultad:3, fuente:'Inspirado en la pregunta 4 · ejercicio original, no reproduce el examen',
+    enunciado:`Una empresa diseña un logotipo con forma de la letra "C", formada por dos círculos con centro en O. El punto A pertenece a la circunferencia interior, de radio r cm (r < 12). El punto B pertenece a la circunferencia exterior, de radio 12 cm. El ángulo cóncavo $A\\hat{O}B$ mide 5.6 radianes.
+
+(a) Muestra que el área de la "C" viene dada por $403.2-2.8r^2$. [2 marks]
+
+El área de la "C" es igual a 224 cm².
+
+(b)(i) Halla el valor de r. (ii) Halla el perímetro de la "C". [5 marks]`,
+    respuesta_correcta: '(a) 403.2-2.8r²  (b)(i) r=8 cm (ii) perímetro=120 cm',
+    solucionario:`(a) Área $=\\frac12(12^2-r^2)(5.6)$  (M1)
+$=403.2-2.8r^2$  A1  [2 marks]
+
+(b)(i) $403.2-2.8r^2=224$  (M1)
+$r=8$ (cm)  A1  [2 marks]
+(ii) perímetro $=2(12-8)+12(5.6)+8(5.6)$  (M1)(A1)
+$=120$ (cm)  A1  [3 marks]` },
+
+  { id:'seed-P2-A-2023-q5', prueba:'P2', seccion:'A', anio:2023, marcas:5, dificultad:4, fuente:'Inspirado en la pregunta 5 · ejercicio original, no reproduce el examen',
+    enunciado:`Una partícula se mueve a lo largo de una línea recta. Su desplazamiento (s metros) respecto a un punto fijo O, transcurridos t segundos, viene dado por $s(t)=5.2\\sin(2t+3)$, donde $0 \\le t \\le 10$.
+
+La partícula se detiene por primera vez transcurridos q segundos.
+
+(a) Halla el valor de q. [2 marks]
+(b) Halla la distancia total que recorre la partícula en los primeros q segundos. [3 marks]`,
+    respuesta_correcta: '(a) q=0.856  (b) 5.93 m',
+    solucionario:`(a) por igualar $s'(t)=0$  (M1)
+q = 0.856  A1  [2 marks]
+
+(b) por reconocer que la distancia $=|s(q)-s(0)|$  (M1)
+$s(0)=0.734$, $s(q)=-5.2$  (A1)
+distancia = 5.93 (m)  A1  [3 marks]` },
+
+  { id:'seed-P2-A-2023-q6', prueba:'P2', seccion:'A', anio:2023, marcas:5, dificultad:4, fuente:'Inspirado en la pregunta 6 · ejercicio original, no reproduce el examen',
+    enunciado:`La siguiente tabla muestra la distribución de probabilidad de una variable aleatoria discreta X:
+
+x | 1 | 2 | 3 | 4
+P(X=x) | k | $k^2$ | a | $k^3$
+
+Sabiendo que $E(X)=2.10$, halla el valor de a.`,
+    respuesta_correcta: 'a=0.376',
+    solucionario:`por darse cuenta de que la suma de las probabilidades = 1  (M1)
+$k+k^2+a+k^3=1$  (A1)
+por sustituir en $E(X)=1k+2k^2+3a+4k^3=2.10$  (M1)
+por resolver el sistema con la calculadora  (M1)
+a = 0.376  A1  [5 marks]` },
+
+  { id:'seed-P2-B-2023-q7', prueba:'P2', seccion:'B', anio:2023, marcas:14, dificultad:5, fuente:'Inspirado en la pregunta 7 · ejercicio original, no reproduce el examen',
+    enunciado:`El sólido que se muestra está compuesto por un cilindro y dos semiesferas. El cilindro mide h cm de altura y x cm de radio. Las semiesferas encajan exactamente en cada extremo del cilindro.
+
+El volumen del cilindro es igual a 60 cm³.
+
+(a) Muestra que el área total de la superficie del sólido ($S$ cm²) viene dada por $S=\\dfrac{120}{x}+4\\pi x^2$. [3 marks]
+
+El área total alcanza un máximo o mínimo local cuando $x=a$.
+
+(b)(i) Halla una expresión para $\\dfrac{dS}{dx}$. (ii) A partir de lo anterior, halla el valor exacto de a. [5 marks]
+(c)(i) Halla una expresión para $\\dfrac{d^2S}{dx^2}$. (ii) Usa la derivada segunda para justificar que S alcanza un mínimo cuando $x=a$. (iii) Halla el área mínima de la superficie del sólido. [6 marks]`,
+    respuesta_correcta: '(b) a=(15/π)^(1/3)≈1.68  (c) área mínima≈107 cm²',
+    solucionario:`(a) $V=\\pi x^2h=60 \\Rightarrow h=\\dfrac{60}{\\pi x^2}$  (M1)
+$S=2\\pi xh+4\\pi x^2$  (A1)
+$=\\dfrac{120}{x}+4\\pi x^2$  AG  [3 marks]
+
+(b)(i) $\\dfrac{dS}{dx}=-\\dfrac{120}{x^2}+8\\pi x$  A1A1  [2 marks]
+(ii) por igualar $\\dfrac{dS}{dx}=0$  (M1)
+$8\\pi x^3=120$  (A1)
+$a=\\left(\\dfrac{15}{\\pi}\\right)^{1/3}\\ (\\approx1.68)$  A1  [3 marks]
+
+(c)(i) $\\dfrac{d^2S}{dx^2}=\\dfrac{240}{x^3}+8\\pi$  A1A1  [2 marks]
+(ii) para $x>0$, ambos términos son positivos, por lo que $\\dfrac{d^2S}{dx^2}>0$, y por lo tanto S tiene un mínimo en $x=a$  R1  [1 mark]
+(iii) $S(a)=\\dfrac{120}{a}+4\\pi a^2$  (M1)
+$=107$ (cm²) (3 s.f.)  A1  [3 marks]` },
+
+  { id:'seed-P2-B-2023-q8', prueba:'P2', seccion:'B', anio:2023, marcas:16, dificultad:5, fuente:'Inspirado en la pregunta 8 · ejercicio original, no reproduce el examen',
+    enunciado:`En los apartados donde corresponda, da las respuestas redondeando a dos cifras decimales.
+
+Ana y Bogdan han recibido dinero recientemente. Ana puede elegir entre dos opciones, con un pago el primer día de cada mes durante 3 años (36 pagos).
+
+Opción A: todos los pagos son de USD 4800.
+Opción B: el primer pago es de USD 1800; cada mes el pago es un 5% mayor que el anterior.
+
+(a)(i) Halla el total si escoge la Opción A. (ii) Halla el total si escoge la Opción B. [4 marks]
+
+Bogdan invierte USD 150 000 en una cuenta con tasa nominal anual del 3.6%, compuesta mensualmente.
+
+(b) Escribe una expresión para el valor de la inversión de Bogdan al cabo de n años. [1 mark]
+
+Ana escogió la Opción B, con primer pago el 1 de enero. Bogdan invirtió su dinero ese mismo día.
+
+(c)(i) Halla el valor total de las ganancias de Ana y de la inversión de Bogdan al final del sexto mes. (ii) Halla el número mínimo de meses completos para que el valor total sea al menos USD 300 000. [8 marks]
+
+Al finalizar los 3 años, Ana invierte USD 50 000 durante 6 años más en una cuenta con tasa nominal del $r\\%$ anual, compuesta trimestralmente.
+
+(d) Halla el valor de r, sabiendo que la inversión creció hasta USD 64 000 al cabo de esos 6 años. [3 marks]`,
+    respuesta_correcta: '(a)(i) 172800 (ii) ≈172505.38  (c)(i) ≈164963.77 (ii) 32 meses  (d) r≈4.14',
+    solucionario:`(a)(i) $4800\\times36=172\\,800$  A1  [1 mark]
+(ii) reconocer serie geométrica con $u_1=1800$, $r=1.05$, $n=36$  (M1)
+$S_{36}=1800\\dfrac{(1.05^{36}-1)}{0.05}$  (A1)
+$\\approx172\\,505.38$  A1  [3 marks]
+
+(b) $150\\,000(1.003)^{12n}$  A1  [1 mark]
+
+(c)(i) Ana (6 meses): $1800\\dfrac{(1.05^6-1)}{0.05}\\approx12\\,243.44$  (M1)A1
+Bogdan (6 meses): $150\\,000(1.003)^6\\approx152\\,720.33$  A1
+total $\\approx164\\,963.77$  A1  [4 marks]
+(ii) por plantear la inecuación y resolver con calculadora/tabla  (M1)(M1)
+mes 31: total $\\approx291\\,965.77$ (no cumple)  A1
+mes 32: total $\\approx300\\,628.03$ (cumple)  A1
+mínimo = 32 meses  A1  [4 marks]
+
+(d) $64\\,000=50\\,000(1+r/400)^{24}$  (M1)
+$(1+r/400)=1.28^{1/24}$  (A1)
+$r=4.14$  A1  [3 marks]` },
+
+  { id:'seed-P2-B-2023-q9', prueba:'P2', seccion:'B', anio:2023, marcas:16, dificultad:5, fuente:'Inspirado en la pregunta 9 · ejercicio original, no reproduce el examen',
+    enunciado:`La altura (H cm) de cada planta de un cultivo se puede modelizar mediante una distribución normal de media $\\mu$ y desviación típica $\\sigma$.
+
+Se sabe que $P(H<91.2)=0.242$ y $P(H>96.5)=0.394$.
+
+(a) Halla la probabilidad de que la altura de una planta elegida al azar esté entre 91.2 cm y 96.5 cm. [2 marks]
+(b) Halla el valor de $\\mu$ y el valor de $\\sigma$. [5 marks]
+
+Se mide la altura de 80 plantas elegidas al azar. Las plantas con altura superior a 96.5 cm se consideran listas para la cosecha.
+
+(c)(i) Halla la probabilidad de que haya exactamente 30 plantas listas para la cosecha. (ii) Sabiendo que hay menos de 40 plantas listas para la cosecha, halla la probabilidad de que haya exactamente 30. [6 marks]
+
+En otro terreno, las alturas (F cm) siguen una distribución normal de media 98.6 y desviación típica d. El rango intercuartil es igual a 4.82 cm.
+
+(d) Halla el valor de d. [3 marks]`,
+    respuesta_correcta: '(a) 0.364  (b) μ=95.0, σ=5.47  (c)(i) 0.0864 (ii) 0.0895  (d) d≈3.57',
+    solucionario:`(a) $1-0.242-0.394=0.364$  A1A1  [2 marks]
+
+(b) $z_1=\\text{invNorm}(0.242)=-0.700$  (A1)
+$91.2=\\mu-0.700\\sigma$  (A1)
+$z_2=\\text{invNorm}(0.606)=0.269$  (A1)
+$96.5=\\mu+0.269\\sigma$  (A1)
+por resolver el sistema (M1)
+$\\mu=95.0$, $\\sigma=5.47$  A1  [5 marks]
+
+(c)(i) reconocer $X\\sim B(80,0.394)$  (M1)
+$P(X=30)=0.0864$ (por calculadora)  A1  [2 marks]
+(ii) $P(X<40)=0.965$  (A1)
+$P(X=30\\ |\\ X<40)=\\dfrac{P(X=30)}{P(X<40)}$  (M1)
+$=0.0895$  A1  [3 marks] (total (c) = 5, se añade 1 mark por método correcto de planteamiento)
+
+(d) $Q_1=98.6-0.6745d$, $Q_3=98.6+0.6745d$  (M1)
+RIC $=2(0.6745)d=4.82$  (A1)
+$d=3.57$  A1  [3 marks]` },
+
+  // ===== Sesión de noviembre de 2022 =====
+  { id:'seed-P1-A-2022-q1', prueba:'P1', seccion:'A', anio:2022, marcas:7, dificultad:2, fuente:'Inspirado en la pregunta 1 · ejercicio original, no reproduce el examen',
+    enunciado:`Sea $f(x)=-3x+5$, para $x \\in \\mathbb{R}$.
+
+(a) El gráfico de una función lineal g es paralelo al gráfico de f y pasa por el origen. Halla una expresión para g(x). [2 marks]
+(b) El gráfico de una función lineal h es perpendicular al gráfico de f y pasa por el punto (2, -1). Halla una expresión para h(x). [3 marks]
+(c) Halla $(g \\circ h)(0)$. [2 marks]`,
+    respuesta_correcta: '(a) g(x)=-3x  (b) h(x)=x/3-5/3  (c) 5',
+    solucionario:`(a) g(x) = -3x  A1A1  [2 marks]
+
+(b) pendiente de h $=\\dfrac13$ (recíproco negativo de -3)  (M1)
+$h(x)=\\dfrac13(x-2)-1$  (A1)
+$=\\dfrac{x}{3}-\\dfrac53$  A1  [3 marks]
+
+(c) $h(0)=-\\dfrac53$  (M1)
+$g(-5/3)=-3\\times(-5/3)=5$  A1  [2 marks]` },
+
+  { id:'seed-P1-A-2022-q2', prueba:'P1', seccion:'A', anio:2022, marcas:4, dificultad:2, fuente:'Inspirado en la pregunta 2 · ejercicio original, no reproduce el examen',
+    enunciado:`La función g se define así: $g(x)=e^{x^2+2}$, donde $x \\in \\mathbb{R}$.
+
+Halla $g'(-1)$.`,
+    respuesta_correcta: '$g\'(-1)=-2e^3 \\approx -40.2$',
+    solucionario:`por tratar de utilizar la regla de la cadena  (M1)
+$g'(x)=2x\\,e^{x^2+2}$  (A1)
+$g'(-1)=-2e^3\\ (\\approx-40.2)$  A1  [4 marks]` },
+
+  { id:'seed-P1-A-2022-q3', prueba:'P1', seccion:'A', anio:2022, marcas:7, dificultad:3, fuente:'Inspirado en la pregunta 3 · ejercicio original, no reproduce el examen',
+    enunciado:`Considera un círculo de diámetro AB, donde A tiene coordenadas $(2,5,1)$ y B tiene coordenadas $(-4,1,-3)$.
+
+(a)(i) Halla las coordenadas del centro del círculo. (ii) Halla el radio del círculo. [4 marks]
+
+El círculo es la base de un cono recto cuyo vértice V tiene coordenadas $(0,-1,1)$.
+
+(b) Halla el volumen exacto del cono. [3 marks]`,
+    respuesta_correcta: '(a) centro=(-1,3,-1), radio=√17  (b) $V=\\dfrac{17\\sqrt{21}}{3}\\pi$',
+    solucionario:`(a)(i) centro = punto medio de AB  (M1)
+$=(-1,3,-1)$  A1  [2 marks]
+(ii) radio $=\\dfrac12|AB|$  (M1)
+$|AB|=\\sqrt{68}=2\\sqrt{17}$; radio $=\\sqrt{17}$  A1  [2 marks]
+
+(b) para un cono recto, la altura $h=|VM|$, donde M es el centro  (M1)
+$\\vec{VM}=(-1,4,-2)$, $|VM|=\\sqrt{21}$  (A1)
+$V=\\dfrac13\\pi(17)(\\sqrt{21})=\\dfrac{17\\sqrt{21}}{3}\\pi$  A1  [3 marks]` },
+
+  { id:'seed-P1-A-2022-q4', prueba:'P1', seccion:'A', anio:2022, marcas:5, dificultad:3, fuente:'Inspirado en la pregunta 4 · ejercicio original, no reproduce el examen',
+    enunciado:`Sea a una constante, donde $a>1$.
+
+(a) Muestra que $a^2+\\left(\\dfrac{a^2-1}{2}\\right)^2=\\left(\\dfrac{a^2+1}{2}\\right)^2$. [3 marks]
+
+Considera un triángulo rectángulo cuyos catetos miden a y $\\dfrac{a^2-1}{2}$.
+
+(b) Halla una expresión para el área del triángulo en función de a. [2 marks]`,
+    respuesta_correcta: '(b) $\\dfrac{a(a^2-1)}{4}$',
+    solucionario:`(a) por tratar de desarrollar o comparar ambos lados  (M1)
+$\\left(\\frac{a^2+1}{2}\\right)^2-\\left(\\frac{a^2-1}{2}\\right)^2=\\frac{(a^2+1)^2-(a^2-1)^2}{4}=\\frac{4a^2}{4}=a^2$ (diferencia de cuadrados)  (A1)
+por lo tanto la igualdad se cumple  A1  [3 marks]
+
+(b) Área $=\\dfrac12(a)\\left(\\dfrac{a^2-1}{2}\\right)$  (M1)
+$=\\dfrac{a(a^2-1)}{4}$  A1  [2 marks]` },
+
+  { id:'seed-P1-A-2022-q5', prueba:'P1', seccion:'A', anio:2022, marcas:5, dificultad:3, fuente:'Inspirado en la pregunta 5 · ejercicio original, no reproduce el examen',
+    enunciado:`La derivada de la función f viene dada por $f'(x)=\\dfrac{10x}{x^2+4}$. El gráfico de $y=f(x)$ pasa por el punto $(2,9)$.
+
+Halla una expresión para f(x).`,
+    respuesta_correcta: '$f(x)=5\\ln(x^2+4)+9-5\\ln8$',
+    solucionario:`por reconocer que hay que integrar  (M1)
+$\\int\\dfrac{10x}{x^2+4}dx=5\\ln(x^2+4)+C$  A1
+por sustituir $x=2$, $f=9$  (M1)
+$9=5\\ln(8)+C \\Rightarrow C=9-5\\ln8$  A1
+$f(x)=5\\ln(x^2+4)+9-5\\ln8$  A1  [5 marks]` },
+
+  { id:'seed-P1-A-2022-q6', prueba:'P1', seccion:'A', anio:2022, marcas:6, dificultad:2, fuente:'Inspirado en la pregunta 6 · ejercicio original, no reproduce el examen',
+    enunciado:`Para los sucesos A y B se cumple que P(A) = 0.4 y P(B) = 0.7.
+
+(a) Determina el valor de $P(A \\cap B)$ en el caso en el que A y B son independientes. [1 mark]
+(b) Determina el mínimo valor posible de $P(A \\cap B)$. [3 marks]
+(c) Determina el máximo valor posible de $P(A \\cap B)$. Justifica tu respuesta. [2 marks]`,
+    respuesta_correcta: '(a) 0.28  (b) 0.1  (c) 0.4',
+    solucionario:`(a) $P(A\\cap B)=0.4\\times0.7=0.28$  A1  [1 mark]
+
+(b) por reconocer que $P(A\\cup B)\\le1$  (M1)
+$P(A\\cap B)\\ge P(A)+P(B)-1$  (A1)
+$=0.1$  A1  [3 marks]
+
+(c) $P(A\\cap B)\\le P(A)$ (ya que $A\\cap B \\subseteq A$)  R1
+máximo = 0.4  A1  [2 marks]` },
+
+  { id:'seed-P1-B-2022-q7', prueba:'P1', seccion:'B', anio:2022, marcas:16, dificultad:5, fuente:'Inspirado en la pregunta 7 · ejercicio original, no reproduce el examen',
+    enunciado:`(a) El gráfico de una función cuadrática f tiene el vértice en el punto $(4,3)$ y corta al eje x en $x=7$. Halla f, expresándola en la forma $f(x)=a(x-h)^2+k$. [3 marks]
+
+La función cuadrática g se define así: $g(x)=px^2+(t-1)x-p$, donde $x \\in \\mathbb{R}$ y $p,t \\in \\mathbb{R}$, $p \\ne 0$.
+
+(b) Para el caso en el que $g(-2)=g(3)=5$:
+(i) Halla el valor de p y el valor de t. (ii) Halla el recorrido de g. [7 marks]
+
+(c) La función lineal j se define así: $j(x)=-x+3p$, donde $x \\in \\mathbb{R}$ y $p \\in \\mathbb{R}$, $p\\ne0$.
+
+Muestra que los gráficos de j y de g tienen dos puntos de intersección distintos para todos los posibles valores de p y t. [6 marks]`,
+    respuesta_correcta: '(a) $f(x)=-\\frac13(x-4)^2+3$  (b) p=1, t=0, recorrido: $g(x)\\ge-5/4$',
+    solucionario:`(a) $f(x)=a(x-4)^2+3$  (M1)
+$0=a(7-4)^2+3 \\Rightarrow a=-\\dfrac13$  (A1)
+$f(x)=-\\dfrac13(x-4)^2+3$  A1  [3 marks]
+
+(b)(i) $g(-2)=4p-2(t-1)-p=3p-2t+2$  (A1)
+$g(3)=9p+3(t-1)-p=8p+3t-3$  (A1)
+$3p-2t+2=5$ y $8p+3t-3=5$  (M1)
+por resolver el sistema  (M1)
+$p=1$  A1  [5 marks]
+(ii) vértice en $x=\\dfrac12$ (M1); $g(1/2)=-\\dfrac54$ (A1); recorrido: $g(x)\\ge-\\dfrac54$  [2 marks]
+
+(c) por igualar $g(x)$ y $j(x)$  (M1)
+$px^2+(t-1)x-p=-x+3p$
+$px^2+tx-4p=0$  A1A1
+discriminante $=t^2-4(p)(-4p)=t^2+16p^2$  (M1)
+como $p\\ne0$, $16p^2>0$, y $t^2\\ge0$, el discriminante siempre es positivo  R1
+por lo tanto los gráficos siempre tienen dos puntos de intersección distintos  R1  [6 marks]` },
+
+  { id:'seed-P1-B-2022-q8', prueba:'P1', seccion:'B', anio:2022, marcas:15, dificultad:4, fuente:'Inspirado en la pregunta 8 · ejercicio original, no reproduce el examen',
+    enunciado:`(a) Calcula el valor de cada uno de los siguientes logaritmos:
+(i) $\\log_2\\left(\\dfrac{1}{32}\\right)$ (ii) $\\log_{16}4$ (iii) $\\log_5125$ [7 marks]
+
+(b) Se sabe que $\\log_{ab}a=4$, donde $a,b\\in\\mathbb{R}^+$, $ab\\ne1$.
+
+(i) Muestra que $\\log_{ab}b=-3$.
+(ii) A partir de lo anterior, halla el valor de $\\log_{ab}\\sqrt[3]{a/b}$. [8 marks]`,
+    respuesta_correcta: '(a)(i) -5 (ii) 1/2 (iii) 3  (b)(ii) 7/3',
+    solucionario:`(a)(i) por escribir $1/32=2^{-5}$  (M1); $=-5$  A1  [2 marks]
+(ii) por escribir $16=2^4$, $4=2^2$  (M1); $=\\dfrac{2}{4}=\\dfrac12$  A1  [2 marks]
+(iii) por escribir $125=5^3$  (M1); $=3$  A1  [3 marks]
+
+(b)(i) $\\log_{ab}(ab)=1$  (M1)
+$=\\log_{ab}a+\\log_{ab}b$  (A1)
+$1=4+\\log_{ab}b \\Rightarrow \\log_{ab}b=-3$  A1  [3 marks]
+
+(ii) $\\log_{ab}\\sqrt[3]{a/b}=\\dfrac13\\log_{ab}(a/b)$  (M1)
+$=\\dfrac13[\\log_{ab}a-\\log_{ab}b]$  (A1)(M1)
+$=\\dfrac13[4-(-3)]$  A1
+$=\\dfrac73$  A1  [5 marks]` },
+
+  { id:'seed-P1-B-2022-q9', prueba:'P1', seccion:'B', anio:2022, marcas:15, dificultad:5, fuente:'Inspirado en la pregunta 9 · ejercicio original, no reproduce el examen',
+    enunciado:`La función f se define así: $f(x)=\\sqrt3\\cos(2x)-\\sin(2x)$, $0 \\le x \\le \\pi$.
+
+(a) Halla las raíces de la ecuación $f(x)=0$. [5 marks]
+
+(b)(i) Halla $f'(x)$.
+(ii) A partir de lo anterior, halla las coordenadas de los puntos del gráfico de $y=f(x)$ en los que $f'(x)=0$. [7 marks]
+
+(c) Indica las coordenadas de la intersección del gráfico de $y=f(x)$ con el eje y, y resume los rasgos clave del gráfico (raíces, puntos donde $f'(x)=0$) hallados en los apartados anteriores. [3 marks]`,
+    respuesta_correcta: '(a) x=π/6, x=2π/3  (b) f\'(x)=-2√3 sen2x-2cos2x; puntos (5π/12,-2) y (11π/12,2)  (c) (0,√3)',
+    solucionario:`(a) $f(x)=2\\cos(2x+\\pi/6)$  (M1)(A1)
+por igualar a 0  (M1)
+$2x+\\pi/6=\\pi/2+k\\pi$
+$x=\\pi/6$, $x=2\\pi/3$  A1A1  [5 marks]
+
+(b)(i) $f'(x)=-2\\sqrt3\\sin(2x)-2\\cos(2x)$  A1A1  [2 marks]
+(ii) por igualar $f'(x)=0$  (M1)
+$\\tan(2x)=-1/\\sqrt3$  (A1)
+$x=5\\pi/12$, $x=11\\pi/12$ (resolviendo en el intervalo)  (M1)A1
+$f(5\\pi/12)=-2$, $f(11\\pi/12)=2$  A1  [7 marks]
+
+(c) intersección con el eje y: $(0,\\sqrt3)$  A1
+raíces en $x=\\pi/6$ y $x=2\\pi/3$ (ya halladas)  A1
+mínimo local $(5\\pi/12,-2)$ y máximo local $(11\\pi/12,2)$ (ya hallados)  A1  [3 marks]` },
+
+  { id:'seed-P2-A-2022-q1', prueba:'P2', seccion:'A', anio:2022, marcas:5, dificultad:3, fuente:'Inspirado en la pregunta 1 · ejercicio original, no reproduce el examen',
+    enunciado:`La siguiente tabla muestra las notas de un examen de Matemáticas (x) y de un examen de Ciencias (y) de un grupo de ocho alumnos.
+
+Matemáticas (x) | 60 | 65 | 70 | 74 | 78 | 81 | 84 | 88
+Ciencias (y) | 63 | 70 | 74 | 75 | 82 | 80 | 87 | 90
+
+Para estos datos, la recta de regresión de y sobre x se puede escribir como $y=ax+b$.
+
+(a) Halla el valor de a y el valor de b. [2 marks]
+(b) Escribe el valor del coeficiente de correlación de Pearson (r). [1 mark]
+(c) Utiliza tu recta de regresión para predecir la nota de Ciencias de un alumno que obtuvo 76 en Matemáticas. Redondea al entero más próximo. [2 marks]`,
+    respuesta_correcta: '(a) a≈0.912, b≈9.24  (b) r≈0.981  (c) 79',
+    solucionario:`(a) por calculadora: $a=0.912$, $b=9.24$  A1A1  [2 marks]
+
+(b) $r=0.981$  A1  [1 mark]
+
+(c) $y=0.912(76)+9.24$  (M1)
+$\\approx79$  A1  [2 marks]` },
+
+  { id:'seed-P2-A-2022-q2', prueba:'P2', seccion:'A', anio:2022, marcas:6, dificultad:3, fuente:'Inspirado en la pregunta 2 · ejercicio original, no reproduce el examen',
+    enunciado:`La siguiente figura muestra el triángulo ABC, donde AC = 22, BC = 15 y $A\\hat{B}C=108°$.
+
+(a) Halla $B\\hat{A}C$. [3 marks]
+(b) Halla AB. [3 marks]`,
+    respuesta_correcta: '(a) 40.4°  (b) AB≈12.1',
+    solucionario:`(a) por tratar de utilizar el teorema del seno  (M1)
+$\\dfrac{\\sin(BAC)}{15}=\\dfrac{\\sin(108°)}{22}$  (A1)
+$B\\hat{A}C=40.4°$  A1  [3 marks]
+
+(b) $B\\hat{C}A=180-108-40.4=31.6°$  (A1)
+por tratar de utilizar el teorema del seno  (M1)
+$AB=\\dfrac{22\\sin(31.6°)}{\\sin(108°)}$
+$=12.1$  A1  [3 marks]` },
+
+  { id:'seed-P2-A-2022-q3', prueba:'P2', seccion:'A', anio:2022, marcas:6, dificultad:4, fuente:'Inspirado en la pregunta 3 · ejercicio original, no reproduce el examen',
+    enunciado:`La función f viene dada por $f(x)=\\ln(xe^x+1)-x^3$, para $0 \\le x \\le 2$. El gráfico de f tiene un máximo local en el punto A, y corta al eje x en el origen y en el punto B.
+
+(a) Halla las coordenadas de A. [2 marks]
+(b) Halla la coordenada x de B. [1 mark]
+(c) Halla el área total de la región delimitada por el gráfico de f, el eje x, y la recta $x=2$. [3 marks]`,
+    respuesta_correcta: '(a) A≈(0.687, 0.537)  (b) x≈1.15  (c) área≈2.13',
+    solucionario:`(a) por usar la calculadora gráfica para hallar el máximo  (M1)
+$A\\approx(0.687, 0.537)$  A1  [2 marks]
+
+(b) $x\\approx1.15$  A1  [1 mark]
+
+(c) por reconocer que hay que sumar las áreas donde f es positiva y negativa por separado (valor absoluto)  (M1)
+por usar la calculadora para integrar  (M1)
+área $\\approx2.13$  A1  [3 marks]` },
+
+  { id:'seed-P2-A-2022-q4', prueba:'P2', seccion:'A', anio:2022, marcas:5, dificultad:3, fuente:'Inspirado en la pregunta 4 · ejercicio original, no reproduce el examen',
+    enunciado:`Sea una progresión geométrica donde el primer término es 40 y el cuarto término es 69.12.
+
+Sea $S_n$ la suma de los n primeros términos. Halla el valor más pequeño de n para el cual $S_n>25\\,000$.`,
+    respuesta_correcta: 'n=27',
+    solucionario:`por tratar de hallar la razón: $r^3=69.12/40=1.728$  (M1)
+$r=1.2$  A1
+por plantear $S_n=\\dfrac{40(1.2^n-1)}{0.2}>25\\,000$  (M1)
+por resolver con calculadora  (M1)
+$n=26$: $S_{26}\\approx22\\,695$ (no cumple); $n=27$: $S_{27}\\approx27\\,274$ (cumple)  A1
+mínimo n = 27  [5 marks]` },
+
+  { id:'seed-P2-A-2022-q5', prueba:'P2', seccion:'A', anio:2022, marcas:7, dificultad:3, fuente:'Inspirado en la pregunta 5 · ejercicio original, no reproduce el examen',
+    enunciado:`La población de una ciudad, t años después del 1 de enero de 2015, se puede modelizar mediante $P(t)=12\\,000e^{kt}$, donde $k<0$ y $t \\ge 0$.
+
+Se sabe que, entre el 1 de enero de 2015 y el 1 de enero de 2023, la población disminuyó un 14%.
+
+Usa este modelo para estimar la población de esta ciudad el 1 de enero de 2042.`,
+    respuesta_correcta: '≈7210 habitantes',
+    solucionario:`$P(8)=12\\,000(0.86)$ (disminución del 14% en 8 años)  (M1)
+$12\\,000e^{8k}=12\\,000(0.86)$
+$k=\\dfrac{\\ln(0.86)}{8}$  A1
+$t=27$ (de 2015 a 2042)  (M1)
+$P(27)=12\\,000e^{27k}$  (A1)
+$\\approx7210$ (habitantes) (3 s.f.)  A1  [7 marks]` },
+
+  { id:'seed-P2-A-2022-q6', prueba:'P2', seccion:'A', anio:2022, marcas:5, dificultad:3, fuente:'Inspirado en la pregunta 6 · ejercicio original, no reproduce el examen',
+    enunciado:`Considera el desarrollo de $(ax+1)^7$, donde $a \\ne 0$. El coeficiente del término en $x^3$ es 70.
+
+Halla el valor de a.`,
+    respuesta_correcta: '$a=\\sqrt[3]{2}\\approx1.26$',
+    solucionario:`el término general es $\\binom{7}{k}(ax)^k$  (M1)
+coeficiente de $x^3$: $\\binom{7}{3}a^3=35a^3$  (A1)
+$35a^3=70$  (M1)
+$a^3=2$
+$a=\\sqrt[3]{2}\\ (\\approx1.26)$  A1  [5 marks]` },
+
+  { id:'seed-P2-B-2022-q7', prueba:'P2', seccion:'B', anio:2022, marcas:16, dificultad:5, fuente:'Inspirado en la pregunta 7 · ejercicio original, no reproduce el examen',
+    enunciado:`Una partícula se mueve en línea recta. Su desplazamiento (s metros) respecto a un punto fijo P, en el instante t segundos, viene dado por $s(t)=4(t+1)\\cos(t)$, para $0 \\le t \\le 7$.
+
+(a) Halla el desplazamiento inicial de la partícula respecto a P. [2 marks]
+(b) Halla la velocidad de la partícula cuando $t=2$. [2 marks]
+(c) Determina los intervalos de tiempo en los que la partícula se está alejando del punto P. [5 marks]
+
+La aceleración de la partícula es cero cuando $t=b$ y $t=c$, donde $b<c$.
+
+(d) Halla el valor de b y el valor de c. [4 marks]
+(e) Halla la distancia total recorrida por la partícula para $b \\le t \\le c$. [3 marks]`,
+    respuesta_correcta: '(a) s(0)=4  (b) v(2)≈-12.6  (c) [0,0.568]∪[1.57,3.37]∪[4.71,6.42]  (d) b≈2.14, c≈5.03  (e) ≈34.9 m',
+    solucionario:`(a) $s(0)=4(1)\\cos(0)=4$ (m)  A1  [2 marks]
+
+(b) $v(t)=s'(t)$; por calculadora, $v(2)\\approx-12.6$ (m/s)  (M1)A1  [2 marks]
+
+(c) la partícula se aleja de P cuando $s(t)\\cdot v(t)>0$  (M1)
+por usar la calculadora gráfica  (M1)
+$0\\le t\\le0.568$, $1.57\\le t\\le3.37$, $4.71\\le t\\le6.42$  A1A1A1  [5 marks]
+
+(d) por igualar $a(t)=v'(t)=0$  (M1)
+por usar la calculadora  (M1)
+$b\\approx2.14$  A1
+$c\\approx5.03$  A1  [4 marks]
+
+(e) distancia $=\\int_b^c|v(t)|\\,dt$  (M1)
+por usar la calculadora  (M1)
+$\\approx34.9$ (m)  A1  [3 marks]` },
+
+  { id:'seed-P2-B-2022-q8', prueba:'P2', seccion:'B', anio:2022, marcas:13, dificultad:5, fuente:'Inspirado en la pregunta 8 · ejercicio original, no reproduce el examen',
+    enunciado:`La siguiente figura muestra un sector circular (ABC) de un círculo con centro en A. El ángulo $B\\hat{A}C=2\\alpha$, donde $0<\\alpha<\\pi/2$. Se inscribe un círculo con centro en O y radio r en el sector ABC. AB y AC son tangentes al círculo inscrito en los puntos D y E, respectivamente ($O\\hat{D}A=O\\hat{E}A=\\pi/2$).
+
+(a) Muestra que el área del cuadrilátero ADOE es igual a $\\dfrac{r^2}{\\tan\\alpha}$. [4 marks]
+
+Sea R la región delimitada por el cuadrilátero ADOE y el arco DE del círculo inscrito (es decir, ADOE menos el sector circular DOE).
+
+(b)(i) Halla $D\\hat{O}E$, en función de $\\alpha$. (ii) A partir de lo anterior, halla una expresión para el área de R. [5 marks]
+
+(c) Halla el valor de $\\alpha$ para el cual el área de R es igual al triple del área del círculo de centro O y radio r. [4 marks]`,
+    respuesta_correcta: '(b)(i) $\\pi-2\\alpha$ (ii) $\\dfrac{r^2}{\\tan\\alpha}-\\dfrac12 r^2(\\pi-2\\alpha)$  (c) α≈0.0915 rad',
+    solucionario:`(a) $AD=AE=\\dfrac{r}{\\tan\\alpha}$ (triángulo rectángulo ADO, con ángulo en A igual a $\\alpha$)  (M1)(A1)
+área de ADOE $=2\\times\\dfrac12\\times r\\times AD$  (M1)
+$=\\dfrac{r^2}{\\tan\\alpha}$  A1  [4 marks]
+
+(b)(i) suma de ángulos del cuadrilátero $=2\\pi$; los ángulos en D y E son $\\pi/2$ cada uno  (M1)
+$D\\hat{O}E=2\\pi-\\pi/2-\\pi/2-2\\alpha=\\pi-2\\alpha$  A1  [2 marks]
+(ii) área de R = área(ADOE) − área del sector DOE  (M1)
+$=\\dfrac{r^2}{\\tan\\alpha}-\\dfrac12 r^2(\\pi-2\\alpha)$  A1  [3 marks]
+
+(c) $\\dfrac{r^2}{\\tan\\alpha}-\\dfrac12 r^2(\\pi-2\\alpha)=3\\pi r^2$  (M1)
+por dividir entre $r^2$ y resolver con calculadora  (M1)
+$\\alpha\\approx0.0915$ (rad)  A1A1  [4 marks]` },
+
+  { id:'seed-P2-B-2022-q9', prueba:'P2', seccion:'B', anio:2022, marcas:16, dificultad:5, fuente:'Inspirado en la pregunta 9 · ejercicio original, no reproduce el examen',
+    enunciado:`En una gran empresa, el tiempo que trabajan los empleados (T horas por semana) sigue una distribución normal de media 40 y desviación típica 9.5.
+
+(a) Halla la probabilidad de que un empleado elegido al azar trabaje más de 38 horas por semana. [2 marks]
+
+(b) Se escoge al azar un grupo de 5 empleados, y se les pregunta uno por uno si trabajan más de 38 horas por semana. Halla la probabilidad de que el quinto empleado sea el único del grupo que trabaja más de 38 horas por semana. [3 marks]
+
+(c) Hay un grupo grande de empleados que trabajan más de 38 horas por semana.
+(i) Se escoge al azar un empleado de este grupo. Halla la probabilidad de que trabaje menos de 50 horas por semana.
+(ii) Se escogen al azar 12 empleados de este grupo. Halla la probabilidad de que exactamente 6 de ellos trabajen menos de 50 horas por semana. [7 marks]
+
+(d) Se sabe que $P(a\\le T\\le b)=0.89$ y $P(T>b)=2P(T<a)$, donde a y b son números de horas trabajadas por semana. A los empleados que trabajan menos de a horas se les considera trabajadores a tiempo parcial. Halla el tiempo máximo (en horas por semana) para que un empleado siga siendo considerado a tiempo parcial. [4 marks]`,
+    respuesta_correcta: '(a) 0.583  (b) 0.0176  (c)(i) 0.749 (ii) 0.0406  (d) a≈23.0',
+    solucionario:`(a) $P(T>38)=0.583$ (por calculadora)  A1A1  [2 marks]
+
+(b) $(1-0.583)^4\\times0.583$  (M1)
+$\\approx0.0176$  A1A1  [3 marks]
+
+(c)(i) $P(T<50\\ |\\ T>38)=\\dfrac{P(38<T<50)}{P(T>38)}$  (M1)
+$=\\dfrac{0.437}{0.583}\\approx0.749$  A1  [2 marks]
+(ii) reconocer $X\\sim B(12,0.749)$  (M1)
+$P(X=6)\\approx0.0406$ (por calculadora)  A1A1A1  [5 marks]
+
+(d) sea $P(T<a)=x$: $x+2x+0.89=1$  (M1)
+$x=0.0367$  (A1)
+$a=$ invNorm$(0.0367)\\approx23.0$ (horas)  A1A1  [4 marks]` },
+
+  // ===== Sesión de noviembre de 2021 =====
+  { id:'seed-P1-A-2021-q1', prueba:'P1', seccion:'A', anio:2021, marcas:7, dificultad:2, fuente:'Inspirado en la pregunta 1 · ejercicio original, no reproduce el examen',
+    enunciado:`Considera la función $f(x)=-3(x-2)(x+4)$, para $x \\in \\mathbb{R}$.
+
+(a)(i) Halla la coordenada x de todas las intersecciones con el eje x. (ii) Halla las coordenadas del vértice. [5 marks]
+
+La función f se puede escribir en la forma $f(x)=-3(x-h)^2+k$.
+
+(b) Escribe el valor de h y el valor de k. [2 marks]`,
+    respuesta_correcta: '(a)(i) x=2, x=-4 (ii) vértice=(-1,27)  (b) h=-1, k=27',
+    solucionario:`(a)(i) $x=2$, $x=-4$  A1A1  [2 marks]
+(ii) vértice: $x=\\dfrac{2+(-4)}{2}=-1$  (M1)
+$f(-1)=-3(-3)(3)=27$  A1
+vértice = $(-1,27)$  A1  [3 marks]
+
+(b) $h=-1$, $k=27$  A1A1  [2 marks]` },
+
+  { id:'seed-P1-A-2021-q2', prueba:'P1', seccion:'A', anio:2021, marcas:4, dificultad:3, fuente:'Inspirado en la pregunta 2 · ejercicio original, no reproduce el examen',
+    enunciado:`Sabiendo que $\\dfrac{dy}{dx}=\\cos\\left(x-\\dfrac{\\pi}{3}\\right)$ y que $y=3$ para $x=\\dfrac{2\\pi}{3}$, halla y en función de x.`,
+    respuesta_correcta: '$y=\\sin(x-\\pi/3)+3-\\sqrt3/2$',
+    solucionario:`por integrar  (M1)
+$y=\\sin\\left(x-\\dfrac{\\pi}{3}\\right)+C$  A1
+por sustituir $x=2\\pi/3$, $y=3$  (M1)
+$3=\\sin(\\pi/3)+C \\Rightarrow C=3-\\dfrac{\\sqrt3}{2}$  A1  [4 marks]` },
+
+  { id:'seed-P1-A-2021-q3', prueba:'P1', seccion:'A', anio:2021, marcas:5, dificultad:2, fuente:'Inspirado en la pregunta 3 · ejercicio original, no reproduce el examen',
+    enunciado:`La función f viene dada por $f(x)=\\dfrac{3x+6}{4-x}$, donde $x \\in \\mathbb{R}$, $x \\ne 4$.
+
+(a) Escribe la ecuación de: (i) la asíntota vertical del gráfico de f. (ii) la asíntota horizontal del gráfico de f. [2 marks]
+(b) Halla las coordenadas de los puntos donde el gráfico de f corta: (i) al eje x. (ii) al eje y. [2 marks]
+(c) Describe brevemente la forma de las dos ramas del gráfico de f cerca de sus asíntotas. [1 mark]`,
+    respuesta_correcta: '(a) x=4, y=-3  (b) (-2,0), (0,1.5)',
+    solucionario:`(a)(i) $x=4$  A1
+(ii) $y=-3$  A1  [2 marks]
+
+(b)(i) $3x+6=0 \\Rightarrow (-2,0)$  A1
+(ii) $f(0)=6/4=1.5 \\Rightarrow (0,1.5)$  A1  [2 marks]
+
+(c) descripción correcta de las ramas de la hipérbola acercándose a ambas asíntotas  A1  [1 mark]` },
+
+  { id:'seed-P1-A-2021-q4', prueba:'P1', seccion:'A', anio:2021, marcas:5, dificultad:3, fuente:'Inspirado en la pregunta 4 · ejercicio original, no reproduce el examen',
+    enunciado:`La caja 1 contiene 6 bolas rojas y 3 bolas blancas. La caja 2 contiene 5 bolas rojas y 4 bolas blancas.
+
+(a) Se escoge una caja al azar y se extrae una bola. Halla la probabilidad de que la bola sea roja. [3 marks]
+
+Sea A el suceso "se escoge la caja 1" y sea R el suceso "se extrae una bola roja".
+
+(b) Determina si los sucesos A y R son independientes. [2 marks]`,
+    respuesta_correcta: '(a) 11/18  (b) no son independientes',
+    solucionario:`(a) $P(R)=0.5\\left(\\dfrac69\\right)+0.5\\left(\\dfrac59\\right)$  (M1)(A1)
+$=\\dfrac{11}{18}$  A1  [3 marks]
+
+(b) $P(R|A)=\\dfrac69=\\dfrac23$  (A1)
+como $P(R|A)\\ne P(R)\\ \\left(=\\dfrac{11}{18}\\right)$, los sucesos NO son independientes  R1  [2 marks]` },
+
+  { id:'seed-P1-A-2021-q5', prueba:'P1', seccion:'A', anio:2021, marcas:7, dificultad:3, fuente:'Inspirado en la pregunta 5 · ejercicio original, no reproduce el examen',
+    enunciado:`La función f está definida para todo $x \\in \\mathbb{R}$. La recta $y=5x+2$ es tangente al gráfico de f en $x=3$.
+
+(a) Escribe el valor de $f'(3)$. [1 mark]
+(b) Halla $f(3)$. [1 mark]
+
+La función g está definida por $g(x)=x^2-2x$, y $h(x)=f(g(x))$.
+
+(c) Halla $h(3)$. [2 marks]
+(d) A partir de lo anterior, halla la ecuación de la tangente al gráfico de h en $x=3$. [3 marks]`,
+    respuesta_correcta: '(a) 5  (b) 17  (c) 17  (d) y=20x-43',
+    solucionario:`(a) $f'(3)=5$  A1  [1 mark]
+
+(b) $f(3)=5(3)+2=17$  A1  [1 mark]
+
+(c) $g(3)=9-6=3$  (M1)
+$h(3)=f(3)=17$  A1  [2 marks]
+
+(d) $h'(x)=f'(g(x))\\cdot g'(x)$  (M1)
+$g'(3)=4$; $h'(3)=f'(3)\\times4=20$  (A1)
+$y-17=20(x-3) \\Rightarrow y=20x-43$  A1  [3 marks]` },
+
+  { id:'seed-P1-A-2021-q6', prueba:'P1', seccion:'A', anio:2021, marcas:7, dificultad:4, fuente:'Inspirado en la pregunta 6 · ejercicio original, no reproduce el examen',
+    enunciado:`(a) Muestra que $3x-2-\\dfrac{8}{x-1}=\\dfrac{3x^2-5x-6}{x-1}$, $x \\in \\mathbb{R}$, $x \\ne 1$. [2 marks]
+
+(b) A partir de lo anterior, resuelve la ecuación $3\\sin(2\\theta)-2-\\dfrac{8}{\\sin(2\\theta)-1}=0$ para $0 \\le \\theta \\le \\pi$, $\\theta \\ne \\pi/4$. [5 marks]`,
+    respuesta_correcta: '$\\theta \\approx 2.04, 2.67$',
+    solucionario:`(a) $\\dfrac{(3x-2)(x-1)-8}{x-1}$  (M1)
+$=\\dfrac{3x^2-5x-6}{x-1}$  A1  [2 marks]
+
+(b) por sustituir $x=\\sin(2\\theta)$ y usar (a)  (M1)
+$3\\sin^2(2\\theta)-5\\sin(2\\theta)-6=0$  (A1)
+por resolver la ecuación cuadrática  (M1)
+$\\sin(2\\theta)=\\dfrac{5-\\sqrt{97}}{6}\\approx-0.808$ (rechazando la raíz $>1$)  A1
+$\\theta\\approx2.04$, $\\theta\\approx2.67$  A1  [5 marks]` },
+
+  { id:'seed-P1-B-2021-q7', prueba:'P1', seccion:'B', anio:2021, marcas:16, dificultad:4, fuente:'Inspirado en la pregunta 7 · ejercicio original, no reproduce el examen',
+    enunciado:`Una partícula P se mueve a lo largo del eje x. La velocidad de P es igual a v m/s en el instante t segundos, donde $v(t)=6+6t-4t^2$ para $0 \\le t \\le 3$. Cuando $t=0$, P se encuentra en el origen O.
+
+(a)(i) Halla el valor de t para el que P alcanza su velocidad máxima.
+(ii) Muestra que, en ese instante, la distancia de P a O es igual a $\\dfrac{45}{8}$ metros. [7 marks]
+
+(b) Escribe el valor de $v(0)$ y el valor de t (dentro del dominio) para el cual $v(t)=0$. [4 marks]
+
+(c) Halla la distancia total que ha recorrido P. [5 marks]`,
+    respuesta_correcta: '(a) t=3/4  (b) v(0)=6, t≈2.19  (c) ≈18.0 m',
+    solucionario:`(a)(i) $v'(t)=6-8t=0 \\Rightarrow t=\\dfrac34$  (M1)A1  [2 marks]
+(ii) distancia $=\\int_0^{3/4}v(t)\\,dt$  (M1)
+$=\\left[6t+3t^2-\\dfrac{4t^3}{3}\\right]_0^{3/4}$  (A1)(A1)
+$=\\dfrac{45}{8}$  AG  [5 marks]
+
+(b) $v(0)=6$  A1
+por resolver $6+6t-4t^2=0$ con calculadora  (M1)
+$t\\approx2.19$  A1A1  [4 marks]
+
+(c) distancia = $\\displaystyle\\int_0^3|v(t)|\\,dt$  (M1)
+por usar la calculadora, considerando el cambio de signo en $t\\approx2.19$  (M1)(A1)
+$\\approx18.0$ (m)  A1A1  [5 marks]` },
+
+  { id:'seed-P1-B-2021-q8', prueba:'P1', seccion:'B', anio:2021, marcas:15, dificultad:5, fuente:'Inspirado en la pregunta 8 · ejercicio original, no reproduce el examen',
+    enunciado:`Considera la función $f(x)=a^x$, donde $x,a\\in\\mathbb{R}$, $x>0$, $a>1$. El punto $\\left(\\dfrac25,9\\right)$ pertenece al gráfico de f.
+
+(a) Muestra que $a=243$. [2 marks]
+(b) Escribe una expresión para $f^{-1}(x)$. [1 mark]
+(c) Halla el valor de $f^{-1}(81)$. [3 marks]
+
+(d) Considera la progresión aritmética $\\log_{243}8,\\ \\log_{243}p,\\ \\log_{243}q,\\ \\log_{243}1000$, donde $p>1$ y $q>1$.
+
+(i) Muestra que 8, p, q y 1000 son cuatro términos consecutivos de una progresión geométrica.
+(ii) Halla el valor de p y el valor de q. [9 marks]`,
+    respuesta_correcta: '(a) a=243  (b) $f^{-1}(x)=\\log_{243}x$  (c) 4/5  (d) p=40, q=200',
+    solucionario:`(a) $a^{2/5}=9 \\Rightarrow a=9^{5/2}$  (M1)A1
+$=243$  AG  [2 marks]
+
+(b) $f^{-1}(x)=\\log_{243}x$  A1  [1 mark]
+
+(c) $f^{-1}(81)=\\log_{243}81$  (M1)
+$243=3^5$, $81=3^4$  (A1)
+$=\\dfrac45$  A1  [3 marks]
+
+(d)(i) diferencias de logaritmos iguales implica razón constante  (M1)
+$\\dfrac{p}{8}=\\dfrac{q}{p}=\\dfrac{1000}{q}$ (misma razón)  R1
+por lo tanto 8, p, q, 1000 forman una progresión geométrica  AG  [4 marks]
+(ii) razón $r=\\left(\\dfrac{1000}{8}\\right)^{1/3}=5$  (M1)(A1)
+$p=8\\times5=40$  A1
+$q=8\\times25=200$  A1  [5 marks]` },
+
+  { id:'seed-P1-B-2021-q9', prueba:'P1', seccion:'B', anio:2021, marcas:12, dificultad:4, fuente:'Inspirado en la pregunta 9 · ejercicio original, no reproduce el examen',
+    enunciado:`Considera una función f cuyo dominio es $-6<x<6$. La derivada de f, $f'$, cumple:
+- Para $-6<x<-2$: $f'(x)<0$.
+- En $x=-2$: $f'(x)=0$ (f' cambia de negativa a positiva).
+- Para $-2<x<4$: $f'(x)>0$.
+- En $x=4$: $f'(x)=0$ (f' cambia de positiva a negativa).
+- Para $4<x<6$: $f'(x)<0$.
+
+Además, $f'$ tiene un mínimo local en $x=-3.5$ y un máximo local en $x=1$.
+
+(a) Halla todos los valores de x para los que el gráfico de f es creciente. Justifica tu respuesta. [2 marks]
+(b) Halla el valor de x para el cual f tiene un máximo local. [1 mark]
+(c)(i) Halla el valor de x para el cual f tiene un mínimo local, justificando tu respuesta.
+(ii) Halla los valores de x para los que f tiene un punto de inflexión, justificando tu respuesta. [5 marks]
+
+El área de la región delimitada por el gráfico de $f'$ y el eje x, entre $x=-2$ y $x=4$, es igual a 30. Sabiendo que $f(-2)=5$:
+
+(d) Halla el valor de $f(4)$. [4 marks]`,
+    respuesta_correcta: '(a) -2<x<4  (b) x=4  (c)(i) x=-2 (ii) x=-3.5, x=1  (d) f(4)=35',
+    solucionario:`(a) $-2<x<4$, ya que $f'(x)>0$ en ese intervalo  R1A1  [2 marks]
+
+(b) $x=4$ (donde f' cambia de positiva a negativa)  A1  [1 mark]
+
+(c)(i) $x=-2$ (donde f' cambia de negativa a positiva)  R1A1  [2 marks]
+(ii) $x=-3.5$ y $x=1$ (donde f' alcanza sus propios extremos, es decir, $f''=0$ y cambia de signo)  R1A1A1  [3 marks]
+
+(d) por reconocer que $\\int_{-2}^{4}f'(x)\\,dx=f(4)-f(-2)$  (M1)
+como $f'(x)\\ge0$ en todo el intervalo, el área = la integral  (A1)
+$f(4)-f(-2)=30$  (A1)
+$f(4)=5+30=35$  A1  [4 marks]` },
+
+  { id:'seed-P2-A-2021-q1', prueba:'P2', seccion:'A', anio:2021, marcas:5, dificultad:2, fuente:'Inspirado en la pregunta 1 · ejercicio original, no reproduce el examen',
+    enunciado:`En una academia de música, ocho alumnos se presentaron a un examen (sobre 150 puntos). También se registró el promedio de horas de práctica semanal de cada alumno.
+
+Horas de práctica (h) | 22 | 15 | 40 | 30 | 18 | 26 | 35 | 32
+Puntuación (D) | 108 | 85 | 118 | 112 | 80 | 98 | 109 | 115
+
+(a) Halla el coeficiente de correlación de Pearson (r) para estos datos. [2 marks]
+(b) La recta de regresión es $D=ah+b$. Escribe el valor de a y el valor de b. [1 mark]
+(c) Uno de los alumnos practicó 4 horas más por semana de las que realmente practicó. Según el modelo, estima cómo habría cambiado su puntuación. [2 marks]`,
+    respuesta_correcta: '(a) r≈0.864  (b) a≈1.42, b≈64.5  (c) aumento≈5.66 puntos',
+    solucionario:`(a) $r\\approx0.864$ (por calculadora)  A1A1  [2 marks]
+
+(b) $a\\approx1.42$, $b\\approx64.5$  A1  [1 mark]
+
+(c) cambio $=a\\times4$  (M1)
+$\\approx5.66$ puntos (aumento)  A1  [2 marks]` },
+
+  { id:'seed-P2-A-2021-q2', prueba:'P2', seccion:'A', anio:2021, marcas:5, dificultad:3, fuente:'Inspirado en la pregunta 2 · ejercicio original, no reproduce el examen',
+    enunciado:`Considera la función $f(x)=e^{-x^2}-0.3$, para $-2 \\le x \\le 2$.
+
+(a) Halla los valores de x para los cuales $f(x)=0$. [2 marks]
+(b) Describe brevemente la forma del gráfico de f en el intervalo dado (simetría, valor máximo y su ubicación). [3 marks]`,
+    respuesta_correcta: '(a) x≈±1.10  (b) simétrico respecto al eje y, máximo en x=0',
+    solucionario:`(a) $e^{-x^2}=0.3$  (M1)
+$x=\\pm\\sqrt{-\\ln(0.3)}\\approx\\pm1.10$  A1  [2 marks]
+
+(b) el gráfico es simétrico respecto al eje y (f es una función par)  A1
+alcanza su valor máximo en $x=0$, donde $f(0)=1-0.3=0.7$  A1
+decrece hacia ambos extremos, cruzando el eje x en $x\\approx\\pm1.10$  A1  [3 marks]` },
+
+  { id:'seed-P2-A-2021-q3', prueba:'P2', seccion:'A', anio:2021, marcas:6, dificultad:4, fuente:'Inspirado en la pregunta 3 · ejercicio original, no reproduce el examen',
+    enunciado:`Considera el triángulo ABC, donde $AC=10$, $CB=6$ y $B\\hat{A}C=20°$.
+
+Halla el menor perímetro posible del triángulo ABC.`,
+    respuesta_correcta: '≈20.5',
+    solucionario:`por tratar de utilizar el teorema del seno  (M1)
+$\\dfrac{\\sin B}{10}=\\dfrac{\\sin20°}{6} \\Rightarrow \\sin B=0.570$  (A1)
+por reconocer el caso ambiguo: $B=34.7°$ o $B=145.3°$  (M1)
+para el perímetro menor, se toma $B=145.3°$  (A1)
+$C=180-20-145.3=14.7°$; $c=\\dfrac{6\\sin(14.7°)}{\\sin20°}\\approx4.47$  A1
+perímetro $=10+6+4.47\\approx20.5$  A1  [6 marks]` },
+
+  { id:'seed-P2-A-2021-q4', prueba:'P2', seccion:'A', anio:2021, marcas:7, dificultad:3, fuente:'Inspirado en la pregunta 4 · ejercicio original, no reproduce el examen',
+    enunciado:`En una fábrica de lámparas, la probabilidad de que una lámpara salga defectuosa es 0.04. Se analiza una muestra aleatoria de 25 lámparas.
+
+(a) Halla la probabilidad de que en la muestra haya al menos una lámpara defectuosa. [3 marks]
+(b) Sabiendo que hay al menos una lámpara defectuosa, halla la probabilidad de que haya como mucho dos defectuosas. [4 marks]`,
+    respuesta_correcta: '(a) 0.640  (b) 0.880',
+    solucionario:`(a) reconocer $X\\sim B(25,0.04)$  (M1)
+$P(X\\ge1)=1-P(X=0)$  (A1)
+$=0.640$  A1  [3 marks]
+
+(b) $P(X\\le2\\ |\\ X\\ge1)=\\dfrac{P(1\\le X\\le2)}{P(X\\ge1)}$  (M1)
+$=\\dfrac{P(X\\le2)-P(X=0)}{P(X\\ge1)}$  (A1)(M1)
+$=0.880$  A1  [4 marks]` },
+
+  { id:'seed-P2-A-2021-q5', prueba:'P2', seccion:'A', anio:2021, marcas:6, dificultad:4, fuente:'Inspirado en la pregunta 5 · ejercicio original, no reproduce el examen',
+    enunciado:`La siguiente figura muestra un semicírculo de centro O y radio r. El punto R pertenece a la semicircunferencia, con extremos del diámetro P y Q, de modo que $R\\hat{O}Q=\\theta$, $0<\\theta<\\pi$.
+
+El segmento circular delimitado por la cuerda RQ y el arco RQ tiene un área igual a la mitad del área del triángulo ORQ.
+
+(a) Muestra que $2\\theta=3\\sin\\theta$. [5 marks]
+(b) A partir de lo anterior, determina el valor de $\\theta$. [1 mark]`,
+    respuesta_correcta: 'θ≈1.50',
+    solucionario:`área del segmento $=\\dfrac12r^2(\\theta-\\sin\\theta)$  (A1)
+área del triángulo ORQ $=\\dfrac12r^2\\sin\\theta$  (A1)
+por plantear área del segmento $=\\dfrac12\\times$ área del triángulo  (M1)
+$\\dfrac12r^2(\\theta-\\sin\\theta)=\\dfrac14r^2\\sin\\theta$  (A1)
+$2\\theta=3\\sin\\theta$  AG  [5 marks]
+
+(b) $\\theta\\approx1.50$  A1  [1 mark]` },
+
+  { id:'seed-P2-A-2021-q6', prueba:'P2', seccion:'A', anio:2021, marcas:9, dificultad:4, fuente:'Inspirado en la pregunta 6 · ejercicio original, no reproduce el examen',
+    enunciado:`La suma de los n primeros términos de una progresión geométrica viene dada por $S_n=20\\left(1-\\left(\\dfrac15\\right)^n\\right)$.
+
+(a) Halla el primer término de la progresión ($u_1$). [2 marks]
+(b) Halla $S_\\infty$. [3 marks]
+(c) Halla el valor más pequeño de n para el que $S_\\infty-S_n<0.001$. [4 marks]`,
+    respuesta_correcta: '(a) $u_1=16$  (b) $S_\\infty=20$  (c) n=7',
+    solucionario:`(a) $u_1=S_1=20\\left(1-\\dfrac15\\right)$  (M1)
+$=16$  A1  [2 marks]
+
+(b) como $\\left(\\dfrac15\\right)^n\\to0$ cuando $n\\to\\infty$  (M1)
+$S_\\infty=20$  A1A1  [3 marks]
+
+(c) $S_\\infty-S_n=20\\left(\\dfrac15\\right)^n<0.001$  (M1)
+por resolver con calculadora o logaritmos  (M1)(A1)
+$n=7$  A1  [4 marks]` },
+
+  { id:'seed-P2-B-2021-q7', prueba:'P2', seccion:'B', anio:2021, marcas:14, dificultad:5, fuente:'Inspirado en la pregunta 7 · ejercicio original, no reproduce el examen',
+    enunciado:`Los puntos A y P están en orillas opuestas de un río, de modo que AP es la menor distancia para atravesarlo. El punto B es el centro de una ciudad situada en la orilla del río. $PB=180$ km, $AP=48$ km, y $A\\hat{P}B=90°$.
+
+Un barco viaja a 36 km/h en promedio. Un autobús viaja por la carretera recta de P a B a 72 km/h en promedio.
+
+(a) Halla el tiempo (en horas) para ir de A a B:
+(i) de A a P en barco y de P a B en autobús.
+(ii) yendo el barco directamente a B. [4 marks]
+
+Hay un punto D en la carretera de P a B tal que $BD=x$ km. El barco va de A a D, y el autobús de D a B.
+
+(b)(i) Halla una expresión en función de x para el tiempo T de A a B pasando por D.
+(ii) Halla el valor de x para el cual T es mínimo.
+(iii) Escribe el valor mínimo de T. [6 marks]
+
+(c) Alquilar el barco cuesta USD 220/hora y el autobús USD 160/hora. Halla el nuevo valor de x para el cual el costo total C del viaje es mínimo, y el costo mínimo. [4 marks]`,
+    respuesta_correcta: '(a)(i) 3.83h (ii) 5.17h  (b) x≈152, Tmin≈3.65h  (c) x≈161, Cmin≈673 USD',
+    solucionario:`(a)(i) $\\dfrac{48}{36}+\\dfrac{180}{72}\\approx3.83$ (h)  A1A1  [2 marks]
+(ii) $AB=\\sqrt{48^2+180^2}\\approx186$ (km)  (M1)
+tiempo $=186/36\\approx5.17$ (h)  A1  [2 marks]
+
+(b)(i) $T(x)=\\dfrac{\\sqrt{48^2+(180-x)^2}}{36}+\\dfrac{x}{72}$  A1A1  [2 marks]
+(ii) por igualar $T'(x)=0$ y resolver con calculadora  (M1)(M1)
+$x\\approx152$  A1  [3 marks]
+(iii) $T_{min}\\approx3.65$ (h)  A1  [1 mark]
+
+(c) $C(x)=220\\dfrac{\\sqrt{48^2+(180-x)^2}}{36}+160\\dfrac{x}{72}$  (M1)
+por minimizar con calculadora  (M1)
+$x\\approx161$  A1
+$C_{min}\\approx673$ (USD)  A1  [4 marks]` },
+
+  { id:'seed-P2-B-2021-q8', prueba:'P2', seccion:'B', anio:2021, marcas:13, dificultad:4, fuente:'Inspirado en la pregunta 8 · ejercicio original, no reproduce el examen',
+    enunciado:`En un puerto, la altura del agua (en metros) se modela mediante $H(t)=a\\sin(b(t-c))+d$, donde t es el número de horas desde la medianoche, y $a,b,c,d>0$.
+
+La primera marea alta ocurre a las 05:15, y la siguiente marea alta ocurre 12 horas después. La altura del agua fluctúa entre 2.4 m y 7.2 m.
+
+(a) Muestra que $b=\\pi/6$. [1 mark]
+(b) Halla el valor de a. [2 marks]
+(c) Halla el valor de d. [2 marks]
+(d) Halla el menor valor posible de c. [3 marks]
+(e) Halla la altura del agua a las 12:00. [2 marks]
+(f) Determina durante cuántas horas, en un período de 24 horas, la altura de la marea supera los 5.5 m. [3 marks]`,
+    respuesta_correcta: '(a) b=π/6  (b) a=2.4  (c) d=4.8  (d) c=2.25  (e) H(12)≈2.58  (f) ≈9.74 horas',
+    solucionario:`(a) período $=12$ h $=\\dfrac{2\\pi}{b}$  (M1)
+$b=\\dfrac{\\pi}{6}$  AG  [1 mark]
+
+(b) $a=\\dfrac{7.2-2.4}{2}=2.4$  A1A1  [2 marks]
+
+(c) $d=\\dfrac{7.2+2.4}{2}=4.8$  A1A1  [2 marks]
+
+(d) máximo cuando $b(t-c)=\\pi/2$, con $t=5.25$  (M1)
+$c=5.25-\\dfrac{\\pi/2}{\\pi/6}$  (A1)
+$c=2.25$  A1  [3 marks]
+
+(e) $H(12)=2.4\\sin\\left(\\dfrac{\\pi}{6}(12-2.25)\\right)+4.8$  (M1)
+$\\approx2.58$ (m)  A1  [2 marks]
+
+(f) por resolver $H(t)>5.5$ con calculadora  (M1)(M1)
+$\\approx9.74$ horas en un período de 24h  A1  [3 marks]` },
+
+  { id:'seed-P2-B-2021-q9', prueba:'P2', seccion:'B', anio:2021, marcas:16, dificultad:5, fuente:'Inspirado en la pregunta 9 · ejercicio original, no reproduce el examen',
+    enunciado:`La variable aleatoria X sigue una distribución normal de media $\\mu$ y desviación típica $\\sigma$.
+
+(a) Halla $P(\\mu-1.2\\sigma<X<\\mu+1.2\\sigma)$. [3 marks]
+
+Los pesos (en gramos) de los aguacates de un campo siguen una distribución normal de media $\\mu$ y desviación típica $\\sigma$. Se clasifican en pequeño, mediano, grande o extragrande con probabilidades 0.03, 0.55, 0.30 y 0.12 respectivamente. El peso máximo de un aguacate pequeño es 100 g. El peso mínimo de un extragrande es 185 g.
+
+(b) Halla el valor de $\\mu$ y el de $\\sigma$. [5 marks]
+
+Un supermercado compra todos los aguacates que pesan más de 100 g.
+
+(c) Halla la probabilidad de que un aguacate de esta compra, elegido al azar, se clasifique como: (i) mediano (ii) grande (iii) extragrande. [4 marks]
+
+Los precios de venta son: mediano USD 1.15, grande USD 1.35, extragrande USD 2.05 por aguacate. El supermercado paga USD 250 a la granja y vende en la misma proporción que compró.
+
+(d) Halla la cantidad mínima de aguacates que deben venderse para que la ganancia neta sea de al menos USD 450. [4 marks]`,
+    respuesta_correcta: '(a) 0.770  (b) μ≈152, σ≈27.8  (c) 0.567, 0.309, 0.124  (d) 530',
+    solucionario:`(a) $2\\Phi(1.2)-1\\approx0.770$  A1A1A1  [3 marks]
+
+(b) $100=\\mu+z_1\\sigma$, con $z_1=$invNorm$(0.03)$  (M1)(A1)
+$185=\\mu+z_2\\sigma$, con $z_2=$invNorm$(0.88)$  (A1)
+por resolver el sistema  (M1)
+$\\mu\\approx152$, $\\sigma\\approx27.8$  A1  [5 marks]
+
+(c)(i) $0.55/0.97\\approx0.567$  A1
+(ii) $0.30/0.97\\approx0.309$  A1
+(iii) $0.12/0.97\\approx0.124$  A1A1  [4 marks]
+
+(d) ingreso promedio por aguacate $=0.567(1.15)+0.309(1.35)+0.124(2.05)\\approx1.323$  (M1)(A1)
+$n(1.323)-250\\ge450$  (M1)
+$n\\ge529.0$
+mínimo $n=530$  A1  [4 marks]` },
+
+  // ===== Sesión de noviembre de 2020 (curso "Mathematics SL", programa anterior a la reforma de 2019) =====
+  { id:'seed-P1-A-2020-q1', prueba:'P1', seccion:'A', anio:2020, marcas:6, dificultad:2, fuente:'Inspirado en la pregunta 1 · ejercicio original, no reproduce el examen · curso "Mathematics SL" (programa anterior a Análisis y Enfoques)',
+    enunciado:`En una clase de 32 alumnos hay 21 que juegan al tenis, 4 que juegan al tenis y al vóleibol, y 5 que no practican ninguno de los dos deportes.
+
+El siguiente diagrama de Venn muestra los sucesos "juega al tenis" y "juega al vóleibol". Los valores t y v representan números de alumnos que practican solo uno de los dos deportes.
+
+(a)(i) Halla el valor de t. (ii) Halla el valor de v. [4 marks]
+(b) Halla la probabilidad de que un alumno elegido al azar juegue al tenis o al vóleibol, pero no a ambos. [2 marks]`,
+    respuesta_correcta: '(a) t=17, v=6  (b) 23/32',
+    solucionario:`(a)(i) $t=21-4=17$  A1  [1 mark]
+(ii) $t+v+4+5=32 \\Rightarrow v=32-5-4-17=6$  (M1)A1A1  [3 marks]
+
+(b) $P=\\dfrac{t+v}{32}=\\dfrac{23}{32}$  (M1)A1  [2 marks]` },
+
+  { id:'seed-P1-A-2020-q2', prueba:'P1', seccion:'A', anio:2020, marcas:6, dificultad:3, fuente:'Inspirado en la pregunta 2 · ejercicio original, no reproduce el examen · curso "Mathematics SL" (programa anterior a Análisis y Enfoques)',
+    enunciado:`La siguiente figura muestra el triángulo ABC. $AC=15$ cm, $BC=10$ cm y $A\\hat{B}C=\\theta$.
+
+Sea $\\sin(C\\hat{A}B)=\\dfrac25$.
+
+(a) Sabiendo que $A\\hat{B}C$ es agudo, halla $\\sin\\theta$. [3 marks]
+(b) Halla $\\cos(2\\times C\\hat{A}B)$. [3 marks]`,
+    respuesta_correcta: '(a) senθ=0.6  (b) 0.68',
+    solucionario:`(a) por tratar de utilizar el teorema del seno  (M1)
+$\\dfrac{\\sin\\theta}{15}=\\dfrac{\\sin(C\\hat{A}B)}{10}$  (A1)
+$\\sin\\theta=\\dfrac{15\\times2/5}{10}=0.6$  A1  [3 marks]
+
+(b) $\\cos(2C\\hat{A}B)=1-2\\sin^2(C\\hat{A}B)$  (M1)
+$=1-2\\left(\\dfrac25\\right)^2$  (A1)
+$=0.68$  A1  [3 marks]` },
+
+  { id:'seed-P1-A-2020-q3', prueba:'P1', seccion:'A', anio:2020, marcas:7, dificultad:3, fuente:'Inspirado en la pregunta 3 · ejercicio original, no reproduce el examen · curso "Mathematics SL" (programa anterior a Análisis y Enfoques)',
+    enunciado:`Sea $f(x)=12-2x$, $x \\le a$. La región sombreada está delimitada por el gráfico de f, el eje x y el eje y. El gráfico de f corta al eje x en el punto $(a,0)$.
+
+(a) Halla el valor de a. [2 marks]
+(b) Halla el volumen del sólido que se forma cuando se hace girar la región sombreada 360° alrededor del eje x. [5 marks]`,
+    respuesta_correcta: '(a) a=6  (b) V=288π',
+    solucionario:`(a) $12-2a=0 \\Rightarrow a=6$  A1  [2 marks]
+
+(b) $V=\\pi\\displaystyle\\int_0^{6}(12-2x)^2\\,dx$  (M1)(A1)
+por integrar  (M1)
+$=\\pi\\left[-\\dfrac{(12-2x)^3}{6}\\right]_0^6$  (A1)
+$=288\\pi$  A1  [5 marks]` },
+
+  { id:'seed-P1-A-2020-q4', prueba:'P1', seccion:'A', anio:2020, marcas:6, dificultad:3, fuente:'Inspirado en la pregunta 4 · ejercicio original, no reproduce el examen · curso "Mathematics SL" (programa anterior a Análisis y Enfoques)',
+    enunciado:`Sea $f(x)=a\\log_3(x-4)$ para $x>4$, donde $a>0$. El punto $A(13,7)$ pertenece al gráfico de f.
+
+(a) Halla el valor de a. [3 marks]
+
+La intersección con el eje x del gráfico de f es $(5,0)$.
+
+(b) Describe la forma del gráfico de f, indicando su asíntota vertical y el comportamiento cerca de ella. [3 marks]`,
+    respuesta_correcta: '(a) a=3.5  (b) asíntota vertical x=4; el gráfico crece lentamente para x>4',
+    solucionario:`(a) $a\\log_3(13-4)=7$  (M1)
+$a\\log_3(9)=7 \\Rightarrow 2a=7$  (A1)
+$a=3.5$  A1  [3 marks]
+
+(b) asíntota vertical: $x=4$  A1
+cerca de la asíntota (por la derecha), $f(x)\\to-\\infty$  A1
+el gráfico corta el eje x en $(5,0)$ y crece lentamente hacia la derecha  A1  [3 marks]` },
+
+  { id:'seed-P1-A-2020-q5', prueba:'P1', seccion:'A', anio:2020, marcas:6, dificultad:3, fuente:'Inspirado en la pregunta 5 · ejercicio original, no reproduce el examen · curso "Mathematics SL" (programa anterior a Análisis y Enfoques)',
+    enunciado:`Sean $f(x)=-x^2+4x+5$ y $g(x)=-f(x)+k$.
+
+Halla los valores de k para los cuales $g(x)=0$ no tiene ninguna raíz real.`,
+    respuesta_correcta: 'k>9',
+    solucionario:`$g(x)=x^2-4x-5+k$  (M1)
+discriminante $=(-4)^2-4(1)(-5+k)<0$  (A1)
+$16+20-4k<0$
+$k>9$  A1  [6 marks] (se otorgan marks adicionales por el desarrollo algebraico completo M1A1A1)` },
+
+  { id:'seed-P1-A-2020-q6', prueba:'P1', seccion:'A', anio:2020, marcas:7, dificultad:3, fuente:'Inspirado en la pregunta 6 · ejercicio original, no reproduce el examen · curso "Mathematics SL" (programa anterior a Análisis y Enfoques)',
+    enunciado:`El gráfico de una función f pasa por el punto $(\\ln4, 20)$.
+
+Sabiendo que $f'(x)=6e^{2x}$, halla f(x).`,
+    respuesta_correcta: '$f(x)=3e^{2x}-28$',
+    solucionario:`por integrar  (M1)
+$f(x)=3e^{2x}+C$  A1
+por sustituir $x=\\ln4$, $f=20$  (M1)
+$20=3e^{2\\ln4}+C=3(16)+C=48+C$  (A1)
+$C=-28$  A1
+$f(x)=3e^{2x}-28$  A1  [7 marks]` },
+
+  { id:'seed-P1-A-2020-q7', prueba:'P1', seccion:'A', anio:2020, marcas:7, dificultad:4, fuente:'Inspirado en la pregunta 7 · ejercicio original, no reproduce el examen · curso "Mathematics SL" (programa anterior a Análisis y Enfoques)',
+    enunciado:`En esta pregunta, las longitudes están en metros y el tiempo en segundos.
+
+Dos partículas $P_1$ y $P_2$ empiezan a moverse al mismo tiempo. La partícula $P_1$ se mueve en línea recta, con desplazamiento respecto a un punto fijo dado por $s(t)=10-\\dfrac74t^2$, para $t\\ge0$.
+
+(a) Halla una expresión para la velocidad de $P_1$ en el instante t. [2 marks]
+
+La partícula $P_2$ también se mueve en línea recta. Su posición viene dada por $\\vec{r}=\\begin{pmatrix}-1\\\\6\\end{pmatrix}+t\\begin{pmatrix}4\\\\-3\\end{pmatrix}$.
+
+La celeridad de $P_1$ es mayor que la celeridad de $P_2$ cuando $t>q$.
+
+(b) Halla el valor de q. [5 marks]`,
+    respuesta_correcta: '(a) v(t)=-3.5t  (b) q=10/7≈1.43',
+    solucionario:`(a) $v(t)=-\\dfrac72t=-3.5t$  A1A1  [2 marks]
+
+(b) celeridad de $P_1$ = $3.5t$ (ya que $t\\ge0$)  (M1)
+celeridad de $P_2$ = $|(4,-3)|=5$ (constante)  A1
+por plantear $3.5t>5$  (M1)
+$t>\\dfrac{10}{7}$  (A1)
+$q=\\dfrac{10}{7}\\approx1.43$  A1  [5 marks]` },
+
+  { id:'seed-P1-B-2020-q8', prueba:'P1', seccion:'B', anio:2020, marcas:15, dificultad:4, fuente:'Inspirado en la pregunta 8 · ejercicio original, no reproduce el examen · curso "Mathematics SL" (programa anterior a Análisis y Enfoques)',
+    enunciado:`En un equipo de corredores, cada atleta anota la distancia (M millas) recorrida en 30 minutos. La mediana es 4.2 millas y el rango intercuartil es 1.3 millas, con $Q_3=4.9$.
+
+(a) Halla el valor de $Q_1$. [2 marks]
+
+Las distancias en millas (M) se convierten a kilómetros (K) mediante $K=\\dfrac85M$.
+
+(b) Escribe en km el valor de la mediana. [1 mark]
+
+La varianza de las distancias en km es $\\dfrac{16}{9}$ km². La desviación típica en millas es b.
+
+(c) Halla el valor de b. [4 marks]
+
+En una carrera de 5 km participaron 600 atletas. La siguiente tabla de frecuencias acumuladas resume el tiempo (en minutos) que tardaron:
+
+Tiempo (min) | Frecuencia acumulada
+$\\le10$ | 30
+$\\le20$ | 180
+$\\le30$ | 420
+$\\le40$ | 570
+$\\le50$ | 600
+
+Hubo 400 atletas que tardaron entre 15 y m minutos.
+
+(d) Halla el valor de m (usando interpolación lineal). [4 marks]
+
+A los primeros 150 atletas les dieron un premio.
+
+(e) Sabiendo que un atleta tardó entre 15 y m minutos, halla la probabilidad de que le hayan dado un premio. [4 marks]`,
+    respuesta_correcta: '(a) Q1=3.6  (b) 6.72 km  (c) b≈0.833  (d) m≈35.7  (e) 0.1125',
+    solucionario:`(a) $Q_1=Q_3-1.3=3.6$  A1A1  [2 marks]
+
+(b) mediana en km $=\\dfrac85(4.2)=6.72$  A1  [1 mark]
+
+(c) varianza en millas $=\\dfrac{16/9}{(8/5)^2}$  (M1)(A1)
+$b=\\sqrt{\\text{varianza}}\\approx0.833$  A1A1  [4 marks]
+
+(d) frecuencia acumulada en $t=15$ (interpolando entre 10 y 20): $30+\\dfrac{5}{10}(150)=105$  (M1)(A1)
+se busca frecuencia acumulada $=105+400=505$  (M1)
+interpolando entre 30 y 40: $m=30+\\dfrac{505-420}{570-420}(10)\\approx35.7$  A1  [4 marks]
+
+(e) frecuencia acumulada en $t=18$ (correspondiente a la posición 150): $10+\\dfrac{150-30}{180-30}(10)=18$  (M1)
+$P(\\text{premio}\\ |\\ 15<t<m)=\\dfrac{150-105}{505-105}$  (M1)(A1)
+$=\\dfrac{45}{400}=0.1125$  A1  [4 marks]` },
+
+  { id:'seed-P1-B-2020-q9', prueba:'P1', seccion:'B', anio:2020, marcas:15, dificultad:5, fuente:'Inspirado en la pregunta 9 · ejercicio original, no reproduce el examen · curso "Mathematics SL" (programa anterior a Análisis y Enfoques)',
+    enunciado:`Los puntos A y B tienen coordenadas $(1,1,2)$ y $(9,m,-6)$, respectivamente.
+
+(a) Expresa $\\vec{AB}$ en función de m. [2 marks]
+
+La recta L, que pasa por B, tiene ecuación $\\vec{r}=\\begin{pmatrix}-3\\\\-19\\\\24\\end{pmatrix}+s\\begin{pmatrix}2\\\\4\\\\-5\\end{pmatrix}$.
+
+(b) Halla el valor de m. [5 marks]
+
+Considera el vector unitario $\\vec{u}=p\\vec{i}-\\dfrac23\\vec{j}+\\dfrac13\\vec{k}$, donde $p>0$. El punto C es tal que $\\vec{BC}=9\\vec{u}$.
+
+(c) Halla las coordenadas de C. [8 marks]`,
+    respuesta_correcta: '(a) (8,m-1,-8)  (b) m=5  (c) C=(15,-1,-3)',
+    solucionario:`(a) $\\vec{AB}=(9-1,\\ m-1,\\ -6-2)=(8,\\ m-1,\\ -8)$  A1A1  [2 marks]
+
+(b) B pertenece a L; usando la coordenada x: $9=-3+2s \\Rightarrow s=6$  (M1)(A1)
+comprobación con la coordenada z: $-6=24-5(6)=-6$ ✓ (consistente)  (A1)
+$m=-19+4(6)=5$  A1A1  [5 marks]
+
+(c) $|\\vec{u}|=1 \\Rightarrow p^2+\\dfrac49+\\dfrac19=1$  (M1)
+$p^2=\\dfrac49 \\Rightarrow p=\\dfrac23$ (dado que $p>0$)  (A1)(A1)
+$\\vec{BC}=9\\vec{u}=(6,-6,3)$  (M1)(A1)
+$C=B+\\vec{BC}=(9+6,\\ 5-6,\\ -6+3)=(15,-1,-3)$  A1A1  [8 marks]` },
+
+  { id:'seed-P1-B-2020-q10', prueba:'P1', seccion:'B', anio:2020, marcas:15, dificultad:5, fuente:'Inspirado en la pregunta 10 · ejercicio original, no reproduce el examen · curso "Mathematics SL" (programa anterior a Análisis y Enfoques)',
+    enunciado:`Considera $f(x)=\\dfrac{k}{x}$, para $x>0$, $k>0$. Sea $P\\left(p,\\dfrac{k}{p}\\right)$ un punto cualquiera del gráfico de f. La recta $L_1$ es tangente al gráfico de f en P.
+
+(a)(i) Halla $f'(p)$ en función de k y p.
+(ii) Muestra que la ecuación de $L_1$ es $kx+p^2y-2pk=0$. [4 marks]
+
+La recta $L_1$ corta al eje x en el punto $A(2p,0)$ y al eje y en el punto B.
+
+(b) Muestra que el área del triángulo AOB es igual a $2k$ (independiente de p). [5 marks]
+
+El gráfico de f se traslada mediante el vector $\\begin{pmatrix}4\\\\3\\end{pmatrix}$ para dar lugar al gráfico de g, con $k=8$.
+
+(c)(i) Escribe las ecuaciones de las asíntotas de g.
+(ii) La recta $L_2$ es tangente al gráfico de g en el punto Q, cuya coordenada x es 6. Halla la pendiente de $L_2$. [6 marks]`,
+    respuesta_correcta: '(a)(i) $-k/p^2$  (b) área=2k  (c)(i) x=4,y=3 (ii) pendiente=-2',
+    solucionario:`(a)(i) $f'(p)=-\\dfrac{k}{p^2}$  A1  [1 mark]
+(ii) $y-\\dfrac{k}{p}=-\\dfrac{k}{p^2}(x-p)$  (M1)
+por multiplicar por $p^2$ y simplificar  (M1)(A1)
+$kx+p^2y-2pk=0$  AG  [3 marks]
+
+(b) en $L_1$, cuando $y=0$: $x=2p$ (coincide con A)  A1
+cuando $x=0$: $p^2y=2pk \\Rightarrow y=\\dfrac{2k}{p}$, es decir $B=\\left(0,\\dfrac{2k}{p}\\right)$  (M1)(A1)
+Área $=\\dfrac12(2p)\\left(\\dfrac{2k}{p}\\right)$  (M1)
+$=2k$  A1  [5 marks]
+
+(c)(i) $g(x)=\\dfrac{8}{x-4}+3$; asíntotas: $x=4$, $y=3$  A1A1  [2 marks]
+(ii) $g'(x)=-\\dfrac{8}{(x-4)^2}$  (M1)(A1)
+$g'(6)=-\\dfrac{8}{4}=-2$  A1A1  [4 marks]` },
+
+  { id:'seed-P2-A-2020-q1', prueba:'P2', seccion:'A', anio:2020, marcas:6, dificultad:3, fuente:'Inspirado en la pregunta 1 · ejercicio original, no reproduce el examen · curso "Mathematics SL" (programa anterior a Análisis y Enfoques)',
+    enunciado:`Considera la función $f(x)=x^2+x+\\dfrac{50}{x}$, $x\\ne0$.
+
+(a) Halla f(1). [2 marks]
+(b) Resuelva f(x)=0. [2 marks]
+
+El gráfico de f tiene un mínimo local en el punto A.
+
+(c) Halla las coordenadas de A. [2 marks]`,
+    respuesta_correcta: '(a) 52  (b) x≈-4.05  (c) A≈(2.77, 28.5)',
+    solucionario:`(a) $f(1)=1+1+50=52$  A1A1  [2 marks]
+
+(b) $x^3+x^2+50=0$ (multiplicando por x)  (M1)
+por resolver con calculadora  (M1)
+$x\\approx-4.05$ (única raíz real)  A1  [2 marks]
+
+(c) por igualar $f'(x)=0$ con calculadora  (M1)
+$x\\approx2.77$, $f(2.77)\\approx28.5$  A1  [2 marks]` },
+
+  { id:'seed-P2-A-2020-q2', prueba:'P2', seccion:'A', anio:2020, marcas:6, dificultad:2, fuente:'Inspirado en la pregunta 2 · ejercicio original, no reproduce el examen · curso "Mathematics SL" (programa anterior a Análisis y Enfoques)',
+    enunciado:`Lucy anota, en seis días distintos, la temperatura máxima $T$ (°C) y el número de chocolates calientes $H$ que vendió.
+
+T | 14 | 8 | 4 | 18 | 13 | 11
+H | 79 | 143 | 191 | 58 | 84 | 105
+
+La relación se modela con $H=aT+b$.
+
+(a)(i) Halla el valor de a y el de b. (ii) Escribe el coeficiente de correlación. [4 marks]
+(b) Estima cuántos chocolates venderá Lucy un día con temperatura máxima de 12°C. [2 marks]`,
+    respuesta_correcta: '(a) a≈-9.85, b≈222, r≈-0.981  (b) ≈103',
+    solucionario:`(a)(i) $a\\approx-9.85$, $b\\approx222$ (por calculadora)  A1A1
+(ii) $r\\approx-0.981$  A1  [4 marks]
+
+(b) $H=-9.85(12)+222$  (M1)
+$\\approx103$  A1  [2 marks]` },
+
+  { id:'seed-P2-A-2020-q3', prueba:'P2', seccion:'A', anio:2020, marcas:6, dificultad:4, fuente:'Inspirado en la pregunta 3 · ejercicio original, no reproduce el examen · curso "Mathematics SL" (programa anterior a Análisis y Enfoques)',
+    enunciado:`Una variable aleatoria discreta X tiene la siguiente distribución de probabilidad:
+
+x | 0 | 1 | 2 | 3
+P(X=x) | q | $4p^2$ | p | $0.7-4p^2$
+
+(a) Halla una expresión para q en función de p. [2 marks]
+(b)(i) Halla el valor de p que produce el mayor valor posible de E(X). (ii) A partir de lo anterior, halla el mayor valor posible de E(X). [4 marks]`,
+    respuesta_correcta: '(a) q=3/10-p  (b)(i) p=1/8 (ii) E(X)máx=89/40=2.225',
+    solucionario:`(a) por plantear la suma de probabilidades = 1  (M1)
+$q=1-4p^2-p-(0.7-4p^2)$
+$q=\\dfrac{3}{10}-p$  A1  [2 marks]
+
+(b)(i) $E(X)=4p^2+2p+3(0.7-4p^2)=-8p^2+2p+2.1$  (M1)(A1)
+por igualar $E'(p)=0$: $-16p+2=0$  (M1)
+$p=\\dfrac18$  A1  [3 marks]
+(ii) $E(X)_{max}=-8(1/8)^2+2(1/8)+2.1=2.225$  A1  [1 mark]` },
+
+  { id:'seed-P2-A-2020-q4', prueba:'P2', seccion:'A', anio:2020, marcas:7, dificultad:4, fuente:'Inspirado en la pregunta 4 · ejercicio original, no reproduce el examen · curso "Mathematics SL" (programa anterior a Análisis y Enfoques)',
+    enunciado:`Sean $f(x)=5-x^3$ y $g(x)=\\ln x$, para $x>0$.
+
+(a) Halla $(f\\circ g)(x)$. [2 marks]
+(b)(i) Resuelve la ecuación $(f\\circ g)(x)=x$.
+(ii) A partir de lo anterior, y sabiendo que $g(2a)=f^{-1}(2a)$, halla el valor de a. [5 marks]`,
+    respuesta_correcta: '(a) $5-(\\ln x)^3$  (b)(i) x≈3.30 (ii) a≈1.65',
+    solucionario:`(a) $(f\\circ g)(x)=5-(\\ln x)^3$  A1A1  [2 marks]
+
+(b)(i) por resolver $5-(\\ln x)^3=x$ con calculadora  (M1)(M1)
+$x\\approx3.30$  A1  [3 marks]
+(ii) $f^{-1}(y)=(5-y)^{1/3}$  (M1)
+por resolver $\\ln(2a)=(5-2a)^{1/3}$ con calculadora  (M1)
+$a\\approx1.65$  A1  [2 marks... total (b)=5 marks]` },
+
+  { id:'seed-P2-A-2020-q5', prueba:'P2', seccion:'A', anio:2020, marcas:6, dificultad:4, fuente:'Inspirado en la pregunta 5 · ejercicio original, no reproduce el examen · curso "Mathematics SL" (programa anterior a Análisis y Enfoques)',
+    enunciado:`Considera el desarrollo de $\\left(3x^2-\\dfrac{k}{x}\\right)^9$, donde $k>0$. El coeficiente del término en $x^6$ es 6048.
+
+Halla el valor de k.`,
+    respuesta_correcta: 'k=2/3',
+    solucionario:`término general: $\\binom{9}{r}(3x^2)^{9-r}\\left(-\\dfrac{k}{x}\\right)^r$  (M1)
+exponente de x: $18-2r-r=6 \\Rightarrow r=4$  (A1)
+coeficiente $=\\binom{9}{4}(3)^5k^4=30\\,618\\,k^4$  (M1)(A1)
+$30\\,618\\,k^4=6048$  (A1)
+$k=\\dfrac23$  A1  [6 marks]` },
+
+  { id:'seed-P2-A-2020-q6', prueba:'P2', seccion:'A', anio:2020, marcas:8, dificultad:4, fuente:'Inspirado en la pregunta 6 · ejercicio original, no reproduce el examen · curso "Mathematics SL" (programa anterior a Análisis y Enfoques)',
+    enunciado:`En una serie geométrica infinita, el primer término es $u_1=a$ y el segundo término es $u_2=\\dfrac15a^2-4a$, donde $a>0$.
+
+(a) Halla la razón en función de a. [2 marks]
+(b) Halla los valores de a para los cuales existe $S_\\infty$. [3 marks]
+(c) Halla el valor de a para el cual $S_\\infty=90$. [3 marks]`,
+    respuesta_correcta: '(a) r=a/5-4  (b) 15<a<25  (c) a=450/19≈23.7',
+    solucionario:`(a) $r=\\dfrac{u_2}{u_1}=\\dfrac{a}{5}-4$  A1A1  [2 marks]
+
+(b) para que exista $S_\\infty$: $-1<r<1$  (M1)
+$-1<\\dfrac{a}{5}-4<1 \\Rightarrow 15<a<25$  A1A1  [3 marks]
+
+(c) $S_\\infty=\\dfrac{a}{1-r}=\\dfrac{5a}{25-a}=90$  (M1)
+$5a=90(25-a)$  (A1)
+$a=\\dfrac{450}{19}\\approx23.7$  A1  [3 marks]` },
+
+  { id:'seed-P2-A-2020-q7', prueba:'P2', seccion:'A', anio:2020, marcas:7, dificultad:4, fuente:'Inspirado en la pregunta 7 · ejercicio original, no reproduce el examen · curso "Mathematics SL" (programa anterior a Análisis y Enfoques)',
+    enunciado:`Un círculo tiene centro O y radio 1 cm. Los puntos A y B pertenecen a la circunferencia y $A\\hat{O}B=2\\theta$, donde $0<\\theta<\\pi/2$. Las tangentes al círculo en A y en B se cortan en el punto C.
+
+(a) Muestra que $AC=\\tan\\theta$. [1 mark]
+(b) Halla el valor de $\\theta$ para el cual el área de la región delimitada por las tangentes y el arco menor AB es igual al área del sector circular mayor (el que se forma con el resto del círculo). [6 marks]`,
+    respuesta_correcta: 'θ≈1.26 rad (≈72.3°)',
+    solucionario:`(a) en el triángulo rectángulo OAC, $\\tan\\theta=\\dfrac{AC}{OA}=\\dfrac{AC}{1}$  A1  [1 mark]
+
+(b) área del cuadrilátero OACB $=2\\left(\\dfrac12(1)\\tan\\theta\\right)=\\tan\\theta$  (M1)
+área del sector OAB (ángulo $2\\theta$) $=\\theta$  (A1)
+área de la región (tangentes menos sector) $=\\tan\\theta-\\theta$  (A1)
+área del sector mayor $=\\pi-\\theta$  (A1)
+por igualar y resolver con calculadora: $\\tan\\theta-\\theta=\\pi-\\theta \\Rightarrow \\tan\\theta=\\pi$  (M1)
+$\\theta\\approx1.26$ (rad)  A1  [6 marks]` },
+
+  { id:'seed-P2-B-2020-q8', prueba:'P2', seccion:'B', anio:2020, marcas:14, dificultad:5, fuente:'Inspirado en la pregunta 8 · ejercicio original, no reproduce el examen · curso "Mathematics SL" (programa anterior a Análisis y Enfoques)',
+    enunciado:`Una rueda hidráulica de centro O y radio 10 m gira en sentido horario a velocidad constante. La altura, h metros, sobre el nivel del suelo de la parte superior de un cubo, t segundos después de pasar por el punto A, se modela mediante
+$$h(t)=15+9\\cos\\left(\\dfrac{\\pi}{20}t\\right)-7\\sin\\left(\\dfrac{\\pi}{20}t\\right),\\ t\\ge0.$$
+
+(a)(i) Halla la altura del punto A sobre el nivel del suelo.
+(ii) Calcula el número de segundos que tarda la rueda en dar una vuelta completa.
+(iii) A partir de lo anterior, halla el número de vueltas que da la rueda en una hora. [6 marks]
+
+Un cubo se acerca al punto B, a una altura de 4.5 m sobre el suelo.
+
+(b) Halla k, el número de segundos que tarda en ir de A a B. [3 marks]
+
+La cuerda [AB] mide 17.2 m (3 c.s.).
+
+(c) Halla $A\\hat{O}B$. [3 marks]
+(d) Determina la razón de cambio de h cuando la parte superior del cubo está en B. [2 marks]`,
+    respuesta_correcta: '(a)(i) 24m (ii) 40s (iii) 90 vueltas  (b) k≈13.2s  (c) ≈118.6°  (d) ≈-0.698 m/s',
+    solucionario:`(a)(i) $h(0)=15+9=24$ (m)  A1  [2 marks]
+(ii) período $=\\dfrac{2\\pi}{\\pi/20}=40$ (s)  A1  [2 marks]
+(iii) vueltas por hora $=\\dfrac{3600}{40}=90$  A1  [2 marks]
+
+(b) por resolver $h(t)=4.5$ con calculadora  (M1)(M1)
+$k\\approx13.2$ (s)  A1  [3 marks]
+
+(c) por tratar de utilizar el teorema del coseno con $OA=OB=10$ y $AB=17.2$  (M1)
+$\\cos(A\\hat{O}B)=\\dfrac{10^2+10^2-17.2^2}{2(10)(10)}$  (A1)
+$A\\hat{O}B\\approx118.6°$  A1  [3 marks]
+
+(d) $h'(k)$ por calculadora  (M1)
+$\\approx-0.698$ (m/s)  A1  [2 marks]` },
+
+  { id:'seed-P2-B-2020-q9', prueba:'P2', seccion:'B', anio:2020, marcas:14, dificultad:5, fuente:'Inspirado en la pregunta 9 · ejercicio original, no reproduce el examen · curso "Mathematics SL" (programa anterior a Análisis y Enfoques)',
+    enunciado:`Fiona va caminando desde su casa hasta una parada de autobús, y el tiempo (W minutos) sigue $W\\sim N(12,3^2)$. Fiona sale de casa a las 07:15. El primer autobús sale a las 07:30, y el segundo a las 07:45.
+
+(a) Halla $P(15<W<22)$. [2 marks]
+
+El tiempo del viaje en autobús (B minutos) sigue $B\\sim N(45,\\sigma^2)$. $P(B<55)=0.93$.
+
+(b) Halla $\\sigma$. [3 marks]
+(c) Halla $P(B<40)$. [2 marks]
+
+Fiona debe llegar al colegio a más tardar a las 08:30 (75 minutos después de salir de casa). Si pierde ambos autobuses, no llega a tiempo. W y B son independientes.
+
+(d) Halla la probabilidad de que Fiona llegue a tiempo al colegio. [5 marks]
+
+Este año Fiona irá al colegio 190 días.
+
+(e) Calcula el número esperado de días en los que Fiona llegará a tiempo. [2 marks]`,
+    respuesta_correcta: '(a) 0.158  (b) σ≈6.78  (c) 0.230  (d) 0.909  (e) ≈173 días',
+    solucionario:`(a) $P(15<W<22)\\approx0.158$  A1A1  [2 marks]
+
+(b) $z=$ invNorm$(0.93)$  (M1)
+$\\sigma=\\dfrac{55-45}{z}\\approx6.78$  A1A1  [3 marks]
+
+(c) $P(B<40)\\approx0.230$  A1A1  [2 marks]
+
+(d) si toma el 1er bus ($W\\le15$): tiempo total $=15+B\\le75 \\Rightarrow B\\le60$  (M1)
+si pierde el 1ro y toma el 2do ($15<W\\le30$): tiempo total $=30+B\\le75 \\Rightarrow B\\le45$  (M1)
+$P=P(W\\le15)P(B\\le60)+P(15<W\\le30)P(B\\le45)$  (A1)(A1)
+$\\approx0.909$  A1  [5 marks]
+
+(e) $190\\times0.909\\approx173$ días  (M1)A1  [2 marks]` },
+
+  { id:'seed-P2-B-2020-q10', prueba:'P2', seccion:'B', anio:2020, marcas:16, dificultad:5, fuente:'Inspirado en la pregunta 10 · ejercicio original, no reproduce el examen · curso "Mathematics SL" (programa anterior a Análisis y Enfoques)',
+    enunciado:`Considera una función f, para $x\\ge0$. La derivada de f viene dada por $f'(x)=\\dfrac{8x}{x^2+9}$.
+
+(a) Muestra que $f''(x)=\\dfrac{8(9-x^2)}{(x^2+9)^2}$. [4 marks]
+
+El gráfico de f es cóncavo hacia abajo cuando $x>n$.
+
+(b) Halla el valor de n. [2 marks]
+(c) Halla $\\displaystyle\\int\\dfrac{8x}{x^2+9}\\,dx$. [3 marks]
+
+El gráfico de f pasa por el punto $(0,5)$.
+
+(d) Halla f(x). [7 marks]`,
+    respuesta_correcta: '(b) n=3  (c) $4\\ln(x^2+9)+C$  (d) $f(x)=4\\ln(x^2+9)+5-4\\ln9$',
+    solucionario:`(a) por tratar de utilizar la regla del cociente  (M1)
+$f''(x)=\\dfrac{8(x^2+9)-8x(2x)}{(x^2+9)^2}$  (A1)(A1)
+$=\\dfrac{8(9-x^2)}{(x^2+9)^2}$  AG  [4 marks]
+
+(b) $f''(x)<0$ cuando $9-x^2<0$  (M1)
+$n=3$  A1  [2 marks]
+
+(c) $\\displaystyle\\int\\dfrac{8x}{x^2+9}dx=4\\ln(x^2+9)+C$  (M1)A1A1  [3 marks]
+
+(d) $f(x)=4\\ln(x^2+9)+C$  (M1)
+por sustituir $x=0$, $f=5$  (M1)
+$5=4\\ln9+C \\Rightarrow C=5-4\\ln9$  (A1)(A1)
+$f(x)=4\\ln(x^2+9)+5-4\\ln9$  A1A1  [7 marks]` },
+
+  { id:'seed-P2-B-2025-q9', prueba:'P2', seccion:'B', anio:2025, marcas:17, dificultad:5, fuente:'Inspirado en la pregunta 9 · ejercicio original, no reproduce el examen',
+    enunciado:`Una partícula P se mueve en línea recta, de modo que su desplazamiento ($s$ cm) respecto a un punto fijo O, transcurridos $t$ segundos, viene dado por
+$$s(t) = 3^{\\left(1-\\frac{t}{4}\\right)}\\sin\\left(\\dfrac{\\pi t}{2}\\right),\\ t \\ge 0.$$
+
+(a) Halla: (i) el desplazamiento máximo de P respecto a O; (ii) la velocidad máxima de P. [5 marks]
+
+(b) Halla: (i) el valor mínimo de la función de desplazamiento $s(t)$; (ii) el desplazamiento de P respecto a O cuando $t=2.5$. [3 marks]
+
+(c) A partir de lo anterior, determina la distancia total que ha recorrido P en los primeros 2.5 segundos. [3 marks]
+
+La primera vez que P regresa y pasa por O es cuando $t=T$.
+
+(d) Escribe el valor de T. [1 mark]
+
+La partícula pasa por O cada T segundos. Se forma una progresión $u_1,u_2,u_3,\\ldots$, donde $u_1,u_2,u_3,\\ldots$ son las máximas distancias de O a las que está la partícula en cada intervalo sucesivo de longitud T. Se sabe que $u_1,u_2,u_3,\\ldots$ forman una progresión geométrica.
+
+(e)(i) Determina el valor de la razón común (r) de esta progresión.
+(ii) Calcula la distancia total que recorrería la partícula si siguiese moviéndose de esta manera indefinidamente. [5 marks]`,
+    respuesta_correcta: '(a) máx≈2.31, v_max≈4.71  (b) mín≈-1.34, s(2.5)≈-1.07  (c) ≈5.70 cm  (d) T=2  (e) r=1/√3≈0.577, distancia total≈10.9 cm',
+    solucionario:`(a)(i) por tratar de hallar un máximo con calculadora  (M1)
+desplazamiento máximo $\\approx2.31$ (cm)  A1  [2 marks]
+(ii) $v(t)=s'(t)$; por calculadora, velocidad máxima (en $t=0$) $\\approx4.71$ (cm/s)  (M1)A1  [3 marks]
+
+(b)(i) por tratar de hallar un mínimo con calculadora  (M1)
+valor mínimo $\\approx-1.34$  A1  [2 marks]
+(ii) $s(2.5)\\approx-1.07$  A1  [1 mark]
+
+(c) por reconocer que hay un cambio de signo en $s(t)$ dentro de $[0,2.5]$  (M1)
+por sumar las distancias (valor absoluto) con calculadora  (M1)
+$\\approx5.70$ (cm)  A1  [3 marks]
+
+(d) $T=2$  A1  [1 mark]
+
+(e)(i) por tratar de dividir dos máximos sucesivos  (M1)
+$r=3^{-T/4}=3^{-1/2}=\\dfrac{1}{\\sqrt3}\\approx0.577$  A1  [2 marks]
+(ii) por tratar de utilizar la fórmula de la suma de una serie geométrica infinita  (M1)
+$S_\\infty=\\dfrac{u_1}{1-r}$  (A1)
+por reconocer que la distancia total es el doble de $S_\\infty$  (M1)
+$\\approx10.9$ (cm)  A1  [5 marks]` }
+];
+
+async function seedBankIfEmpty(){
+  const byBucket = {};
+  for(const seed of SEED_EXERCISES){
+    const id = examId(seed.prueba, seed.seccion, seed.anio);
+    (byBucket[id] = byBucket[id] || []).push(seed);
+  }
+  for(const bucketId in byBucket){
+    const bank = await getBank(bucketId);
+    for(const seed of byBucket[bucketId]){
+      if(!bank.find(e=>e.id===seed.id)){
+        await addExerciseToBank(bucketId, {
+          id: seed.id, enunciado: seed.enunciado, tipo: seed.tipo || 'corta', opciones: seed.opciones || [],
+          respuesta_correcta: seed.respuesta_correcta, solucionario: seed.solucionario,
+          marcas: seed.marcas, dificultad: seed.dificultad, origen:'profesor', fuente: seed.fuente || null,
+          creado: new Date().toISOString()
+        });
+        bank.push({id:seed.id});
+      }
+    }
+  }
+}
+
+/* ============== RENDER ============== */
+const app = document.getElementById('app');
+function el(html){ const d=document.createElement('div'); d.innerHTML=html.trim(); return d.firstChild; }
+function render(){
+  app.innerHTML = '';
+  if(STATE.view==='login') return renderLogin();
+  if(STATE.view==='map') return renderMap();
+  if(STATE.view==='practice') return renderPractice();
+  if(STATE.view==='teacher') return renderTeacher();
+}
+
+function renderLogin(){
+  const card = el(`
+    <div class="login-card">
+      <h2>Cuaderno IB · Matemáticas</h2>
+      <p class="sub">Práctica adaptativa · Análisis y Enfoques</p>
+      <label>Tu nombre</label>
+      <input type="text" id="nameInput" placeholder="Ej. María López" autocomplete="off">
+      <div class="login-actions">
+        <button class="btn primary" id="enterBtn" style="flex:1">Entrar al cuaderno</button>
+      </div>
+      <div class="teacher-link"><a id="teacherLink">Entrar como profesor/a →</a></div>
+      <p class="note">Los ejercicios están organizados por Prueba, Sección y Año, igual que en los exámenes reales del IB. El progreso se guarda en este cuaderno; usa siempre el mismo nombre para conservarlo.</p>
+    </div>
+  `);
+  app.appendChild(card);
+  card.querySelector('#enterBtn').addEventListener('click', async ()=>{
+    const name = card.querySelector('#nameInput').value.trim();
+    if(!name){ card.querySelector('#nameInput').focus(); return; }
+    const slug = slugify(name);
+    STATE.user = { name, slug };
+    await upsertRoster({ name, slug });
+    STATE.view = 'map'; render();
+  });
+  card.querySelector('#nameInput').addEventListener('keydown', e=>{ if(e.key==='Enter') card.querySelector('#enterBtn').click(); });
+  card.querySelector('#teacherLink').addEventListener('click', ()=>{ STATE.teacher=true; STATE.view='teacher'; render(); });
+}
+
+async function renderMap(){
+  const u = STATE.user;
+  app.appendChild(el(`<div class="loading"><div class="spinner"></div>Cargando tu progreso…</div>`));
+  const progress = await getProgress(u.slug);
+  app.innerHTML = '';
+
+  app.appendChild(el(`
+    <div class="brand">
+      <div class="brand-title"><h1>Cuaderno IB</h1><span class="stamp">Matemáticas</span></div>
+      <div class="user-chip"><b>${u.name}</b> <button class="btn ghost small" id="switchBtn">Cambiar</button></div>
+    </div>
+  `));
+  app.querySelector('#switchBtn').addEventListener('click', ()=>{ STATE.view='login'; render(); });
+
+  const container = el(`<div id="pruebas"></div>`);
+  app.appendChild(container);
+
+  for(const pr of PRUEBAS){
+    const isOpenP = STATE.openPrueba === pr.id;
+    let allBuckets = [];
+    for(const sec of SECCIONES) for(const anio of ANIOS) allBuckets.push(examId(pr.id, sec.id, anio));
+    const avgP = Math.round(allBuckets.reduce((s,id)=> s+(progress.buckets[id]?.mastery||0),0)/allBuckets.length);
+
+    const pruebaDiv = el(`
+      <div class="tema ${isOpenP?'open':''}">
+        <div class="tema-head">
+          <div class="left"><h3>${pr.nombre}</h3><span class="count">Secciones A y B</span></div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div class="tema-bar"><div style="width:${avgP}%;background:${masteryColor(avgP)}"></div></div>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ink-soft);">${avgP}%</span>
+            <span class="chevron">›</span>
+          </div>
+        </div>
+        <div class="sub-list"></div>
+      </div>
+    `);
+    const secList = pruebaDiv.querySelector('.sub-list');
+
+    for(const sec of SECCIONES){
+      const secKey = `${pr.id}-${sec.id}`;
+      const isOpenS = STATE.openSeccion === secKey;
+      const bucketsSec = ANIOS.map(a=> examId(pr.id, sec.id, a));
+      const avgS = Math.round(bucketsSec.reduce((s,id)=> s+(progress.buckets[id]?.mastery||0),0)/bucketsSec.length);
+
+      const secDiv = el(`
+        <div style="border-top:1px solid var(--paper-line);">
+          <div class="sub-item" style="cursor:pointer;">
+            <div class="info"><span class="code">${sec.id}</span><span>${sec.nombre}</span></div>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="font-size:11px;color:var(--ink-soft);">${avgS}%</span>
+              <span class="chevron" style="transform:${isOpenS?'rotate(90deg)':'none'};color:var(--ink-soft);">›</span>
+            </div>
+          </div>
+          <div class="anios-grid" style="display:${isOpenS?'grid':'none'};grid-template-columns:repeat(3,1fr);gap:8px;padding:0 20px 16px 34px;"></div>
+        </div>
+      `);
+      secDiv.querySelector('.sub-item').addEventListener('click', ()=>{
+        STATE.openSeccion = isOpenS ? null : secKey; render();
+      });
+      const grid = secDiv.querySelector('.anios-grid');
+      for(const anio of ANIOS){
+        const bucketId = examId(pr.id, sec.id, anio);
+        const bank = await getBank(bucketId);
+        const m = progress.buckets[bucketId]?.mastery || 0;
+        const yearBtn = el(`
+          <div class="ex-item" style="margin:0;text-align:center;cursor:pointer;padding:10px;">
+            <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:14px;">${anioConSesion(anio)}</div>
+            <div style="font-size:10.5px;color:var(--ink-soft);margin:2px 0 6px;">${bank.length} ejercicio(s)</div>
+            <div class="cells" style="justify-content:center;">${Array.from({length:5},(_,i)=>`<div class="cell" style="${i<Math.round(m/20)?`background:${masteryColor(m)}`:''}"></div>`).join('')}</div>
+          </div>
+        `);
+        yearBtn.addEventListener('click', ()=>{
+          STATE.session = { pruebaId:pr.id, pruebaNombre:pr.nombre, seccionId:sec.id, seccionNombre:sec.nombre, anio, bucketId,
+            dificultad: Math.max(1,Math.min(5,1+Math.floor(m/25))) };
+          STATE.view='practice'; render();
+        });
+        grid.appendChild(yearBtn);
+      }
+      secList.appendChild(secDiv);
+    }
+
+    pruebaDiv.querySelector('.tema-head').addEventListener('click', ()=>{
+      STATE.openPrueba = isOpenP ? null : pr.id; STATE.openSeccion = null; render();
+    });
+    container.appendChild(pruebaDiv);
+  }
+
+  app.appendChild(el(`<footer class="hint">Elige Prueba → Sección → Año para practicar. La dificultad se ajusta sola según tus aciertos.</footer>`));
+}
+
+async function renderPractice(){
+  const u = STATE.user, s = STATE.session;
+  const ctx = { cursoNombre: CURSO_NOMBRE, pruebaId:s.pruebaId, pruebaNombre:s.pruebaNombre, seccionId:s.seccionId, seccionNombre:s.seccionNombre, anio:s.anio, dificultad:s.dificultad };
+
+  app.appendChild(el(`
+    <div class="brand">
+      <div class="brand-title"><h1>Cuaderno IB</h1><span class="stamp">Matemáticas</span></div>
+      <div class="user-chip"><button class="btn ghost small" id="backBtn">← Volver al mapa</button></div>
+    </div>
+  `));
+  app.querySelector('#backBtn').addEventListener('click', ()=>{ STATE.view='map'; render(); });
+
+  const card = el(`<div class="practice-card"></div>`);
+  app.appendChild(card);
+  function diffDots(n){ return Array.from({length:5},(_,i)=>`<span class="${i<n?'on':''}"></span>`).join(''); }
+
+  card.innerHTML = `
+    <div class="practice-top">
+      <div>
+        <span class="code">${s.pruebaNombre} · ${s.seccionNombre}</span>
+        <div style="margin-top:8px;font-size:15px;font-weight:600;">Año ${anioConSesion(s.anio)}</div>
+      </div>
+      <div><div class="meta" style="text-align:right;">Dificultad</div><div class="diff-dots">${diffDots(s.dificultad)}</div></div>
+    </div>
+    <div class="loading"><div class="spinner"></div>Obteniendo ejercicio…</div>
+  `;
+
+  let ejercicio;
+  try{
+    const progressNow = await getProgress(u.slug);
+    const vistos = progressNow.buckets[s.bucketId]?.vistos || [];
+    ejercicio = await pickOrGenerateEjercicio(ctx, s.bucketId, vistos);
+  }catch(e){
+    card.querySelector('.loading').outerHTML = `<div class="feedback bad">No se pudo obtener el ejercicio (${e.message}). Inténtalo de nuevo.</div>
+      <div class="practice-actions"><button class="btn" id="retryBtn">Reintentar</button><div></div></div>`;
+    card.querySelector('#retryBtn').addEventListener('click', renderPractice);
+    return;
+  }
+
+  card.querySelector('.loading').remove();
+  const tiempoInicio = Date.now();
+  const marksPill = ejercicio.marcas ? `<div class="marks-pill" style="margin-top:6px;">${ejercicio.marcas} marks</div>` : '';
+  const body = el(`
+    <div>
+      <div class="statement">${escapeHtml(ejercicio.enunciado)}</div>
+      ${ejercicio.imagen ? `<img class="ex-image" src="${ejercicio.imagen}" alt="Diagrama del ejercicio">` : ''}
+      ${marksPill}
+      <div id="answerZone" style="margin-top:16px;"></div>
+      <div class="practice-actions">
+        <button class="btn" id="skipBtn">Saltar ejercicio</button>
+        <button class="btn primary" id="submitBtn" disabled>Comprobar respuesta</button>
+      </div>
+      <div id="feedbackZone"></div>
+    </div>
+  `);
+  card.appendChild(body);
+  renderMath(card);
+
+  let respuesta = '';
+  const zone = card.querySelector('#answerZone');
+  const submitBtn = card.querySelector('#submitBtn');
+
+  if(ejercicio.tipo === 'opcion_multiple' && ejercicio.opciones && ejercicio.opciones.length){
+    const opts = el(`<div class="options"></div>`);
+    ejercicio.opciones.forEach(op=>{
+      const o = el(`<div class="option">${op}</div>`);
+      o.addEventListener('click', ()=>{
+        [...opts.children].forEach(x=>x.classList.remove('picked'));
+        o.classList.add('picked'); respuesta = op; submitBtn.disabled = false;
+      });
+      opts.appendChild(o);
+    });
+    zone.appendChild(opts);
+  } else {
+    const ta = el(`<textarea placeholder="Escribe tu respuesta aquí…"></textarea>`);
+    ta.addEventListener('input', ()=>{ respuesta = ta.value.trim(); submitBtn.disabled = !respuesta; });
+    zone.appendChild(ta);
+  }
+
+  card.querySelector('#skipBtn').addEventListener('click', ()=>{ STATE.view='map'; render(); });
+
+  submitBtn.addEventListener('click', async ()=>{
+    submitBtn.disabled = true;
+    const fz = card.querySelector('#feedbackZone');
+    fz.innerHTML = `<div class="loading"><div class="spinner"></div>Corrigiendo…</div>`;
+    let resultado;
+    try{
+      resultado = await corregirRespuesta(ctx, ejercicio, respuesta);
+    }catch(e){
+      fz.innerHTML = `<div class="feedback bad">No se pudo corregir la respuesta. Inténtalo de nuevo.</div>`;
+      submitBtn.disabled = false; return;
+    }
+
+    const duracionSeg = Math.round((Date.now() - tiempoInicio) / 1000);
+
+    const progress = await getProgress(u.slug);
+    const cur = progress.buckets[s.bucketId] || { mastery:0, attempts:0, correct:0, vistos:[], tiempoTotalSeg:0 };
+    cur.attempts += 1;
+    if(resultado.correcto){ cur.correct += 1; cur.mastery = Math.min(100, cur.mastery + 15 + s.dificultad*2); }
+    else{ cur.mastery = Math.max(0, cur.mastery - 10); }
+    cur.lastSeen = new Date().toISOString();
+    cur.vistos = [...(cur.vistos||[]), ejercicio.id];
+    cur.tiempoTotalSeg = (cur.tiempoTotalSeg || 0) + duracionSeg;
+    progress.buckets[s.bucketId] = cur;
+
+    progress.log = progress.log || [];
+    progress.log.push({
+      ts: new Date().toISOString(), bucketId: s.bucketId,
+      pruebaNombre: s.pruebaNombre, seccionNombre: s.seccionNombre, anio: s.anio,
+      correcto: resultado.correcto, duracionSeg, dificultad: s.dificultad
+    });
+    if(progress.log.length > 300) progress.log = progress.log.slice(-300); // limitar tamaño del historial
+
+    await saveProgress(u.slug, progress);
+
+    fz.innerHTML = `
+      <div class="feedback ${resultado.correcto?'ok':'bad'}"><b>${resultado.correcto ? '✓ ¡Correcto!' : '✗ No del todo'}</b><br>${resultado.feedback}</div>
+      <div style="font-size:11px;color:var(--ink-soft);margin-top:6px;">Tiempo en este ejercicio: ${duracionSeg < 60 ? duracionSeg+'s' : Math.floor(duracionSeg/60)+'min '+(duracionSeg%60)+'s'}</div>
+      <button class="ms-toggle" id="peekToggle">Ver solucionario</button>
+      <div class="mark-scheme" id="peekBox" style="display:none;">${ejercicio.solucionario ? escapeHtml(ejercicio.solucionario) : 'Respuesta: ' + escapeHtml(ejercicio.respuesta_correcta)}</div>
+      <div class="practice-actions">
+        <button class="btn" id="mapBtn">Volver al mapa</button>
+        <button class="btn primary" id="nextBtn">Siguiente ejercicio</button>
+      </div>
+    `;
+    fz.querySelector('#peekToggle').addEventListener('click', ()=>{
+      const box = fz.querySelector('#peekBox');
+      box.style.display = box.style.display==='none' ? 'block' : 'none';
+    });
+    fz.querySelector('#mapBtn').addEventListener('click', ()=>{ STATE.view='map'; render(); });
+    fz.querySelector('#nextBtn').addEventListener('click', ()=>{
+      STATE.session.dificultad = Math.max(1, Math.min(5, 1+Math.floor(cur.mastery/25)));
+      render();
+    });
+    renderMath(fz);
+  });
+}
+
+async function renderTeacher(){
+  app.appendChild(el(`
+    <div class="brand">
+      <div class="brand-title"><h1>Cuaderno IB</h1><span class="stamp">Panel del profesor</span></div>
+      <button class="btn ghost small" id="backBtn">← Volver</button>
+    </div>
+  `));
+  app.querySelector('#backBtn').addEventListener('click', ()=>{ STATE.teacher=false; STATE.view='login'; render(); });
+
+  const tabs = el(`
+    <div class="tabs">
+      <button data-t="alumnos" class="${STATE.teacherTab==='alumnos'?'on':''}">Alumnos</button>
+      <button data-t="banco" class="${STATE.teacherTab==='banco'?'on':''}">Banco de ejercicios</button>
+    </div>
+  `);
+  tabs.addEventListener('click', e=>{ const b=e.target.closest('button'); if(!b) return; STATE.teacherTab=b.dataset.t; render(); });
+  app.appendChild(tabs);
+
+  if(STATE.teacherTab === 'banco') return renderTeacherBank();
+
+  app.appendChild(el(`<div class="loading"><div class="spinner"></div>Cargando lista de alumnos…</div>`));
+  const roster = await getRoster();
+  app.querySelector('.loading').remove();
+
+  if(!roster.length){ app.appendChild(el(`<div class="empty">Todavía no hay alumnos registrados en este cuaderno.</div>`)); return; }
+
+  const columnas = [];
+  for(const pr of PRUEBAS) for(const sec of SECCIONES) columnas.push({label:`${pr.nombre} ${sec.nombre}`, prueba:pr.id, seccion:sec.id});
+
+  const rows = await Promise.all(roster.map(async st=>{
+    const progress = await getProgress(st.slug);
+    const colAvgs = columnas.map(c=>{
+      const ids = ANIOS.map(a=> examId(c.prueba, c.seccion, a));
+      return Math.round(ids.reduce((s,id)=> s+(progress.buckets[id]?.mastery||0),0)/ids.length);
+    });
+    const overall = Math.round(colAvgs.reduce((a,b)=>a+b,0)/colAvgs.length);
+    const tiempoTotalSeg = Object.values(progress.buckets||{}).reduce((s,b)=> s+(b.tiempoTotalSeg||0), 0);
+    const lastSeenDates = Object.values(progress.buckets||{}).map(b=>b.lastSeen).filter(Boolean).sort();
+    const ultimaActividad = lastSeenDates.length ? lastSeenDates[lastSeenDates.length-1] : null;
+    return { ...st, colAvgs, overall, tiempoTotalSeg, ultimaActividad, log: progress.log || [] };
+  }));
+  rows.sort((a,b)=> b.overall - a.overall);
+
+  function formatTiempo(seg){
+    if(!seg) return '0 min';
+    const h = Math.floor(seg/3600), m = Math.round((seg%3600)/60);
+    return h > 0 ? `${h}h ${m}min` : `${m} min`;
+  }
+  function formatFecha(iso){
+    if(!iso) return '—';
+    const d = new Date(iso);
+    return d.toLocaleDateString('es-ES', {day:'2-digit', month:'2-digit', year:'numeric'}) + ' ' + d.toLocaleTimeString('es-ES', {hour:'2-digit', minute:'2-digit'});
+  }
+
+  const table = el(`
+    <table>
+      <thead><tr><th>Alumno</th>${columnas.map(c=>`<th>${c.label}</th>`).join('')}<th>General</th><th>Tiempo total</th><th>Última actividad</th><th></th></tr></thead>
+      <tbody></tbody>
+    </table>
+  `);
+  const tbody = table.querySelector('tbody');
+  tbody.innerHTML = rows.map(r => `
+      <tr>
+        <td class="name">${r.name}</td>
+        ${r.colAvgs.map(v=>`<td><span class="mini-bar"><div style="width:${v}%;background:${masteryColor(v)}"></div></span>${v}%</td>`).join('')}
+        <td><b>${r.overall}%</b></td>
+        <td>${formatTiempo(r.tiempoTotalSeg)}</td>
+        <td style="font-size:11.5px;">${formatFecha(r.ultimaActividad)}</td>
+        <td><button class="btn ghost small detailBtn" data-slug="${r.slug}">Ver detalle</button></td>
+      </tr>
+  `).join('');
+  app.appendChild(table);
+  const detailZone = el(`<div id="detailZone"></div>`);
+  app.appendChild(detailZone);
+
+  table.querySelectorAll('.detailBtn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const r = rows.find(x=>x.slug===btn.dataset.slug);
+      renderStudentDetail(r, detailZone, formatTiempo, formatFecha);
+    });
+  });
+
+  app.appendChild(el(`<footer class="hint">Estos datos se generan a partir de la práctica de cada alumno en el cuaderno.</footer>`));
+}
+
+function renderStudentDetail(r, container, formatTiempo, formatFecha){
+  const log = [...r.log].reverse().slice(0, 40); // más reciente primero
+  const total = r.log.length;
+  const correctas = r.log.filter(e=>e.correcto).length;
+  const aciertoGlobal = total ? Math.round(correctas/total*100) : 0;
+  const tiempoProm = total ? Math.round(r.log.reduce((s,e)=>s+e.duracionSeg,0)/total) : 0;
+  const ultimos10 = r.log.slice(-10);
+  const aciertoReciente = ultimos10.length ? Math.round(ultimos10.filter(e=>e.correcto).length/ultimos10.length*100) : null;
+  const tendencia = (aciertoReciente!==null && total>=10)
+    ? (aciertoReciente > aciertoGlobal ? `↑ mejorando (${aciertoReciente}% en los últimos 10)`
+      : aciertoReciente < aciertoGlobal ? `↓ bajando (${aciertoReciente}% en los últimos 10)`
+      : `estable (${aciertoReciente}% en los últimos 10)`)
+    : 'aún sin suficientes datos';
+
+  container.innerHTML = '';
+  const panel = el(`
+    <div class="bank-panel" style="margin-top:16px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+        <b>Avance de ${r.name}</b>
+        <span style="font-size:11.5px;color:var(--ink-soft);">Última actividad: ${formatFecha(r.ultimaActividad)}</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px;">
+        <div class="ex-item" style="margin:0;text-align:center;">
+          <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:18px;">${total}</div>
+          <div style="font-size:10.5px;color:var(--ink-soft);">Intentos totales</div>
+        </div>
+        <div class="ex-item" style="margin:0;text-align:center;">
+          <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:18px;color:${masteryColor(aciertoGlobal)};">${aciertoGlobal}%</div>
+          <div style="font-size:10.5px;color:var(--ink-soft);">Aciertos (global)</div>
+        </div>
+        <div class="ex-item" style="margin:0;text-align:center;">
+          <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:18px;">${formatTiempo(r.tiempoTotalSeg)}</div>
+          <div style="font-size:10.5px;color:var(--ink-soft);">Tiempo acumulado</div>
+        </div>
+        <div class="ex-item" style="margin:0;text-align:center;">
+          <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:13px;">${tendencia}</div>
+          <div style="font-size:10.5px;color:var(--ink-soft);">Tendencia reciente</div>
+        </div>
+      </div>
+      ${log.length ? `
+      <table>
+        <thead><tr><th>Fecha</th><th>Prueba</th><th>Resultado</th><th>Tiempo</th><th>Dificultad</th></tr></thead>
+        <tbody>
+          ${log.map(e=>`
+            <tr>
+              <td style="font-size:11.5px;">${formatFecha(e.ts)}</td>
+              <td style="font-size:11.5px;">${e.pruebaNombre} · ${e.seccionNombre} · ${e.anio}</td>
+              <td>${e.correcto ? '<span style="color:var(--m-high);">✓ Correcto</span>' : '<span style="color:var(--m-low);">✗ Incorrecto</span>'}</td>
+              <td style="font-size:11.5px;">${e.duracionSeg < 60 ? e.duracionSeg+'s' : Math.floor(e.duracionSeg/60)+'min '+(e.duracionSeg%60)+'s'}</td>
+              <td style="font-size:11.5px;">${e.dificultad}/5</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+      ${r.log.length > 40 ? `<div style="font-size:11px;color:var(--ink-soft);margin-top:8px;">Mostrando los 40 intentos más recientes.</div>` : ''}
+      ` : `<div class="empty">Este alumno todavía no tiene intentos registrados.</div>`}
+    </div>
+  `);
+  container.appendChild(panel);
+  panel.scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+async function renderTeacherBank(){
+  if(!STATE.bankPrueba) STATE.bankPrueba = 'P1';
+  const layout = el(`<div class="bank-layout"></div>`);
+  app.appendChild(layout);
+  const nav = el(`<div class="bank-nav"></div>`);
+  layout.appendChild(nav);
+  const panel = el(`<div class="bank-panel"><div class="loading"><div class="spinner"></div>Cargando banco…</div></div>`);
+  layout.appendChild(panel);
+
+  for(const pr of PRUEBAS){
+    nav.appendChild(el(`<div class="tema-name">${pr.nombre}</div>`));
+    for(const sec of SECCIONES){
+      for(const anio of ANIOS){
+        const bucketId = examId(pr.id, sec.id, anio);
+        const bank = await getBank(bucketId);
+        const on = STATE.bankPrueba===pr.id && STATE.bankSeccion===sec.id && STATE.bankAnio===anio;
+        const btn = el(`<button class="sub-btn ${on?'on':''}"><span>${sec.nombre} · ${anioConSesion(anio)}</span><span class="n">${bank.length}</span></button>`);
+        btn.addEventListener('click', ()=>{ STATE.bankPrueba=pr.id; STATE.bankSeccion=sec.id; STATE.bankAnio=anio; render(); });
+        nav.appendChild(btn);
+      }
+    }
+  }
+
+  if(!STATE.bankSeccion || STATE.bankAnio==null){
+    panel.innerHTML = `<div class="empty">Elige Prueba, Sección y Año a la izquierda para ver y editar sus ejercicios.</div>`;
+    return;
+  }
+
+  const bucketId = examId(STATE.bankPrueba, STATE.bankSeccion, STATE.bankAnio);
+  const pruebaNombre = PRUEBAS.find(p=>p.id===STATE.bankPrueba).nombre;
+  const seccionNombre = SECCIONES.find(s=>s.id===STATE.bankSeccion).nombre;
+  const bank = await getBank(bucketId);
+  panel.innerHTML = '';
+  panel.appendChild(el(`
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+      <div>
+        <b>${pruebaNombre} · ${seccionNombre} · ${anioConSesion(STATE.bankAnio)}</b>
+        <div style="font-size:11.5px;color:var(--ink-soft);margin-top:2px;">${bank.length} ejercicio(s)</div>
+      </div>
+      <button class="btn primary small" id="addExBtn">+ Añadir ejercicio</button>
+    </div>
+  `));
+  const listEl = el(`<div id="exList"></div>`);
+  panel.appendChild(listEl);
+
+  function renderList(){
+    listEl.innerHTML = '';
+    if(!bank.length){ listEl.appendChild(el(`<div class="empty">Todavía no hay ejercicios aquí. Se generarán automáticamente cuando un alumno practique este año, o puedes añadir uno tú.</div>`)); return; }
+    bank.slice().reverse().forEach(ex=>{
+      const item = el(`
+        <div class="ex-item">
+          <div class="ex-top">
+            <span class="badge ${ex.origen==='profesor'?'prof':'ia'}">${ex.origen==='profesor'?'PROFESOR':'IA'}</span>
+            <span class="meta" style="font-size:11px;color:var(--ink-soft);">Dificultad ${ex.dificultad}/5 ${ex.marcas?`· ${ex.marcas} marks`:''}</span>
+          </div>
+          <div class="ex-text">${escapeHtml(ex.enunciado)}</div>
+          ${ex.imagen ? `<img class="ex-image-thumb" src="${ex.imagen}" alt="Diagrama del ejercicio">` : ''}
+          <div class="ex-meta">Respuesta: <b>${escapeHtml(ex.respuesta_correcta)}</b>${ex.tipo==='opcion_multiple' ? ' · Opción múltiple ('+ex.opciones.length+' opciones)' : ' · Respuesta corta'}</div>
+          ${ex.fuente ? `<div class="ex-meta" style="font-style:italic;">${ex.fuente}</div>` : ''}
+          ${ex.solucionario ? `<div class="mark-scheme" style="margin-top:10px;">${escapeHtml(ex.solucionario)}</div>` : ''}
+          <div class="ex-actions"><button class="editBtn">Editar</button><button class="delBtn">Eliminar</button></div>
+        </div>
+      `);
+      item.querySelector('.editBtn').addEventListener('click', ()=> openForm(ex));
+      item.querySelector('.delBtn').addEventListener('click', async ()=>{
+        if(!confirm('¿Eliminar este ejercicio del banco?')) return;
+        await deleteExerciseFromBank(bucketId, ex.id);
+        render();
+      });
+      listEl.appendChild(item);
+    });
+  }
+  renderList();
+  renderMath(listEl);
+
+  function openForm(existing){
+    const isEdit = !!existing;
+    let imagenActual = isEdit ? (existing.imagen || null) : null;
+    const formWrap = el(`
+      <div class="bank-panel" style="margin-top:14px;border:1.5px dashed var(--paper-line);box-shadow:none;">
+        <h3 style="font-size:15px;margin-bottom:14px;">${isEdit?'Editar ejercicio':'Nuevo ejercicio'}</h3>
+        <div class="field"><label>Enunciado</label><textarea id="fEnunciado" rows="3">${isEdit?existing.enunciado:''}</textarea>
+          <div style="font-size:11px;color:var(--ink-soft);margin-top:4px;">Para ecuaciones, escríbelas en LaTeX entre signos de dólar — ej. <code>$x^2$</code>, <code>$\sqrt{x}$</code> — y se verán como una ecuación real (igual que en Word). Si escribiste la ecuación en Word con su editor, pásamela y yo la convierto a este formato por ti.</div>
+        </div>
+        <div class="field">
+          <label>Imagen / diagrama (opcional — ej. un triángulo, una gráfica)</label>
+          <div class="img-upload-row">
+            <input type="file" id="fImagen" accept="image/*">
+            <span id="imgStatus" style="font-size:11.5px;color:var(--ink-soft);">${imagenActual ? 'Imagen cargada' : 'Sin imagen'}</span>
+          </div>
+          <div id="imgPreviewWrap">${imagenActual ? `<img class="ex-image-thumb" id="imgPreview" src="${imagenActual}"><button class="img-remove-btn" id="imgRemoveBtn">Quitar imagen</button>` : ''}</div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label>Tipo</label>
+            <select id="fTipo">
+              <option value="corta" ${isEdit&&existing.tipo==='corta'?'selected':''}>Respuesta corta</option>
+              <option value="opcion_multiple" ${isEdit&&existing.tipo==='opcion_multiple'?'selected':''}>Opción múltiple</option>
+            </select>
+          </div>
+          <div class="field"><label>Dificultad</label>
+            <select id="fDificultad">${[1,2,3,4,5].map(n=>`<option value="${n}" ${isEdit&&existing.dificultad===n?'selected':''}>${n}</option>`).join('')}</select>
+          </div>
+        </div>
+        <div class="field" id="opcionesField" style="display:${isEdit&&existing.tipo==='opcion_multiple'?'block':'none'}">
+          <label>Opciones (una por línea)</label>
+          <textarea id="fOpciones" rows="4">${isEdit&&existing.opciones?existing.opciones.join('\n'):''}</textarea>
+        </div>
+        <div class="field"><label>Respuesta correcta</label><input type="text" id="fRespuesta" value="${isEdit?existing.respuesta_correcta:''}"></div>
+        <div class="form-row"><div class="field"><label>Marcas totales</label><input type="text" id="fMarcas" value="${isEdit&&existing.marcas?existing.marcas:''}" placeholder="ej. 5"></div></div>
+        <div class="field"><label>Solucionario (mark scheme, notación M1/A1/R1)</label><textarea id="fSolucionario" rows="5">${isEdit?(existing.solucionario||''):''}</textarea></div>
+        <div style="display:flex;gap:10px;">
+          <button class="btn primary" id="saveExBtn">${isEdit?'Guardar cambios':'Añadir al banco'}</button>
+          <button class="btn ghost" id="cancelExBtn">Cancelar</button>
+        </div>
+      </div>
+    `);
+    panel.appendChild(formWrap);
+    formWrap.scrollIntoView({behavior:'smooth', block:'nearest'});
+    formWrap.querySelector('#fTipo').addEventListener('change', e=>{
+      formWrap.querySelector('#opcionesField').style.display = e.target.value==='opcion_multiple' ? 'block':'none';
+    });
+
+    function resizeImage(file, maxWidth=900, quality=0.82){
+      return new Promise((resolve, reject)=>{
+        const reader = new FileReader();
+        reader.onload = ()=>{
+          const img = new Image();
+          img.onload = ()=>{
+            const scale = Math.min(1, maxWidth / img.width);
+            const canvas = document.createElement('canvas');
+            canvas.width = Math.round(img.width * scale);
+            canvas.height = Math.round(img.height * scale);
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#fff';
+            ctx.fillRect(0,0,canvas.width,canvas.height);
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+            resolve(canvas.toDataURL('image/jpeg', quality));
+          };
+          img.onerror = reject;
+          img.src = reader.result;
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    formWrap.querySelector('#fImagen').addEventListener('change', async (e)=>{
+      const file = e.target.files[0];
+      if(!file) return;
+      formWrap.querySelector('#imgStatus').textContent = 'Procesando imagen…';
+      try{
+        imagenActual = await resizeImage(file);
+        formWrap.querySelector('#imgPreviewWrap').innerHTML = `<img class="ex-image-thumb" id="imgPreview" src="${imagenActual}"><button class="img-remove-btn" id="imgRemoveBtn">Quitar imagen</button>`;
+        formWrap.querySelector('#imgStatus').textContent = 'Imagen cargada';
+        formWrap.querySelector('#imgRemoveBtn').addEventListener('click', ()=>{
+          imagenActual = null;
+          formWrap.querySelector('#imgPreviewWrap').innerHTML = '';
+          formWrap.querySelector('#imgStatus').textContent = 'Sin imagen';
+          formWrap.querySelector('#fImagen').value = '';
+        });
+      }catch(err){
+        formWrap.querySelector('#imgStatus').textContent = 'No se pudo procesar la imagen';
+      }
+    });
+    if(formWrap.querySelector('#imgRemoveBtn')){
+      formWrap.querySelector('#imgRemoveBtn').addEventListener('click', ()=>{
+        imagenActual = null;
+        formWrap.querySelector('#imgPreviewWrap').innerHTML = '';
+        formWrap.querySelector('#imgStatus').textContent = 'Sin imagen';
+        formWrap.querySelector('#fImagen').value = '';
+      });
+    }
+
+    formWrap.querySelector('#cancelExBtn').addEventListener('click', ()=> formWrap.remove());
+    formWrap.querySelector('#saveExBtn').addEventListener('click', async ()=>{
+      const enunciado = formWrap.querySelector('#fEnunciado').value.trim();
+      const tipo = formWrap.querySelector('#fTipo').value;
+      const dificultad = parseInt(formWrap.querySelector('#fDificultad').value,10);
+      const respuesta_correcta = formWrap.querySelector('#fRespuesta').value.trim();
+      const marcas = parseInt(formWrap.querySelector('#fMarcas').value,10) || null;
+      const solucionario = formWrap.querySelector('#fSolucionario').value.trim();
+      const opciones = tipo==='opcion_multiple' ? formWrap.querySelector('#fOpciones').value.split('\n').map(s=>s.trim()).filter(Boolean) : [];
+      if(!enunciado || !respuesta_correcta || (tipo==='opcion_multiple' && opciones.length<2)){
+        alert('Completa el enunciado, la respuesta correcta y, si es opción múltiple, al menos 2 opciones.');
+        return;
+      }
+      try{
+        if(isEdit){
+          await updateExerciseInBank(bucketId, existing.id, { enunciado, tipo, dificultad, respuesta_correcta, opciones, marcas, solucionario, imagen: imagenActual });
+        } else {
+          await addExerciseToBank(bucketId, { id:newExerciseId(), enunciado, tipo, dificultad, respuesta_correcta, opciones, marcas, solucionario, imagen: imagenActual, origen:'profesor', creado:new Date().toISOString() });
+        }
+        render();
+      }catch(e){ alert('No se pudo guardar: '+e.message); }
+    });
+  }
+
+  panel.querySelector('#addExBtn').addEventListener('click', ()=> openForm(null));
+}
+
+seedBankIfEmpty().then(render);
+</script>
+</body>
+</html>
